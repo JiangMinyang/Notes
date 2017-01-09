@@ -1,0 +1,171 @@
+\documentclass[10pt,usletter]{article}
+\usepackage[letterpaper, hmargin=0.75in, vmargin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{pgf}
+\usepackage{courier}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,lastpage,fancyhdr,wrapfig,multirow}
+\usepackage{palatino}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\textwidth 7.5in
+\oddsidemargin -.5in
+\topmargin -0.70in
+\textheight 9.8in                      
+
+\pagestyle{fancy}
+
+%**************Fill in your ID and initials here*****************
+\newcommand{\mc}[1]{\ensuremath{\mathcal{{#1}}}}
+\newcommand{\mb}[1]{\ensuremath{\mathbb{{#1}}}}
+\newcommand{\mf}[1]{\ensuremath{\mathfrak{{#1}}}}
+\newcommand{\N}[1]{\ensuremath{\{1,\ldots,{#1}\}}}
+
+\newcommand{\Worth}[1]{\{{#1} marks\}}
+\newcommand{\Sln}{\smallskip \textbf{Solution.} }
+\newcommand{\Extra}[1]{\{Extra credit: {#1} marks\}}
+
+
+\setlength{\parskip}{0.15in}
+\setlength{\parindent}{0in}
+
+
+\newcommand{\NP}{\newpage \vspace*{-0.4in}}
+\newcommand{\FP}{\vspace*{-0.6in}}
+\newcommand{\tab}[1][1cm]{\hspace*{#1}}
+
+\lstset{ %
+language=Java,
+basicstyle=\ttfamily\scriptsize,commentstyle=\scriptsize\itshape,showstringspaces=false,breaklines=true}
+
+
+\title{\huge CS370 Notes}
+\author{Minyang Jiang}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\NP
+\section{Floating Point Number Systems}
+\subsection{Introduction}
+$$F(\beta, t, L, u)$$
+continas:
+\begin{center}
+0 or $\pm 0.\beta_1\beta_2...\beta_t * \beta^d$ \\
+where $\beta_1 \neq 0$ \\ 
+$0 \leq \beta_i \le \beta$ \\
+$L \leq d \leq u$
+\end{center}
+Two common systems used today - Base 2
+\begin{enumerate}
+\item Single precision: $F(2, 24, -126, 127)$ 
+\item Double precision: $F(2, 53, -1022, 1023)$ 
+\end{enumerate}
+Important concepts\\
+If $x$ is any real number then set $fl(x)=$ floating point representation of x \\
+if we write: $$x=\pm 0.x_1x_2x_3...x_tx_{t+1}...*\beta^d$$
+$$fl(x)=\pm 0.x_1x_2x_3...x_t*\beta^d$$
+relative error $$\delta_x = \frac{fl(x)-x}{x}$$
+$$\|\delta_x\| \leq ?$$
+\begin{align*}
+\frac{\|fl(x)-x\|}{\|x\|}&= \frac{0.00\hdots0x_{t+1}\hdots*\beta^d}{0.x_1x_2\hdots x_{t+1}\hdots*\beta^d} \\
+&=\frac{0.x_{t+1}x_{t+2}\hdots*\beta^{-t}}{x_1.x_2\hdots * \beta_{-1}}\\
+\delta &= \frac{fl(x)-x}{x} \tab \text{then } \|\delta\| \leq \epsilon =
+\begin{cases}
+\beta^{1-t} \\
+\frac{\beta^{1-t}}{2} \
+\end{cases}\\
+fl(x)&=x(1+\delta) \tab |\delta| \le \epsilon \\
+\end{align*}
+What about floating point arithmetic? \\
+\tab x, y  real numbers, $x+y$ real\\
+\tab $x\oplus y = $addition inside floating pt system $=fl(fl(x) + fl(y))$
+
+\subsection{Analysis some errors in computation}
+Example. Addition
+\begin{align*}
+\left\|\frac{(x+y)-(x\oplus y)}{x + y}\right\|&=\frac{\|(x+y)-fl(fl(x)+fl(y))\|}{x+y}=\frac{\|x+y-x(1+\delta)+y(1+\delta)\|}{x+y}\\
+&=\frac{\|x+y-(x+y+\delta_1 x+\delta_2 y + x\delta_3 + y\delta_3 + \delta_1\delta_3 x+ \delta_2 \delta_3 y)\|}{x+y}\\
+&\leq \frac{\|\delta_1 x\|+\|\delta_2 y\| + \|\delta_3 x\| + \|\delta_3 y\| + \delta_1\delta_3 x + \|\delta2\delta_3 y\|}{\|x+y\|}\\
+&\le \frac{(\|x\|+\|y\|)(2\epsilon + \epsilon^2)}{\|x+y\|} \\
+\|\delta_1\| \le \epsilon,\tab &\|\delta_2\| \le \epsilon,\tab \|\delta_3\| \le \epsilon
+\end{align*}
+$\Rightarrow$ if x and y have same sign then relative error of addition $$\left\|\frac{x \oplus y - (x+y)}{x+y}\right\| \le 2\epsilon + \epsilon^2$$
+However if x and y have opposite sign, then you potentially have a problem particularly when $x+y \approx 0$, Situation is called \textbf{Catastrophic cancellation}
+\begin{align*}
+x&= 0.x_1x_2\hdots x_{t-1} x_t x_{t+1}\hdots * \beta^d\\
+y&=-0.x_1x_2\hdots x_{t-1} x_t x_{t+1}\hdots * \beta^d\\
+x+y&= 0.00\hdots0??\hdots * \beta^d\\
+\end{align*}
+
+\subsection{How about some algorithms?}
+\subsubsection{Example}
+Given $\alpha$, compute: $$I_n=\int_0^1\frac{x^n}{x+\alpha}dx \tab n=0,1,\hdots,100\hdots$$
+\underline{Step 1} $$I_0=\int_0^1 \frac{1}{x+\alpha}dx=Ln(x+\alpha)=Ln(1+\alpha)-Ln(\alpha)=Ln\left(\frac{1+\alpha}{\alpha}\right)$$
+e.g.
+\begin{align*}
+\alpha = 0.5 \text{ then } I_0=1.098612288668\hdots\\
+\alpha = 2.0 \text{ then } I_0=0.405465108108\hdots\\
+\end{align*}
+\underline{Step 2} \tab Notice: $$I_{n+1}=\int_0^1\frac{x^{n+1}}{x+\alpha}dx=\int_0^1\frac{x^n(x+\alpha-\alpha}{x+\alpha}dx=\int_0^1x^ndx-\alpha\int_0^1\frac{x^n}{x+\alpha}dx$$
+$$I_{n+1}=\frac{1}{n+1}-\alpha I_n$$
+\begin{align*}
+I_0&\\
+I_1 &= 1-\alpha I_0\\
+I_2 &= \frac{1}{2} - \alpha I_1\\
+\vdots\\
+I_{100} &= \frac{1}{100} - \alpha I_00
+\end{align*}
+If $\alpha = 0.5$ then $I_{100} = 0.00664$\\
+if $\alpha = 2.0$ then $I_{100} = 2.1 * 10^{22}$\\
+$$\|I_n\| \leq \frac{1}{1+\alpha}$$
+Let's analyze what is happening \\
+\underline{Math}: $$I_0^{ex}, I_{n+1}^{ex}=\frac{1}{n+1}-\alpha I_n^{ex}$$ 
+\underline{CS}:	$$I_0^{app}, I_{n+1}^{app}=\frac{1}{n+1}-\alpha I_n^{aop}$$
+At every step, therer is some error:
+\begin{align*}
+e_0&=I_0^{ex}-I_0^{app} \\
+e_n&=I_0^{ex}-I_n^{app}
+\end{align*}
+\underline{Notice:} 
+\begin{align*}
+e_{n+1}&=I_{n+1}^{ex}-I_{n+1}^{app} \\
+&=\left(\frac{1}{n+1}-\alpha I_n^{ex}\right)-\left(\frac{1}{n+1}-\alpha I_n^{app}\right) \\
+&=-\alpha I_n^{ex}+\alpha I_n^{app} \\
+&=-\alpha \left(I_n^{ex}-I_n^{app}\right) \\
+&=-\alpha e_n \\
+&=(-\alpha)^{n+1}e_0
+\end{align*}
+If $\|\alpha\|\le 1$ then $\|e_n\|\rightarrow 0$ as $n\rightarrow \inf$\\
+If $\|\alpha\|\ge 1$ then $\|e_n\|\rightarrow \inf$ as $n\rightarrow \inf$\\
+What to do when $\|\alpha\| \ge 1$:
+\begin{align*}
+I_n&=\frac{1}{\alpha (n+1)} - \frac{1}{\alpha} I_{n+1}\\
+e_n&=-\frac{1}{\alpha}e_{n+1}
+\end{align*}
+If $\|\alpha\| \ge 1$ then work backwards, e.g. $I_{100}$, Do $I_{200}, I_{199}\hdots$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
