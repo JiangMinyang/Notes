@@ -195,8 +195,13 @@ c_1+c_2x_n+\hdots +c_nx_n^{n-1}&=y_n
 Vamdeimonde matrix
 $$V \cdot\vec{c}=\vec{y}$$
 $$det(V)=\Pi_{i>j}(x_i-x_j)\neq 0 \tab \text{since all $x_i$ distinct}$$
-
-
+\subsection{\underline{Lagrange Form of Interpolating Polynomial}}
+\begin{align*}
+p(x)&=c_1+c_2x+c_3x^2+\hdots+c_nx^{n-1}\\
+&=y_1L_1(x)+y_2L_2(x)+\hdots + y_nL_n(x)
+\end{align*}
+where each $L_i(x)$ is a polyominal of degree $<n$ which satisfies $L_i(x_i)=1, L_i(x_j)=0$ if $i \neq j$\\
+$L_i(x)\equiv$ Lagrange polynominal
 
 
 

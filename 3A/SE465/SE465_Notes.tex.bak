@@ -9,7 +9,10 @@
 \usepackage{amsfonts,amssymb,amsmath,amsthm,lastpage,fancyhdr,wrapfig,multirow}
 \usepackage{palatino}
 \usepackage{amsmath}
+\usepackage{parallel,enumitem}
+\usepackage{cancel}
 \usepackage[english]{babel}
+\usepackage{soul}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \textwidth 7.5in
@@ -152,4 +155,67 @@ if __name__ == '__main__':
     unittest.main()
 
 \end{lstlisting}
+
+\subsection{•}
+\noindent
+\fbox{
+\begin{minipage}[t]{0.48\linewidth}
+Static:
+\begin{enumerate}
+\item[-] find faults\\
+example:
+\begin{enumerate}
+\item type checking
+\item dead code analysis
+\end{enumerate}
+\item[-] code inspection functionality and style
+\item[-] program verification
+\end{enumerate}
+\end{minipage}}
+\hfill%
+\fbox{
+\begin{minipage}[t]{0.48\linewidth}
+Dynamic
+\begin{enumerate}
+\item[-] observe failures
+\item[-] must generate inputs\\
+\tab what are expected outputs?
+\item[-] easy to run the program
+\item[-] keywords\\
+\tab white-box testing\\
+\tab black-box testing
+\end{enumerate}
+\end{minipage}}
+
+static techninques tradeoff:
+\begin{enumerate}
+\item[-] exhaustive 
+\item[-] subject to false positives
+\end{enumerate}
+
+words I don't like \\
+\tab \st{complete testing}\\
+\tab \st{exhaustive testing}\\
+\tab \st{full coverage}
+
+First big question: When should I stop testing?
+\begin{enumerate}
+\item when I run out of time\\
+\tab open-ended explorotroy testing\\
+\tab for automatic input generation
+\item when I'm close enough to being exhaustive\\
+\tab explored enough (all) of \\
+\tab[2cm] behaviours / use cases\\
+\tab[2cm] program states\\
+\tab[2cm] inputs\\
+\tab[2cm] statements / branches
+\end{enumerate}
+
+\huge{observability, controlability}
+\subsection{Coverage}
+\normalsize
+\begin{enumerate}
+\item[-] idea: find reduced space + cover it with test cases
+\end{enumerate}
+Test Requirement (TR) - an element of an artifact that soe test case must satisfy
 \end{document}
