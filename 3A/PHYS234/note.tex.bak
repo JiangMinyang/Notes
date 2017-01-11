@@ -126,9 +126,9 @@ E&=T+V=\frac{p^2}{2m}+V
 Quantum mechanics:
 $$E\rightarrow i\hbar \frac{\partial}{\partial t}; p\rightarrow \c{p}=i\hbar \triangledown$$
 \begin{equation}
-i\hbar \frac{\partial \Psi(x,t)}{\par}
+i\hbar \frac{\partial \Psi(x,t)}{\partial t} =\left( -\frac{\hbar^2}{2m}\triangledown^2+V \right)\Psi(x,t)
 \end{equation}
-
+$$\Psi(x,t) - \text{The Wave function} \Rightarrow \text{to describe physics properties}$$
 
 
 

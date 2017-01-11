@@ -151,11 +151,50 @@ e_n&=-\frac{1}{\alpha}e_{n+1}
 \end{align*}
 If $\|\alpha\| \ge 1$ then work backwards, e.g. $I_{100}$, Do $I_{200}, I_{199}\hdots$
 
-
-
-
-
-
+\section{Interpolation}
+Given n points $(x_1, y_1),\hdots, (x_N, y_N)$ $x_i$ distinct $x_1<x_2<\hdots<x_N$ \\
+$y=p(x)$, p should be 'nice'\\
+'nice':
+\begin{enumerate}
+\item[•] polynomial; piecewise polynomial;
+\end{enumerate}
+\subsection{Polynomial Interpolation}
+Given n points $(x_i, y_i)$  $i=1,2,\hdots,n$\\
+Find a \underline{polynomial} having degree $<n$ satisfying $p(x_i)=y_i$\\
+\underline{Example}\\
+$(-1,3),(1,1), (2,2)$\\
+\begin{align*}
+p(x)&=c_0+c_1x+c_2x^2\\
+p(-1)&=c_0-c_1+c_2=3\\
+p(1)&=c_0+c_1+c_2=1\\
+p(2)&=c_0+2c_1+4c_2=2
+\end{align*}
+$$
+\begin{bmatrix}
+1 & -1 & 1 & 3\\
+1 & 1 & 1 & 1\\
+1 & 2 & 4 & 2
+\end{bmatrix}
+$$
+$$p(x)=\frac{4}{3} - x + \frac{2}{3}x^2$$
+Given n points $(x_1, y_1),\hdots, (x_N, y_N)$ $x_i$ distinct $x_1<x_2<\hdots<x_N$ 
+\begin{enumerate}
+\item[1)] Does there exist a polynomial $p(x)$ of degree < n which interpolate the n points?
+\item[2)] If it exists then is it unique?
+\end{enumerate}
+$$(x_1,y_1), (x_2,y_2), \dots, (x_n, y_n)$$
+$$p(x)=c_1+c_2x+\hdots +c_nx^{n-1}$$
+n unknowns\\
+n equations
+\begin{align*}
+c_1+c_2x_1+\hdots +c_nx_1^{n-1}&=y_1\\
+c_1+c_2x_2+\hdots +c_nx_2^{n-1}&=y_2\\
+\vdots\\
+c_1+c_2x_n+\hdots +c_nx_n^{n-1}&=y_n
+\end{align*}
+Vamdeimonde matrix
+$$V \cdot\vec{c}=\vec{y}$$
+$$det(V)=\Pi_{i>j}(x_i-x_j)\neq 0 \tab \text{since all $x_i$ distinct}$$
 
 
 
