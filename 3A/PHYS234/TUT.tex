@@ -1,0 +1,110 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[letterpaper, hmargin=0.75in, vmargin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{pgf}
+\usepackage{courier}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,lastpage,fancyhdr,wrapfig,multirow}
+\usepackage{palatino}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\textwidth 7.5in
+\oddsidemargin -.5in
+\topmargin -0.70in
+\textheight 9.8in                      
+
+\pagestyle{fancy}
+
+%**************Fill in your ID and initials here*****************
+\newcommand{\mc}[1]{\ensuremath{\mathcal{{#1}}}}
+\newcommand{\mb}[1]{\ensuremath{\mathbb{{#1}}}}
+\newcommand{\mf}[1]{\ensuremath{\mathfrak{{#1}}}}
+\newcommand{\N}[1]{\ensuremath{\{1,\ldots,{#1}\}}}
+
+\newcommand{\Worth}[1]{\{{#1} marks\}}
+\newcommand{\Sln}{\smallskip \textbf{Solution.} }
+\newcommand{\Extra}[1]{\{Extra credit: {#1} marks\}}
+
+
+\setlength{\parskip}{0.15in}
+\setlength{\parindent}{0in}
+
+
+\newcommand{\NP}{\newpage \vspace*{-0.4in}}
+\newcommand{\FP}{\vspace*{-0.6in}}
+\newcommand{\tab}[1][1cm]{\hspace*{#1}}
+\newcommand{\ES}{Erwin Schr\"odinger}
+
+\lstset{ %
+language=Java,
+basicstyle=\ttfamily\scriptsize,commentstyle=\scriptsize\itshape,showstringspaces=false,breaklines=true}
+
+
+\title{\huge PHYS234 TUT Notes}
+\author{Minyang Jiang}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\NP
+\section{Fourier Series / Fourier Transformations}
+\subsection{Fourier Series}
+i: complex unit\\
+$\tau$: period
+\begin{equation}
+x(t)=\sum_{n=-\infty}^{\infty}C_ne^{\frac{i2\pi nt}{\tau}}
+\end{equation}
+
+\begin{equation}
+C_n = \frac{1}{\tau}\int_{-\frac{\tau}{2}}^{\frac{\tau}{2}}x(t)e^{\frac{-i2\pi n t}{\tau}}dt
+\end{equation}
+
+\underline{Ex}:\\
+\begin{enumerate}
+\item
+$f(x) = 1$, find the F.S.
+\begin{align*}
+\tau&= 2\\
+f(x)& = \sum_{n=-\infty}^{\infty}C_ne^{\frac{i2\pi nx}{\tau}}\\
+C_n&=\frac{1}{2}\int_{-1}^{1} 1* e^{\frac{-i2\pi n x}{2}}dx\\
+&= \frac{1}{\pi n}sin(\pi n) \tab n\neq 0\\
+&\int_{-1}^11dx=2 \tab n =0
+\end{align*}
+$$f(x) = \sum_{n=-\infty, n\neq 0}^{\infty} \frac{sin(\pi n)}{\pi n}e^{\frac{i2 \i nx}{\tau}}$$
+\item 
+$f(x)=1-x^2 \tab -1 \leq x\leq 1, f(x)$ period: $2$, Find F.S.
+\begin{align*}
+f(x)& = \sum_{n=-\infty}^{\infty}C_ne^{\frac{i2\pi nx}{\tau}} \tab \tau= 2\\
+C_n&=\frac{1}{2}\int_{-1}^{1} (1-x^2) e^{\frac{-i2\pi n x}{2}}dx\\
+&=\frac{1}{2}\frac{4sin(\pi n)-4\pi n cos(\pi n)}{(\pi n)^3} \tab n\neq 0\\
+&\int_{-1}^1(1-x^2)dx=0 \tab n=0
+\end{align*}
+\end{enumerate}
+\underline{Fourier Series:}
+\begin{enumerate}
+\item[*] need $f(x)$ to be periodical $x \in (-\infty, \infty)$
+\item[*] caution about singularity of $C_n$'s
+\item[*] More "flat", the messier F.S.
+\item[*] follow the formula
+\end{enumerate}
+
+\subsection{Fourier Transformations}
+\begin{align*}
+f(\nu) &= \int_{-\infty}^{\infty}f(x)e^{-2\pi i x\nu}dx\\
+f(x) &= \int_{-\infty}^{\infty}f(\nu)e^{2\pi i x \nu}d\nu \tab \text{Reverse}\\
+\nu&: \text{frequency}\\
+x&: \text{time}
+\end{align*}
+\underline{Ex:}
+$f(x) = e^{-\|x\|}$
+\begin{align*}
+f(\nu)&=\int_{-\infty}^{\infty}e^{-\|x\|}e^{-2\pi i x \nu}dx\\
+&=\int_{-\infty}^{\infty}e^{x}e^{-2\pi i x \nu}dx + \int_{-\infty}^{\infty}e^{-x}e^{-2\pi i x \nu}dx\\
+&=\frac{2}{1+(e\pi \nu)^2}
+\end{align*}
+\end{document}
