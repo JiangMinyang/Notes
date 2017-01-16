@@ -256,7 +256,30 @@ output: \begin{enumerate}
 \item test notes (possibly a judgment)
 \item artifacts (input, output)
 \end{enumerate}
+\subsection*{\underline{Results of WaterlooWorks Testing}}
+\begin{enumerate}
+\item sort order reversed on navigating to subsequent page
+\item use of ophrase "current term" is ambiguous when choosing a term
+\item on mobile, sort order not preserved when navigating to a job posting and going back
+\end{enumerate}
+\underline{Overall}
+\begin{enumerate}
+\item want some sort of judgment on overall usability of system\\
+\tab do the primary functions work well enough
+\end{enumerate}
+\subsection*{Control flow graphs}
+Coverage criteria for source code\\
+stream of characters $\rightarrow$ stream of tokens $\rightarrow$ abstract syntax tree $\rightarrow$ control flow graph\\
+\includegraphics[scale=0.1]{control_flow_graph_1}\\
+\underline{Control Flow Graph}
+\begin{enumerate}
+\item representation of program which is easier to analyze\\
+\tab Nodes: represent 0 or more statements\\
+\tab Edge (directed) $(s_1, s_2)$ means $s_2$ may follow $s_1$ in an execution
+\end{enumerate}
 
+
+\includegraphics[scale=0.1]{control_flow_graph_2}\\
 
 
 

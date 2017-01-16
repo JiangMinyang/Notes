@@ -230,6 +230,49 @@ c_3=&\frac{3y_L'-2s_L-s_R}{\Delta x}\\
 c_4=&\frac{s_L+s_R-2y_L'}{\delta	x^2}
 \end{align*}
 
+\underline{Point} Polynomial interpolation is good at the interpolating points but might not be very good elsewhere
+
+We will need to try other methods to fit data, cubic splines
+
+\subsection{Cubic Splines}
+Given N points: $(x_i, y_i)$\\
+A \underline{cubic spline} is a function $S(x)$ which satisfies the following conditions
+\begin{enumerate}
+\item in each interval $[xi, x_{i+1}]$, $S(x)=S_i(x)$ is a polynomial of degree at most 3.
+\item $S(x)$ interpolates the points $(x_1,y_1),\hdots,(x_N,y_N)$
+\item $S'(x)$ exists and in continuous everywhere in $[x_1, x_N]$
+\item $S''(x)$ exists and in continuous everywhere in $[x_1,x_N]$
+\item 2 Boundary Conditions
+\end{enumerate}
+As it stands as cubic spline problem has $A$ unknowns and $B$ equations, We want $A=B$\\
+How many unknowns?\\
+4 unknowns per interval, $N-1$ intervals $\Rightarrow 4(N-1)=4N-4$ unknowns\\
+How many equations?\\
+Condition (2): 2 per interval $\Rightarrow 2(N-1)=2N-2$\\
+Condition (3): 1 per interier pt $N-2$\\
+Condition (4): 1 per interier pt $N-2$\\
+$2N-2+N-2+N-2=4N-6$\\
+There fore need 2 more conditions
+
+\underline{Typical Boundary Conditions}
+\begin{enumerate}
+\item Natural spline $S''(x_1)=0, S''(x_N)=0$
+\item Clamped spline $S'(x_1)=s_1, S'(x_N)=s_n$, $s_1,s_n$ given
+\item periodic spline $S'(x_1)=S'(x_N), S''(x_1)=S''(x_N)$
+\item Not-a-knot (Matlab default) $S'''$ continuous at $x_2, x_{N-1}$
+\end{enumerate}
+How to compute a cubic spline?
+\begin{enumerate}
+\item Set a system of $4N-4$ equations in the $4N-4$ unknowns
+\end{enumerate}
+$$S_i(x)=a_i+b_i(x-x_i)+c_i(x-x_i)^2+d_i(x-x_i)^3$$
+Solving Cost: $O(N^3)$
+We want a method which compute a cubic spline using $O(N)$ operations\\
+Set up a linear system for the unknown derivative values $s_1,s_2,\hdots,s_n$ which will be fast to solve and which will give us $S_1(x),\hdots,S_{N-1}(x)$
+
+
+
+
 
 
 

@@ -128,10 +128,63 @@ $$E\rightarrow i\hbar \frac{\partial}{\partial t}; p\rightarrow \c{p}=i\hbar \tr
 \begin{equation}
 i\hbar \frac{\partial \Psi(x,t)}{\partial t} =\left( -\frac{\hbar^2}{2m}\triangledown^2+V \right)\Psi(x,t)
 \end{equation}
+It is a postulate only! no proof
 $$\Psi(x,t) - \text{The Wave function} \Rightarrow \text{to describe physics properties}$$
 
+Consider free particles, from classical mechanics
+\begin{equation}
+E=\frac{1}{2}m\vec{v}^2=\frac{(m\vec{v}^2)}{2m}=\frac{\vec{p}^2}{2m}
+\end{equation}
+de Broglie's hypothesis:
+\begin{align*}
+E&=hv\\
+\lambda&=\frac{h}{p}\\
+\omega&=2\pi v\tab \text{angular frequency}\\
+\| \vec{k}\|&=\frac{2\pi}{\lambda} \tab \text{wave vector}\\
+\hbar&=\frac{h}{2\vec{v}}
+\end{align*}
+\begin{align}
+E&=\hbar \omega\\
+\vec{p}&=\hbar \vec{k}
+\end{align}
+particle motion can be described as \underline{a classical plane wave}:
+\begin{align*}
+\Psi(\vec{Y},t)=&\Psi_0e^{i(\vec{k}\vec{Y}-\omega t)}\\
+&=\Psi_0e^{\frac{i(\vec{p}\vec{Y}-Et)}{\hbar}}\\
+\frac{\partial \Psi}{\partial t}=&-\frac{iE\Psi_0}{\hbar}e^{\frac{i(\vec{p}\vec{Y}-Et)}{\hbar}}\\
+\triangledown &= \frac{i\vec{p}\Psi_0}{\hbar}e^{\frac{i\vec{p}\vec{r}-Et}{\hbar}}\\
+\triangledown^2 \Psi&=-\frac{\vec{p}^2}{\hbar^2}\Psi e^{\frac{i(\vec{p}\vec{Y}-Et)}{\hbar}}
+\end{align*}
+\begin{align}
+i\hbar \frac{\partial}{\partial t}\Psi = E\Psi\\
+-i\hbar \triangledown \Psi = \vec{p}\Psi\\
+-\hbar^2 \triangledown^2 \Psi=\vec{p}^2\Psi
+\end{align}
 
+using Eq (4), we get
+\begin{equation}
+i\hbar \frac{\partial}{\partial t}\Psi=-\frac{\hbar^2 \triangledown^2}{2m}\Psi
+\end{equation}
+For particles in a potential $V(\vec{Y})$
+\begin{align}
+E&=\frac{\vec{p}^2}{2m}+V(\vec{Y})\\
+i\hbar \frac{\partial \Psi(\vec{Y},t)}{\partial t}&=\left( -\frac{\hbar^2}{2m}\triangledown^2+V(\vec{Y}) \right)\Psi(\vec{Y},t)
+\end{align}
 
+\subsection{Statistical Interpretation of the wave function $\Psi(\vec{Y},t)$}
+$$F=ma\rightarrow X(t) \rightarrow v=\frac{dx}{dt},p=m\frac{dx}{dt}$$
+Schr\"odinger Eq $\rightarrow \Psi(\vec{Y},t)\rightarrow$ quantum state of the system $\rightarrow$ physics properties of the system \\
+The wave in QM is \underline{not a wave in physical space}, it is \underline{a wave in an abastract mathematical space}\\
+for free particles
+\begin{align*}
+E&=\frac{p^2}{2m}\Rightarrow E=\hbar \omega, p=\frac{h}{\lambda}=\hbar k\\
+\omega &= \frac{\hbar k^2}{2m} \Rightarrow v_g \text{ group velosity of the wave} = \frac{d\omega}{dk}=\frac{\hbar k}{m}=\frac{p}{m}=v \text{ classical velosity}\\
+\frac{d^2\omega}{dk^2}&=\frac{\hbar}{m} > 0 \Rightarrow \text{The wave packet is diverging}
+\end{align*}
+There is something wrong in de Broglie's hypothsis
+\subsubsection{Born's Stat Interpretation}
+It states that: The probability of finding a particle described by the wave function $\Psi (x,t)$ in the region, $x$ to $x+dx$ is given by $\rho(x,t)dx = \| \Psi(x,t) \|^2 dx$
+$\rho(x,t)=\| \Psi(x,t) \|^2 = \Psi(x,t)^*\Psi(x,t)$
 
 
 
