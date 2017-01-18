@@ -270,11 +270,39 @@ Solving Cost: $O(N^3)$
 We want a method which compute a cubic spline using $O(N)$ operations\\
 Set up a linear system for the unknown derivative values $s_1,s_2,\hdots,s_n$ which will be fast to solve and which will give us $S_1(x),\hdots,S_{N-1}(x)$
 
+\underline{Cubic Splines (continued)}\\
+How to set up a linear system to compute S(x) efficiently!\\
+We do this for \underline{natural} spline,\\
+Find each ($i=1,2,3,\hdots,N-2$)
+$$S_i(x)=a_i+b_i(x-x_i)+c_i(x-x_i)^2+d_i(x-x_i)^3$$
 
-
-
-
-
+Given n points $(x_1, y_1),\hdots, (x_N, y_N)$ $x_i$ (knowns)
+Let $s_1,s_2,s_3,\hdots,s_N$ be the corresponding derivatives at these points. These will be the unknowns.\\
+\underline{Equation 1}
+\begin{align*}
+S''(x_1)&=0 \\
+S_1''(x_1)&=0 \\
+2c_1&=0\\
+\frac{3y_1'-2s_1-s_2}{\Delta x_1}&=0\\
+s_1+\frac{1}{2}s_2&=\frac{3y_1'}{2}
+\end{align*}
+\underline{Equation N}
+\begin{align*}
+S''(x_n)&=0\\
+S''_{n-1}(x_n)&=0\\
+2c_{n-1}+6d_{n-1}(x_n-x_{n-1})&=0\\
+\frac{3y_L'-2s_{n-1}-s_{n}}{\Delta x}+\frac{3(s_{n-1}+s_n-2y_L')}{\Delta x}&=0\\
+S_{n-1}+2S_n&=3y_{n-1}'
+\end{align*}
+\underline{Equation 2,3,...N-1}\\
+At each interier point $x_i$, we need $S''(x)$ to be continuous
+\begin{align*}
+S_{i-1}''(x_i)&=S_i''(x_i)\\
+2c_{i-1}+6d_{i-1}(x_i-x_{i-1})&=2c_i\\
+c_{i-1}+3d_i\Delta x_{i-1}&=c_i\\
+\frac{3y_L'-2s_{i-1}-s_i}{\Delta x_{i-1}}+\frac{3(s_{i-1}+s_i-2y_L')}{\Delta x_{i-1}}&=\frac{3y_i'-2s_i-2s_{i+1}}{\Delta x_i}\\
+\Delta x_i s_{i-1}+(2x_i+2\Delta x_{i-1}) s_i+ \Delta x_{i-1}s_{i+1}&=3y_{i-1}'\Delta x_i + 3y_i' \Delta x_{i-1}
+\end{align*}
 
 
 

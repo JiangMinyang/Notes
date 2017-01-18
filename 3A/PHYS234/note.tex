@@ -114,7 +114,7 @@ F=-\frac{\partial V}{\partial x} \tab v-potential
 \end{equation}
 Classical phys: 
 \begin{align*}
-F&=ma \tab \text{(Newtonian 2nd law)}\\
+F&=ma \tab (Newtonian 2nd law)\\
 F&=m\frac{d^2x}{dt^2}\\
 \Downarrow\\
 X&=X(t)\\
@@ -124,7 +124,7 @@ T&=\frac{1}{2	}mv^2=\frac{1}{2}m(\frac{dx}{dt})^2\\
 E&=T+V=\frac{p^2}{2m}+V
 \end{align*}
 Quantum mechanics:
-$$E\rightarrow i\hbar \frac{\partial}{\partial t}; p\rightarrow \mathring{p}=i\hbar \triangledown$$
+$$E\rightarrow i\hbar \frac{\partial}{\partial t}; p\rightarrow \c{p}=i\hbar \triangledown$$
 \begin{equation}
 i\hbar \frac{\partial \Psi(x,t)}{\partial t} =\left( -\frac{\hbar^2}{2m}\triangledown^2+V \right)\Psi(x,t)
 \end{equation}
@@ -141,7 +141,7 @@ E&=hv\\
 \lambda&=\frac{h}{p}\\
 \omega&=2\pi v\tab \text{angular frequency}\\
 \| \vec{k}\|&=\frac{2\pi}{\lambda} \tab \text{wave vector}\\
-\hbar&=\frac{h}{2\pi}
+\hbar&=\frac{h}{2\vec{v}}
 \end{align*}
 \begin{align}
 E&=\hbar \omega\\
@@ -152,7 +152,7 @@ particle motion can be described as \underline{a classical plane wave}:
 \Psi(\vec{Y},t)=&\Psi_0e^{i(\vec{k}\vec{Y}-\omega t)}\\
 &=\Psi_0e^{\frac{i(\vec{p}\vec{Y}-Et)}{\hbar}}\\
 \frac{\partial \Psi}{\partial t}=&-\frac{iE\Psi_0}{\hbar}e^{\frac{i(\vec{p}\vec{Y}-Et)}{\hbar}}\\
-\triangledown &= \frac{i\vec{p}\Psi_0}{\hbar}e^{\frac{i(\vec{p}\vec{Y}-Et)}{\hbar}}\\
+\triangledown &= \frac{i\vec{p}\Psi_0}{\hbar}e^{\frac{i\vec{p}\vec{r}-Et}{\hbar}}\\
 \triangledown^2 \Psi&=-\frac{\vec{p}^2}{\hbar^2}\Psi e^{\frac{i(\vec{p}\vec{Y}-Et)}{\hbar}}
 \end{align*}
 \begin{align}
@@ -186,13 +186,31 @@ There is something wrong in de Broglie's hypothsis
 It states that: The probability of finding a particle described by the wave function $\Psi (x,t)$ in the region, $x$ to $x+dx$ is given by $\rho(x,t)dx = \| \Psi(x,t) \|^2 dx$
 $\rho(x,t)=\| \Psi(x,t) \|^2 = \Psi(x,t)^*\Psi(x,t)$
 
+The probability of finding the particle between a and b at time t, is $$P_a^b(t)=\int_a^b\rho(x,t)dx$$
 
+\subsubsection{physical requirements of $\Psi(x,t)$}
+\begin{enumerate}
+\item $\Psi$ mus be square integrable - $\int \|\Psi\|^2dx$
+\item $\Psi, \frac{\partial \Psi}{\partial x}, \frac{\partial \Psi}{\partial t}$ must be finite and single-valued
+\item $\Psi$ must be continuous in space
+\item $\frac{\partial \Psi}{\partial x}$ is continueous except at points with potential $V=\infty$, if $\frac{\partial \Psi}{\partial x}$ is discontinuous, $\frac{\partial^2 \Psi}{\partial x^2}\rightarrow \infty$
+\end{enumerate}
 
+\subsection{Probability}
+The probability of finding a particle occupying at energy level $\zeta$: $P(\zeta)= \frac{N_j}{N}$\\
+Then the average energy of all the particle among the energy levels ($\zeta_1, \zeta_2,\hdots$) is: $$<\zeta_i>=\sum_{j=1}^\infty \zeta_j P(\zeta_j)$$
+In QM, we are interested is to get \underline{the expectation value} that is, the average value $\not =$ the most probable value
 
+\subsection{Normalization}
+Born's Stat Interpretation $\Rightarrow$ $$\int_{-\infty}^{\infty}\rho(x,t)=\int_{-\infty}^{\infty}\|\Psi(x,t)\|^2dx=1$$
+this is called normalization condition of $\Psi(x,t)$
+$$i\hbar \frac{\partial \Psi}{\partial t}=\left[ -\frac{\hbar^2}{2m}\triangledown^2+V \right]\Psi$$
+We can find $A\Psi$ to make normalization condition hold, if not, then it is non-normalizable, non-normalization solution cannot represent particles.
 
+physically realizable states are represented by the square integrable solutions to Schr\"odinger Equation
 
-
-
+If $\Psi(x,0)$ is normalizable, would $\Psi(x,t)$ be normalizable or not? \\ To prove, show: $$\frac{d}{dt}\int_{-\infty}^{\infty}\|\Psi\|^2dx=0$$
+$\|\Psi\|^2dx$ is t independent
 
 
 

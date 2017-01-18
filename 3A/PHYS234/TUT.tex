@@ -107,4 +107,79 @@ f(\nu)&=\int_{-\infty}^{\infty}e^{-\|x\|}e^{-2\pi i x \nu}dx\\
 &=\int_{-\infty}^{\infty}e^{x}e^{-2\pi i x \nu}dx + \int_{-\infty}^{\infty}e^{-x}e^{-2\pi i x \nu}dx\\
 &=\frac{2}{1+(e\pi \nu)^2}
 \end{align*}
+
+\section{Linear algebra}
+\begin{enumerate}
+\item[•] vector
+\item[•] vector space
+\item[•] linear combination
+\item[•] linearly independence
+\item[•] span
+\item[•] basis
+\item[•] dimension
+\item[•] components of a vector
+\item[•] identifying vec space
+\item[•] identify comp vector
+\end{enumerate}
+\subsection{vector}
+magmotide and directions\\
+list of numbers\\
+\textbf{\underline{element of a vector space}}\\
+a vector is an object whihch act like a vector under transformations
+
+\subsubsection{Vector Space}
+Def: A vector space is a set V together with vector addition "+", and scalar multiplication satisfying:
+\begin{enumerate}
+\item associativity, $\vec{u},\vec{v},\vec{w}\in V, \vec{u}+(\vec{v}+\vec{w})=(\vec{u}+\vec{v})+\vec{w}$
+\item communitativity, $\vec{u}, \vec{v} \in V, \vec{u} + \vec{v}=\vec{v}+\vec{u}$
+\item existance identity of "+" $\exists \vec{0} \in v$ such that $\forall \vec{v} \in V, \vec{v}+\vec{0}=\vec{v}$
+\item Existance of Inverse of "+" for each elements, $\forall \vec{v}\in V, \exists (-\vec{v})\in V$ such that $\vec{v}+(-\vec{v})=\vec{0}$
+\item compatibility, $a\cdot (b\cdot \vec{v})=(ab)\cdot \vec{v}, a,b\in \mathbb{C}, \vec{v} \in V$
+\item $\exists 1 \in \mathbb{C}. $ such that $1\vec{v}=\vec{v},\forall \vec{v}\in V$
+\item $a(\vec{v}+\vec{u})=a\vec{u}+a\vec{v}, a \in \mathbb{C}, \vec{u}, \vec{v} \in V$
+\item Distributivity, $(a+b)\vec{v}=a\vec{v}+b\vec{v}$
+\end{enumerate}
+Polynomials in x of Degree N-1, we call it set P
+$$f(x)=a_0+a_1x+a_2x^2+\hdots+a_{N-1}x^{N-1}\tab f(x),g(x)\in P$$
+$$f(x)+g(x)=(a_0+b_0)+(a_1+b_1)x+\hdots+(a_{N-1}+b_{N-1})x^{N-1}$$
+$$cf(x)=ca_0+ca_1x+\hdots+ca_{N-1}x^{N-1}\tab c\in \mathbb{C}$$
+
+V = $\{v,w\}$, $\mathbb{C}$\\
+$v+w=w+v=w$\\
+$v+v=v$\\
+$w+w=w$\\
+$a\cdot v=v \forall a\in \mathbb{C}$\\
+$a\cdot w=w \forall a\in \mathbb{C}$ 
+
+
+\subsubsection{linear combination}
+we have $\vec{\alpha},\vec{\beta},\vec{\gamma}$, $a\vec{\alpha}+b\vec{\beta}+c\vec{\gamma}, a,b,c\in \mathbb{C}$ 
+
+\subsubsection{linear independence}
+$\vec{\gamma} is linear independent of \{\vec{\alpha}\}$ if $\vec{\gamma}$ cannot be written as a linear combination of $\vec{\alpha_i}$, $\vec{\gamma}\not = a_1\vec{\alpha_1}+\hdots+a_n\vec{\alpha_n}$
+
+\subsubsection{Span}
+$Span[\{\vec{\alpha_i}\}]=\{\sum_i \lambda_i\vec{\alpha_i}|\lambda_i\in \mathbb{C}, \vec{\alpha_i}\in \{\vec{\alpha_i}\}\}$\\
+a span of $\{\vec{\alpha_i}\}$ is the set of all linear combinations of $\vec{\alpha_i}$
+\subsubsection{Basis}
+a basis B for a vector space V is a linearly independent set which spans V $$Span[B]=V,dim(V)=\text{number of elements in B}$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
