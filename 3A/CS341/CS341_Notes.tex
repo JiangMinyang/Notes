@@ -65,4 +65,20 @@ O(n^d) \tab[2cm] a < b^d\\
 O(n^{\log_ba})=O(a^{log_bn})  \tab a>b^d
 \end{cases}
 \end{align*}
+Math Rule 5: $$\sum_{i=0}^kc^k=
+\begin{cases}
+\Theta(c^k) \tab c>1\\
+\Theta(k)	\tab c=1\\
+\Theta(1)	\tab c<1
+\end{cases}
+$$
+\subsubsection{2D maximal}
+Input: a set P of 2D points\\
+Output: all "maximal" points\\
+Def(maximal): P is maximal if no point P "dominates" p \\
+i.e. $\not \exists p'$, such that $p'.x>p.x, p'y > p.y$
+
+\subsubsection{Closest Pair}
+Input: a set P of 2D points\\
+Output: pair (p,q) that has min Euclidean distance
 \end{document}
