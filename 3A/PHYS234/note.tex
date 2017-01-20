@@ -212,6 +212,43 @@ physically realizable states are represented by the square integrable solutions 
 If $\Psi(x,0)$ is normalizable, would $\Psi(x,t)$ be normalizable or not? \\ To prove, show: $$\frac{d}{dt}\int_{-\infty}^{\infty}\|\Psi\|^2dx=0$$
 $\|\Psi\|^2dx$ is t independent
 
+\subsection{Momontum}
+Probability density $$\rho(x,t)=\|\Psi(x,t)\|^2=\Psi(x,t)*\Psi(x,t)$$
+for particles ina state $\Psi(x,t)$, the expectation value of x: $$\bar x=\left<x\right>=\int_{-\infty}^{\infty}x\rho(x,t)dx$$
+$$\bar V(x)=\left< V(x)\right>=\int_{-\infty}^{\infty}V(x)\rho(x,t)$$
+For momentum P
+$$\bar P =\left< p \right>=\int_{-\infty}^{\infty}P\rho(p,t)dp=\int_{-\infty}^{\infty}P\|\Phi(p,t)\|^2dp \tab \Phi(p,t) \text{ momentum space wave function}$$
+$\Phi(p,t)$ is the Fourier transform of $\Psi(x,t)$
+$$\Psi(x,t)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}e^{\frac{ipx}{\hbar}}\Phi(p,t)dp$$
+$$\Phi(x,t)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}e^{\frac{-ipx}{\hbar}}\Psi(x,t)dx$$
+$$\rho(p,t)=\|\Phi(p,t)\|^2 \tab \text{probability density in momentum space}$$
+The probability of finding the particle at $p$ to $p +dp$ at time t is given by $$\|\Phi(p,t)\|^2dp$$ 
+$$\int_{-\infty}^{\infty}\|\Phi(p,t)\|^2dp=\int_{-\infty}^{\infty}\|Psi(x,t)\|^2dx=1$$
+\begin{align*}
+\bar p=\left<p\right>=&\int_{-\infty}^{\infty}P\|\Phi(p,t)\|^2dp\\
+=&\int_{-\infty}^{\infty}P\Phi^*dp\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}e^{\frac{-ipx}{\hbar}}\Psi dx\\
+=&\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\Phi^*e^{\frac{-ipx}{\hbar}}pdp\Psi dx\\
+\Psi^*=&\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}e^{-\frac{ipx}{\hbar}}\Phi^*(x,t)dp\\
+\frac{\partial \Psi^*}{\partial x}=&\frac{1}{\sqrt{w\pi\hbar}}(-\frac{i}{\hbar})\int_{-\infty}^{\infty}e^{-\frac{ipx}{\hbar}}p\Phi^*(p,t)dp\\
+\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}e^{-\frac{ipx}{\hbar}}p\Phi^*dp=&i\hbar \frac{\partial \Psi^*}{\partial x}\\
+\bar p=&\left<p\right>=i\hbar \int_{-\infty}^{\infty} \frac{\partial \Psi^*}{\partial x}\Psi dx\\
+=&i\hbar \int_{-\infty}^{\infty} \left[ \frac{d(\Psi^* \Psi)}{dx}-\Psi^*\frac{\partial \Psi}{\partial x} \right] dx\\
+=&-i\hbar \int_{-\infty}^{\infty} \Psi^* \frac{\partial \Psi}{\partial x}dx\\
+=&\int_{-\infty}^{\infty}\Psi ^*(-i\hbar \frac{\partial}{\partial	x})\Psi dx=\int_{-\infty}^{\infty}\Psi^* \hat p \Psi dx
+\end{align*}
+momentum operator $\hat p = -i\hbar \frac{\partial}{\partial x}=-i\hbar \triangledown$
+\begin{align*}
+T=\frac{1}{2}mv^2=\frac{p^2}{2m}\Rightarrow \hat T =\frac{\hat p^2}{2m}=\frac{(-i\hbar\triangledown)^2}{2m}=\frac{-\hbar^2 \triangledown ^2}{2m}\\
+\hat T=\left<T \right>=\int\Psi^*\hat T\Psi dx\\
+\text{Angular momentum }\hat{L}=\vec{r}\times \vec{p}\Rightarrow \hat{L}=\vec{r}\times\vec{p}=-i\hbar(\vec{r}\times\triangledown)\\
+\bar L =\left< L \right>=\int_{-\infty}^{\infty}\Psi^*\hat L \Psi dx
+\end{align*}
+The expectation value of any dynamical quantity $Q(x,p)$
+\begin{align*}
+\bar Q(x,p)=\left< Q(x,p) \right>=\int_{-\infty}^{\infty}\Psi^*Q(x,-i\hbar\triangledown)\Psi dx\\
+=\int_{-\infty}^{\infty}\Psi^*Q(\hat x,p)\Phi dp
+\end{align*}
+
 
 
 
