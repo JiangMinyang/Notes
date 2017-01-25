@@ -165,19 +165,90 @@ a span of $\{\vec{\alpha_i}\}$ is the set of all linear combinations of $\vec{\a
 a basis B for a vector space V is a linearly independent set which spans V $$Span[B]=V,dim(V)=\text{number of elements in B}$$
 
 
+\section{Matrics}
+\begin{enumerate}
+\item Linear Transformation
+\item elements
+\item matrix
+\item sum/prods of Linear Tran
+\item Row/Col matrix
+\item transpose
+\item main diagoal
+\item symmetric metrics
+\item conjugate
+\item Hermition conjugate
+\item adjoint
+\item commutator
+\item Identity
+\item Inverse
+\item unitary matrix
+\end{enumerate}
+\subsection{elements}
+$T_{ij}$ are the elements of a matrix which represents the linear transformation of a particular basis
+\subsection{sum}
+\begin{align*}
+(S+T)\vec{\phi}=s\vec{\phi}+T\vec{\phi}\\
+U=S+T\\
+U_{ij}=S_{ij}+T_{ij}
+\end{align*}
 
+\subsection{Product}
+\begin{align*}
+U=ST, T\vec{\phi}=\vec{\phi}\\
+ST\vec{\phi}=S(T\phi)=S\phi
+\end{align*}
 
+\subsection{Transpose}
+$$T^T, (T^T_{ij}=T_{ji})$$
 
+\subsection{symmetric matrix}
+symmetric
+$$T=T^T$$
+anti symmetrics
+$$T=-T^T \rightarrow T_{ij}=-T{ji}, T_{11}=-T_{11}=0$$
 
+\subsection{conjugate}
+conjugate of a matrix
+$$T^*$$
+$$z=a+ib, z^*=a-ib$$
+e.g.
+$$
+T=
+\begin{bmatrix}
+i & 6i\\
+1 & 7
+\end{bmatrix}
+,T^*=
+\begin{bmatrix}
+-i & -6i\\
+1 & 7
+\end{bmatrix}
+$$
+Hermition conjugate of T 
+$$(T^*)^T=T^{\dagger}$$
+Hermition matrix = Adjoint Matrix
+$$(T^*)^T=T,T^{\dagger}=T$$
 
+\subsection{commutator}
+$$[\hat{S},\hat{T}]=ST-TS=0$$
 
+\subsection{Indentity Matrix}
+$$\hat{I}=\delta_{ij},\hat{I}|\phi>=|\phi>, \forall	|\phi>\in V$$
+$$
+\delta_{ij}=
+\begin{cases}
+0\tab i \not = j\\
+1\tab i = j
+\end{cases}
+$$
 
+\subsection{Inverse}
+$$T^{-1}$$
+$$TT^{-1}=T^{-1}T=\hat{I}$$
 
-
-
-
-
-
+\subsection{unitary matrix}
+what if $$T^{\dagger}=T^{-1}$$
+Then T is said to be unitary
 
 
 

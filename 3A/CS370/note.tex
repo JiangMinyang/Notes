@@ -338,8 +338,14 @@ Set $n=0,t=t_0,y=t_0,h=h_0$
 Forward Euler
 $$y_{n+1}=y_n+hf(t_n,y_n)$$
 
+\underline{Deriving Forward Euler}\\
+Approximate y' with a finite difference\\
+ODE: $y'(t)=f(t,y(t))$\\
+Finite dif: $y'(t)=\frac{y_{n+1}-y_n}{h}$\\
 
-
+\underline{Approach \#2}\\
+use a truncated Taylor series to estimate $y(t_{n+1})$
+$$y(t_{n+1})=y(t_n+h)=y(t_n)+hy'(t_n)+\frac{h^2}{2}y''(t_n)+O(h^3)$$
 
 
 

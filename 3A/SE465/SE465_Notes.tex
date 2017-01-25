@@ -335,8 +335,61 @@ Defn A \underline{round-trip path} is a path of nonzero length with no internal 
 \tab will see some tools that help - comments 
 \end{enumerate}
 CFGs - poor way of getting FSMs\\
-large + unwieldy
+large + unwieldy\\
 
+Sources of FSMs:
+\begin{enumerate}
+\item CFGs terrible
+\item better: design docs / software structure	
+\end{enumerate}
+FSMs from software structure
+\begin{enumerate}
+\item requires lots of efforts
+\item subjective
+\item need to know the 
+\end{enumerate}
+FSMs from storeed state
+\begin{enumerate}
+\item identify key variables summarizing system state
+\item values of variables determine state
+\item changes in variables result in changes in state can be more mechanical than FSM from structure
+\end{enumerate}
 
+\underline{Generally:}\\
+FSMs enable
+\begin{enumerate}
+\item test descriptions to be created before implementation FSMs easier to analyze than code
+\end{enumerate}
+But:
+\begin{enumerate}
+\item not exhaustive
+\item doesn't necessarily match the implementation
+\end{enumerate}
+
+\underline{Syntax-based Testing}\\
+\begin{enumerate}
+\item input space grammars
+\item mutation-based testing
+\end{enumerate}
+
+credit card numbers \\
+Hover, there is a check sum, and many \#s conform to the regex but are semantically invalid\\
+Idea: use the regexp to generate syntactically valid \#s then need to filter based on checksum to set valid \#s\\
+Question: how to generate syntactically invalid id \#s?
+\begin{enumerate}
+\item modify the regexp to generate invalid \#s , e.g. super long \#s
+\item change somthing while generating the string
+\end{enumerate}
+
+Instead of regex, can use context free grammars using grammears:
+\begin{enumerate}
+\item generate vallid and invalid program inputs
+\item inside program validate input
+\end{enumerate}
+
+Generators:\\
+Start with start production\\
+replace non terminals with what's on RHS eventually set strings belonging\\
+repeat until you have enough input language
 
 \end{document}
