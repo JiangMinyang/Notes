@@ -284,11 +284,58 @@ stream of characters $\rightarrow$ stream of tokens $\rightarrow$ abstract synta
 Basic Blocks: A \underline{basic block} has one entry point and one exit point and is maximal \\
 
 
+\subsection{Statement and Branch coverage}
+Definition: A \underline{test path} is a path p that starts at an initial node and ends at final node\\
+Given a set of test requirements TR, for a graph criterian C, a test set T satisfies C on graph G iff for every test requirement tr in TR, at least one test path P in path (T) exists such that P satisfies tr\\
+\underline{Test paths + test cases}
+\begin{enumerate}
+\item when testing , you provide test cases asa inputs to the program
+\item each test case t gives at least one test path, path(t)
+\item test set T = set of test cases path(t) = \{path(t) $\vert$ t $\in$ T\}
+\end{enumerate}
+Test Requirement:\\
+\tab a condition that a test path may satisfy\\
+Coverage criteria:\\
+\tab generate sets of test requirements given graphs or other artifacts\\
+Statement Coverage:\\
+\tab have one test requirement for each node in the CFG\\
+cause of nondetermminism:\\
+\tab dependence on inputs, on thread scheduler, on memory addresses\\
+Results: one input may give multiple outputs and multiple test cases
 
+\underline{Review: Coverage Criteria}\\
+criterian + graph \\
+statement coverage $\Rightarrow$ set of test requirements\\
 
+Test set = Bunch of inputs to SUT(system under test)\\
+test cases t $\in$ T,\\
+execution givs path (T), check how many test requirements path (T) satisfied\\
 
+Criterion- Compute Path Coverage\\
+TR contains all paths in G\\
+Is infeasible when you have loops in G\\
 
+\underline{Next: Finite- State Machines}\\
+CFG: generate directly from source code\\
+FSM: higher level, usually represent some design information\\
+Example:\\
+\tab navigation structure of webapp\\
+Nodes: software states (variable values, or pages)\\
+edges: transitions between software states (e.g. as triggered by the user with commands, or triggered by the passage of time)\\
 
+\underline{Criterian Simple Round Trip Coverage (SRTC)}\\
+TR contains at least one round-trip path for each reachable node in G that begins and ends a round-trip path\\
+complete round-trip coverage: Like STRC, but "at least one" $\Rightarrow$ "all"\\
+Defn A \underline{round-trip path} is a path of nonzero length with no internal cycles that starts and ends at the same node.\\
+
+\underline{Deriving FSMs}\\
+\begin{enumerate}
+\item no good mechanical ways to get good FSMs
+\item must understand the system\\
+\tab will see some tools that help - comments 
+\end{enumerate}
+CFGs - poor way of getting FSMs\\
+large + unwieldy
 
 
 

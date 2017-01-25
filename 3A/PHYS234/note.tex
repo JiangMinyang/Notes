@@ -249,6 +249,124 @@ The expectation value of any dynamical quantity $Q(x,p)$
 =\int_{-\infty}^{\infty}\Psi^*Q(\hat x,p)\Phi dp
 \end{align*}
 
+\section{The uncertainty principle}
+Special (Fourier) analysis of a wave packet\\
+From Section 1.2, the plane wave solutions:$$\Psi(x,t)=Ae^{i(kx-wt)}$$ meets the schr\"odinger Equation\\
+A full Solution to the wave equation is the superposition of many $\Psi(x,t)$ with various $\omega,(\nu, \lambda, k=\frac{2\pi}{\lambda})$ \\
+This is the concept of a wave packet, which can be expressed as $$\Psi(x,t)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\Phi(k,t)e^{i(kx-\omega t)}dk$$ $\Phi(k,t)$ is the amplitude of the wave with a wave nubmer k, which is given by Fourier transform:
+$$\Phi(k,t)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\Psi(x,t)e^{-i(kx-\omega t)}dx$$
+Example: Consider a Gaussian wave packet
+$$\Psi(x)=e^{\frac{1}{2}\alpha^2 x^2} \text{ at } t = 0$$
+$$\|\Psi(x)\|^2=e^{-\alpha^2 x^2}$$
+$$\|\Phi(k)\|^2=\frac{1}{\alpha^2}e^{-\frac{k^2}{\alpha^2}}$$
+$$\Delta x \cdot \Delta k=\frac{1}{\alpha}*\alpha=1$$
+using de Broslie relation $$p=\frac{h}{\lambda}=\hbar k,\hbar=\frac{h}{2\pi} \Rightarrow \Delta P = \hbar \Delta k$$
+$$\Delta x \cdot \Delta p=\Delta x \cdot \hbar \Delta k=\hbar$$
+\begin{equation}
+\Delta x \Delta p \geq \frac{\hbar}{2}
+\end{equation}
+This is the Heisenberg uncertainty principle
+\begin{align*}
+\delta_x \delta_p \geq \frac{\hbar}{2}\\
+\delta_x=\sqrt{\left< x^2 \right> - \left< x \right> ^2}\\
+\delta_p=\sqrt{\left< p^2 \right> - \left< p \right> ^2}
+\end{align*}
+The more  precisely determined a particles's position is, the less precisely is its mometum
+\begin{align*}
+\Phi(k,t)=&\int_{-\infty}^{\infty} \Psi(x,t) e^{-i(kx-\omega t)}dt\\
+\Psi(x,t)=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\Phi(\omega, x) e^{i(kx-\omega t)}d\omega\\
+\Phi(\omega, x)=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\Psi(x,t) e^{-i(kx-\omega t)}dt
+\end{align*}
+
+$$\Delta t\Delta\omega=1$$
+$$E=h\nu=\hbar \omega,\omega = 2\pi \nu$$
+$$\Delta t=\Delta E ~ \hbar$$
+$$\Delta t\Delta E \geq \frac{\hbar}{2}$$
+
+\section{Time-indepenedent Schr\"odinger Equation}
+\subsection{Stationary states}
+For $V=V(x,t),i\hbar \frac{\partial \Psi}{\partial t}=-\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2}+V\Psi$
+If $\Psi(x,0)$ is given, $\Psi(x,t)$ is also determined at any t\\
+e.g. free particle $(E=\frac{p^2}{2m})\Rightarrow\text{plane waves}$
+$$\Psi(x,0)=\frac{1}{\sqrt{w\pi\hbar}}\int_{-\infty}^{\infty}\Phi(p)e^ipx/\hbar dp$$
+$$\Phi=\frac{1}{\sqrt{2\pi \hbar}}\int_{-\infty}^{\infty}\Psi(x,0)e^{-ipx/\hbar}$$
+If $\Psi(x,0)$ is given $\Rightarrow \Phi(p)$
+$$\Psi(x,t)=\frac{1}{\sqrt{2\pi \hbar}}\int_{-\infty}^{\infty}\Phi(p)e^{i(px-Et)/\hbar}dp\Rightarrow \Phi(x,t) \text{ at any time t}$$ 
+For a special case $V(x,t)=V(x)$ independent of t, the S.E Can be solved by method of Sepervation variables
+$$\Psi(x,t)=\psi(x)\phi(t)$$
+
+the S.E becomes:
+$$i\hbar \frac{d\phi}{dt}\Psi = \frac{\hbar^2}{2m}\frac{d^2\Psi}{dx^2}\phi+V\Psi \phi$$
+$$\Rightarrow i\hbar \frac{1}{\phi}\frac{d\phi}{dt}=-\frac{\hbar^2}{2m}\frac{1}{\psi}\frac{d^2\psi}{dx^2}+V\text{ Seperation constant E}$$
+$$\Rightarrow i\hbar \frac{1}{\phi}\frac{d\phi}{dt}=E \Rightarrow\phi=\phi_0e^{-iEt/\hbar}=e^{-iEt/\hbar} \text{ let } \phi_0=1$$
+$$-\frac{\hbar^2}{2m}\frac{1}{\psi}\frac{d^2\psi}{dx^2}+V=E$$
+$$\Rightarrow -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2}+V\psi=E\psi \text{ time independent S.E.}$$
+
+In calssical mechanics, the total energy of the particle is called the hamiltonian: $$H(x,p)=\frac{p^2}{2m}+V(x), \text{ using } \hat p=-i\hbar \triangledown=-i\hbar \frac{\partial}{\partial x}$$
+$$\hat H=\frac{\hat p^2}{2m}+V(x)=-\frac{\hbar^2}{2m}\frac{\partial ^2}{\partial x^2}+V(x) \text{ -hamiltonian operator}$$
+The time-independent S.E: $$\hat H \psi(x)=E\psi(x) \text{ E - eigenvalue}$$
+Some interesting features:
+\begin{enumerate}
+\item Stationary states
+$$\psi(x,t)=\psi(x)\phi(t)=\psi(x)e^{-iEt/\hbar}$$
+$$\psi*(x,t)=\psi(x)e^{iEt/\hbar}$$
+$$\rho(x,t)=\|\psi(x,t)\|^2=\psi^*(x,t)\psi(x,t)=\psi^*(x)\psi(x)=\rho(x)$$
+For any dynamical quantity: $$\left<Q(x,p)\right>=\int \psi^* Q(x,-i\hbar\frac{\partial}{\partial x})\psi dx$$
+In particular, $$\left< x\right>=\int x\|\psi(x)\|^2dx \text{ independent of t}$$
+$$\left< p\right> =m \frac{d\left<x \right>}{dt}=0$$
+\item They are states of definite total energy
+$$\left<H \right> =\int \psi^* \hat H \psi dx=\int \psi^* E\psi dx=E\int \psi^* \psi dx = E$$
+$$\left<H^2 \right>=\psi^* \hat H^2 \psi dx=\int \psi^* \hat H (\hat H \psi)dx=\int \psi^* \hat H(E\psi)dx = E^2$$
+$$\sigma_E=\sigma_H=\sqrt{\left<H^2\right> -\left<H\right>^2}=0$$
+The total energy = seperation constant E = well-defined (definite)
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

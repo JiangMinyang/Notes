@@ -81,4 +81,38 @@ i.e. $\not \exists p'$, such that $p'.x>p.x, p'y > p.y$
 \subsubsection{Closest Pair}
 Input: a set P of 2D points\\
 Output: pair (p,q) that has min Euclidean distance
+
+
+
+\subsubsection{Selection, (Medium of medium 9.3)}
+Input: Array A of unordered distinct numbers\\
+\tab integer i such that $1 \leq i \leq n$\\
+Output: ith smallest element in A\\
+Goal: have a linear time altorithm\\
+DC-Alg Template(A, i)\\
+\tab base case, $\|A\|=1$, return $A[1]$\\
+\tab p = pick pivot (A)\\
+\tab L = select(A[j] such that a[j] $<$ p)\\
+\tab R = select(A[j] such that a[j] $>$ p)\\
+\tab if size(L) = i-1 then return p\\
+\tab else size(L) $<$ i-1 return DC-select(R,i-size(L)-1)\\
+\tab else return DC-select(L, i)\\
+
+Q: Can we pick a pivot deterministically and achieve O(n) algorithm?\\
+Pick-Pivot-Deterministically(A of size n)\\
+\tab break A conceptually into $\frac{n}{5}$ groups of 5 elements\\
+\tab sort each group\\
+\tab take medium of each group, M=[$m_1,m_2,...m_{n/5}$]\\
+\tab return DC-select(M, $\frac{n}{10}$)
+
+
+
+
+
+
+
+
+
+
 \end{document}
+
