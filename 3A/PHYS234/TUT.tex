@@ -250,7 +250,58 @@ $$TT^{-1}=T^{-1}T=\hat{I}$$
 what if $$T^{\dagger}=T^{-1}$$
 Then T is said to be unitary
 
+\section{Eigenvectors}
+\begin{enumerate}
+\item Eigenvectors
+\item Eigenvalue
+\item charastristic equation
+\item 
+\end{enumerate}
+\subsection{Eigenvectors}
+Def: any non-zero vector $\vec{a}$ which satisfies $T\vec{a}=\lambda \vec{a}$ is said to be an eigen vector of T\\
+Def: $\lambda$ in the above equation said to be eigenvalue of T
+\subsection{charasteristic equation}
+$$\|T-\lambda I\|=0$$
+it is a polynomial in $\lambda$ of deg $d=dim(v)$ this thing is called the characteristic equation.\\
+\subsection{Spectrum}
+Def:Any matrix will have between 1 and n distinct eigenvalues, the set of All eigen values form matrix is called \underline{spectrun}\\
+if a matrix M has two or more eigenvectors (associated with eigen value $\lambda$) which are linearly dependent, the M is said to be degenerater
+\subsection{Example}
+$$M=
+\begin{bmatrix}
+2 & 0 & -1\\
+-2i & i & 2i\\
+1 & 0 & -1
+\end{bmatrix}$$
+$$\|M-\lambda I\|=0$$
+charasteristic equation:
+$$\lambda(\lambda - 1)(\lambda - i)=0$$
+$$M\vec{a}=0\vec{a}$$
+$$a=\begin{bmatrix}
+1\\0\\1
+\end{bmatrix}$$
+$$b=\begin{bmatrix}
+2\\1-i\\1
+\end{bmatrix}$$
+$$c=\begin{bmatrix}
+0\\1\\0
+\end{bmatrix}$$
+What matrix takes derivative (of polynomials of degree N-1)\\
+$ax^3+bx^2+cx+d\rightarrow \begin{bmatrix}
+a\\b\\c\\d
+\end{bmatrix}$
+$$
+\hat{D_x}=
+\begin{bmatrix}
+0 & 0 & 0 & 0\\
+3 & 0 & 0 & 0\\
+0 & 2 & 0 & 0\\
+0 & 0 & 1 & 0
+\end{bmatrix}
+$$
+$$\hat{D_x}e^{\lambda x}= \lambda e^{\lambda x}$$
 
-
+$$i\hbar \frac{\partial \Psi}{\partial t}=-\frac{\hbar^2}{2m}\frac{\partial ^2\Psi}{\partial x^2}+V\Psi$$
+$$\Psi(x,t)= \psi(x)\phi(t)$$
 
 \end{document}

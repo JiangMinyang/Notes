@@ -319,46 +319,228 @@ $$\left<H \right> =\int \psi^* \hat H \psi dx=\int \psi^* E\psi dx=E\int \psi^* 
 $$\left<H^2 \right>=\psi^* \hat H^2 \psi dx=\int \psi^* \hat H (\hat H \psi)dx=\int \psi^* \hat H(E\psi)dx = E^2$$
 $$\sigma_E=\sigma_H=\sqrt{\left<H^2\right> -\left<H\right>^2}=0$$
 The total energy = seperation constant E = well-defined (definite)
+\item 
+$$\Psi_1(x,t)=\Psi_1(x)e^{-iE_1t_1/\hbar}$$
+$$\Psi_2(x,t)=\Psi_2(x)e^{-iE_2t_2/\hbar}$$
+The general solution is a linear combination of seperable solutions:
+$$\Psi(x,t)=\sum_{n=1}^{\infty}C_n\Psi_n(x,t)=\sum_{n=1}^{\infty}C_n\Psi_n(x)e^{-iE_nt/\hbar}$$
+Given $V=V(x)$ and $\Psi(x,0)\Rightarrow\Psi(x,t)$ at any t
+$$\Psi(x,0)=\sum_{n=1}^{\infty}C_n\Psi_n(x)\Rightarrow C_n$$
+$$\Psi(x,t)=\sum_{n=1}^{\infty}C_n\Psi_n(x)e^{-iE_nt/\hbar}$$
+$\Psi(x,t)$ is not stationary state 
+Example 1:\\
+Given $\Psi(x,0)=C_1\Psi_1(x)+C_2\Psi_2(x)$
+\begin{enumerate}
+\item $\Psi(x,t)=C_1\psi_1(x)e^{-iE_1t/\hbar}+\hdots$
+\item $\rho(x,t)=C_1\psi_1^2+C_2\psi_2^2+2C_1C_2\psi_1\psi_2Cos[(E_2-E_1)t/\hbar]$ which is depend on time
+\item $<E>=\int \Psi^*(x,t)\hat{H}\Psi(x,t)=C_1^2E_1+C_2^2E_2$
+\end{enumerate}
+Example2:\\
+For 1 D, normalizable solutions are non-degenerate, that is each E value only corrosponds to one $\psi(x)$\\
+Proof: assume $\psi_1(x)$ and $\psi_2(x)$ have the same E value
+\begin{align*}
+\left[ -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x) \right]\psi(x)=E\psi(x)\\
+\frac{d^2\psi}{dx^2}+\frac{2m}{\hbar^2}[E-V]\psi=0\\
+\frac{1}{\psi}\frac{d^2\psi}{dx^2}=-\frac{2m}{\hbar^2}[E-V]\\
+\frac{1}{\psi_1(x)}\frac{d^2\psi_1}{dx^2}=\frac{1}{\psi_2(x)}\frac{d^2\psi_2}{dx^2}\\
+\psi_2(x)\frac{d^2 \psi_1(x)}{dx^2}=\psi_1(x)\frac{d^2 \psi_2(x)}{dx^2}\\
+\frac{d}{dx}\left[ \psi_2(x)\frac{d \psi_1(x)}{dx}-\psi_1(x)\frac{d \psi_2(x)}{dx}\right]=0\\
+\Rightarrow\psi_2(x)\frac{d \psi_1(x)}{dx}-\psi_1(x)\frac{d \psi_2(x)}{dx}=constant
+\end{align*}
+For normalizable solution $\Rightarrow \psi_1(x)\rightarrow0$ and $\psi_2(x)\rightarrow 0$ as $x\rightarrow \pm\infty$
+\begin{align*}
+\Rightarrow \psi_2(x)\frac{d \psi_1(x)}{dx}-\psi_1(x)\frac{d \psi_2(x)}{dx}=0\\
+\frac{1}{\psi_1(x)}\frac{d\psi_1(x)}{dx}=1\frac{1}{\psi_2(x)}\frac{d\psi_2(x)}{dx}
+\end{align*}
 \end{enumerate}
 
 
 
+\subsection{Infinite Square Potential Well}
+$$
+V(x)=
+\begin{cases}
+0\tab 0\leq x\leq a\\
+\infty \tab x<0, x>a
+\end{cases}
+$$
+The t-independent S.E.$$-\frac{\hbar^2}{2m}\frac{d^2\Psi}{dx^2}+0=E\Psi$$
+$$\frac{d^2\Psi}{dx^2}+k^2\Psi=0, k=\frac{\sqrt{2mE}}{\hbar}$$
+Linear harmonic oscillater\\
+Solution: $$\Psi(x) = ASin(kx+\delta), A,\delta\rightarrow constant$$
+Boundary condition $$\Psi(0)=\Psi(a)=0\Rightarrow\delta=0,sin(ka)=0\rightarrow ka=\pm n\pi,(n=1,2,3...)$$
+\begin{align*}
+E_n=\frac{\hbar^2k^2}{2m}=\frac{\hbar^2}{2m}\left( \frac{n\pi}{a}\right)^2=\frac{n^2\pi^2\hbar^2}{2ma^2},(n=1,2,3,\hdots)
+\end{align*}
 
 
+\begin{align*}
+\Psi_n(x)=A_n\sin kn=A_n\sin(\frac{n\pi}{a}x)\\
+\int\|\Psi_n(x)\|^2dx=1\Rightarrow\int_0^a\|A_n\|^2\sin^2(\frac{n\pi x}{a})dx=1\\
+\Rightarrow\|A_n\|^2\frac{a}{2}=1\Rightarrow A=\sqrt{\frac{2}{a}}\\
+\Psi_n(x)=\sqrt{\frac{2}{a}}\sin(\frac{n\pi x}{a}), (n=1,2,3...)\\
+n=1 \Rightarrow \text{ ground state}\\
+n>1 \Rightarrow \text{ excited state}
+\end{align*}
+Some important features of $\Psi_n(x)$
+\begin{enumerate}
+\item For n=1, $E_1=\frac{\pi^2\hbar^2}{2ma^2}>0$\\
+This could be understood from the uncertainty principle.
+$$\Delta x \approx a, \Delta x \Delta p \approx\hbar\Rightarrow \Delta p \approx\frac{\hbar}{a}$$
+$$E=\frac{p^2}{2m}\Rightarrow \frac{\Delta p^2}{2m}\approx \frac{\hbar^2}{2ma^2}>0$$
+\item
+\begin{align*}
+E_n&\sim n^2\\
+\Delta E_n&=\frac{\pi^2\hbar^2}{2ma^2}\left[(n+1)^2 -n^2\right]=\frac{\pi^2\hbar^2}{2ma^2}(2n+1)\sim \frac{\pi^2}{\hbar^2	ma^2}n\\
+\text{As } n&\rightarrow \infty, \frac{\Delta E_n}{E_n}\approx \frac{2}{n}\rightarrow 0, \text{ The energy can be considered as a continum--classical plys}
+\end{align*}
+\item
+$\Psi_n(x)$ are muturally orthogonal
+$$\int\Psi_m^*(x)\Psi_n(x)dx=\delta_{mn}=\begin{cases}1,m=n\\0,m\not =n\end{cases}$$
+Proof: For $m \not = n$
+\begin{align*}
+\int\Psi_m^*(x)\Psi_n(x)dx=&\frac{2}{a}\int_0^a\sin(\frac{m\pi x}{a})\sin(\frac{n\pi x}{a}) dx\\
+\text{using } 2\sin\alpha\sin\beta=&\cos(\alpha - \beta)-\cos(\alpha+\beta)\\
+=&\frac{1}{a}\int_0^a\left[\cos(\frac{m-n}{a}x\pi)-cos(\frac{m+n}{a}x\pi) \right]dx\\
+=&\left.\left[ \frac{1}{(m-n)\pi}\sin(\frac{m-n}{a}x\pi)-\frac{1}{(m+n)\pi}\sin(\frac{m+n}{a}x\pi)\right]\right\vert_0^a\\
+=&\frac{1}{\pi}\left[ \frac{\sin((m-n)\pi)}{m-n}-\frac{\sin((m+n)\pi)}{m+n}\right] = 0
+\end{align*}
+For $m=n$ $$\int\Psi^*\Psi dx=1$$
+\item $\Psi_n(x)$ are complete $\Rightarrow$ any $f(x)$ can be expressed as a linear combination of $\Psi_n(x)$:
+$$f(x)=\sum_{n=1}^{\infty}C_n\Psi_n(x)=\sqrt{\frac{2}{a}}\sum_{n=1}^{\infty}C_n\sin(\frac{n\pi x}{a})$$
+Seperable solutions:
+\begin{align*}
+\Psi_n(x,t)=&\Psi(x)e^{-iE_nt/\hbar}\\
+=&\sqrt{\frac{2}{a}}\sin(\frac{n\pi x}{a})e^{-i(\frac{n^2\pi^2\hbar^2}{2ma^2})t/\hbar}
+\end{align*}
+The gerneral solution:
+$$\Psi(x,t)=\sum_{n=1}^{\infty}C_n\Psi_n(x,t)$$
+if $\Psi(x,0)$ is given, $C_n$ can be determined:
+$$\Psi(x,0)=\sum_{n=1}^{\infty}C_n\Psi(x)$$
+\end{enumerate}
+
+Using Fourier Trick:
+\begin{align*}
+&\int\Psi_m^*\Psi(x,0)dx=\sum_{n=1}^{\infty}\int\Psi_m^*C_n\psi_n(x)\\
+=&\sum_{n=1}^{\infty}C_n\int\psi_m^*\psi_n(x)dx\\
+=&\sum_{n=1}^{\infty}C_n\delta (\delta_{mn}=1,\delta_{mn}=0, m\not =n)\\
+=&C_m\\
+\Rightarrow &C_m=\int\psi_m^*\Psi(x,0)dx, C_n=\int	\psi_n^*\Psi(x,0)dx
+\end{align*}
+$C_n$ is determined by $\Psi(x,0)\Rightarrow\Psi(x,t)$ at anytime.\\
+The physical meaning of $C_n$:\\
+$\|C_n\|^2$ is the probability taht a measurement of the total every of the particle would yield the value $E_n\Rightarrow \sum_{n=1}^{\infty}\|a\|^2=1$\\
+The expectation value of the (total) energy:
+$$\left< H\right>=\sum_{n=1}^{\infty}\|C_n\|^2E_n$$
+Note that, both $\|C_n\|^2$ and $<H>$ are time independent\\
+$\Rightarrow$conservation of enery in Q.M.
+
+\subsection{The harmonic oscillator}
+A classical oscillator: $$F=-kx=ma=m\frac{d^2x}{dt^2}=-\frac{dV}{dx}\Rightarrow V(x)=\frac{1}{2}kx^2=\frac{1}{2}m\omega^2x^2$$
+angular frequency
+$$\omega=\sqrt{\frac{k}{m}}$$
+Hamiltonia:
+\begin{align*}
+H=\frac{p^2}{2m}+V=\frac{p^2}{2m}+\frac{1}{2}m\omega^2x^2\\
+\hat{H}=\frac{\hat{p}^2}{2m}+\frac{1}{2}m\omega^2x^2,(\hat{p}=-i\hbar\frac{\partial}{\partial x})\\
+\hat{H}\psi=E\psi=\Rightarrow \psi(x)=?
+\end{align*}
+\subsubsection{Algebraic method}
+Let's intraduce two operators: (ladder operators)
+$$a_{\pm}=\frac{1}{\sqrt{2\hbar m\omega}}(\pm i\hat{p}+m\omega x)$$
+\begin{align*}
+a_{+}a_{-}=&\frac{1}{\sqrt{2\hbar m \omega}}(i\hat{p} +m\omega x)(-i\hat{p}+m\omega x)\\
+=&\frac{1}{2\hbar \omega m}[ \hat{p}^2 +(m\omega x)^2-im\omega (x\hat{p} -\hat{p} x)]
+\end{align*}
+Note that $[x\hat{p}-\hat{p} x]=[x,\hat{p}]$
+
+\begin{align*}
+a_{+}a_{-}=&\frac{1}{2\hbar \omega m}[ \hat{p}^2 +(m\omega x)^2-im\omega [x,\hat{p}]]\\
+=&\frac{1}{2\hbar m \omega}[\hat{p^2}+(m\omega x)^2]-\frac{i}{2\hbar}[x,\hat{p}]\\
+[x,\hat{p}]f(x)=i\hbar f(x)\Rightarrow [x,\hat{p}]=i\hbar\\
+\Rightarrow a_{-}a_+=\frac{1}{\hbar \omega}[\frac{\hat{p}}{2m}+\frac{1}{2}m\omega^2x^2]-\frac{i}{2\hbar}i\hbar\\
+=\frac{1}{\hbar\omega}\hat{H}+\frac{1}{2}\\
+\Rightarrow \hat{H}=\hbar\omega(a_-a_+-\frac{1}{2})
+\end{align*}
+
+From $\hat{\hbar}\Psi=E\Psi$, we have
+\begin{align*}
+\hbar\omega(a_-a_+-\frac{1}{2})\Psi=E\Psi\\
+\hbar\omega(a_-a_++\frac{1}{2})\Psi=E\Psi
+\end{align*}
+
+To prove: If $\hat{H}\Psi=E\Psi$, then 
+$$\hat{H}(a_+\Psi)=(E+\hbar\omega)(a_+\Psi)$$
+\begin{align*}
+\hat{H}(a_+\Psi)=&\hbar\omega(a_-a_+ + \frac{1}{2})(a_+\Psi)\\
+=&\hbar\omega(a_+a_-a_++\frac{1}{2}a_+)\Psi\\
+=&\hbar\omega a_+(a_-a_++\frac{1}{2})\Psi\\
+=&\hbar\omega a_+(a_-a_++1+\frac{1}{2})\Psi\\
+=&a_+(\hbar\omega(a_-a_++\frac{1}{2})+\hbar\omega)\Psi=a_+(E\Psi+\hbar\omega\Psi)\\
+=&a_+(E+\hbar\omega)\Psi\\
+=&(E+\hbar\omega)(a_+\Psi)\\
+\Rightarrow \hat{H}(a_+\Psi)=(E+\hbar\omega)(a_+\Psi)
+\end{align*}
+Similarly, we can prove:
+$$\hat{H}(a_-\Psi)=(E-\hbar\omega)(a_-\Psi)$$
+$\Rightarrow$ reacing the lowest energy state $\Psi_0$,$a_-\Psi_0=0$\\
+$a_+$ raising operator\\
+$a_-$ lowering operator\\
+From $\Psi_0$,$a_-\Psi_0=0\Rightarrow \hat{p}=-i\hbar\frac{\partial}{\partial x}$
+\begin{align*}
+\frac{1}{\sqrt{2\hbar m \omega}}(i\hat{p}+m\omega x)\Psi_0&=0\\
+(\hbar\frac{d}{dx}+m\omega x)\Psi_0=&0\\
+\Rightarrow \frac{d\Psi_0}{dx}\Psi_0=-\frac{m\omega}{\hbar}xAx
+\end{align*}
+$$\Psi_0=Ae^{-m\omega x^2/2\hbar}$$
+$$1=\int \Psi_0^*\Psi_0dx \Rightarrow A=(\frac{m\omega}{\pi\hbar}^{1/4})\Rightarrow \Psi_0=(\frac{m\omega}{\pi\hbar}^{1/4})e^{-m\omega x^2/2\hbar}$$
+$$\hat{H}\Psi_0=E_0\Psi_0 \Rightarrow \hbar\omega(a_+a_-+\frac{1}{2})\Psi_0=E_0\Psi_0$$
+$$a_-\Psi_0=0\rightarrow \hbar\omega * \frac{1}{2}\Psi_0=E_0\Psi_0\Rightarrow E_0=\frac{1}{2}\hbar\omega$$
 
 
+$$a_+\Psi_0\Rightarrow \Psi_1, a_+\Psi_1\Rightarrow \Psi_2 \hdots$$
+$$\hat{H}\Psi_1=\hat{H}(a_+\Psi_0)=(E_0+\hbar\omega)(a_+\Psi_0);\bar{H}\Psi_2=(E_0+2\hbar\omega)\Psi_2$$
+\begin{align*}
+\Psi_n(x)=A_n(a_+)^n\Psi_0(x)\\
+E_n=(n+\frac{1}{2})\hbar\omega\\
+n=1,2,3,\hdots
+\end{align*}
+
+$$A_n=\frac{1}{\sqrt{n!}}$$
+Proof: 
+\begin{align*}
+a_+\Psi_n=C_n\Psi_{n+1};a_+\Psi_n=d_n\Psi_{n-1}
+\end{align*}
+Hermitian operator = for any f(x) and g(x):
+$$\int_{-\infty}^{\infty}f^*(a_{\pm} g)dx=\int_{-\infty}^{\infty}(a_{\pm}f)^*gdx$$
+
+\subsection{The Free Particle}
+$$E=\frac{\vec{p}^2}{2m}, V(x)$$
+$$E=hv,\lambda=\frac{h}{p}\Rightarrow\omega=2\pi v = \frac{E}{\hbar}, E = \hbar \omega, \vec{k}=\frac{\vec{p}}{\lambda}, \vec{p}=\hbar\vec{k}$$
+t-depenedent S.E:
+$$-\frac{\hbar^2}{2m}\frac{\partial ^2 \Psi(x,t)}{\partial x^2}=i\hbar\frac{\partial \Psi(x,t)}{\partial t}=E\Psi(x,t)$$
+The Seperable solution for k's are given by $$\psi(x,t)=Ae^{i(kx-\omega t)}$$
+
+The general solution to the t-dependent S.E is a wave packet:
+$$\Psi(x,t)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\phi(k)e^{i(kx-\omega t)}dk$$
+if $\Psi(x,0)$ is given, $\phi(k)$ will be determined by Fourier transform:
+$$\Psi(x,0)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\psi(k)e^{ikx}dk$$
+$$\phi(k)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\psi(x,0)e^{-ikx}dx$$
+$$V_p=\frac{\omega}{k};V_g=\frac{d\omega}{dk}$$
+For free particles: $$E=\hbar \omega, p=\hbar k\Rightarrow \omega = \frac{E}{\hbar}=\frac{(\hbar k)^2}{2m\hbar}=\frac{\hbar k^2}{2m}$$
+$$V_p=\frac{\omega}{k}=\frac{\hbar k}{2m}=\frac{p}{2m}=\frac{m V_{classical}}{2m}=\frac{V_{classical}}{2}$$
+$$V_g=\frac{d\omega}{dk}=\frac{2\hbar k}{2m}=\frac{p}{m}=V_{classical}$$
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\underline{Quiz 1:}\\
+Q1: planck: radiation energy is quantlized during absorption and emission\\
+\tab 	E: light is composed of light quantum (photons) \\
+1.$E=h\mu\Rightarrow$ total energy$=nh\mu$\\
+2.$$p=\frac{h}{\lambda} \text{ photon's momentom}$$
+3.$E_k^{max} = hv-\Phi$\\
+\underline{Quiz 2:}\\
+Q1:$\left<x\right>$: the average measurement of multiple particle \\
+Q2: $p=\frac{h}{\lambda}$, limitation: one particle has one mometum and one wavelength (not true), mometum and wavelength has a distribution
 
 
 

@@ -391,5 +391,228 @@ Generators:\\
 Start with start production\\
 replace non terminals with what's on RHS eventually set strings belonging\\
 repeat until you have enough input language
+\\
+\underline{A grammar}
+roll = action\\
+action = dep|deb\\
+dep = \"deposit\" account amount\\
+dep = \"debit\" account amount\\
+account = digit 33\\
+amount = \$ digit + . digit\\
+digit =[0-9]\\
+\underline{Grammar mutation operators:}\\
+Specific example - make acount a 4 digit number\\
+more generally: 
+\begin{enumerate}
+\item add new non termminals to existing productions
+\item remove existing nonterminals from productions
+\item permuting nonterminal order within a production
+\end{enumerate}
+Everything we said with nonterminals also applies for terminals e.g. \$, .\\
+
+\underline{Fuzzing}\\
+Fuzzing actually works\\
+\tab -specifically for security bugs\\
+
+\underline{Origin Story}
+\begin{enumerate}
+\item Line noise for 1200 band moderms
+\item fragile 1988 unix utils would crash on bad inputs
+\item Prof Barton Miller challanged his os class to generate random ASCII inputs
+\item they crashed 25-30 of unix utils
+\end{enumerate}
+
+\underline{more on fuzzing}\\
+\tab Two kinds: mutation-based\\
+\tab\tab generation-based\\
+
+mutation-based fuzzing:\\
+\tab modify existing test cases to generate new behaviours\\
+generation-based testing\\
+\tab start with a grammar, generate inputs that match grammar\\
+what to do with generating inputs: (ie what is correct output?)
+\begin{enumerate}
+\item can look for crashes/assertion failures\\
+\item can run under dynamic analysis tools (Valgrind)
+\end{enumerate}
+In practice: the simplest thing that could work:\\
+HTML5: regexp (.*) random bit, finds webkit assertion failure\\
+process generate random strings put them in a file ask browser to open them\\
+
+More sophisticated fuzzing:\\
+\tab C programs:
+\begin{enumerate}
+\item sequence of ASCCII chars
+\item sequence of words, separators and white space
+\item syntactically correct C program
+\item type-correct C program
+\item statically - fonforming C programs, e.g. must have main 
+\item dynamically conforming C programs, e.g. no invalid memory access
+\item model conforming C programs (even stranger than 6, exact details unimportant)
+\end{enumerate} 
+As we descent, we are more likely to find bugs specific to the system (e.g. C compiler)\\
+Mutation-based Fuzzing
+\begin{enumerate}
+\item modify existing inputs
+\begin{enumerate}
+\item randomly flip bytes
+\item or parse the input and thenn change some nonterminals
+\end{enumerate}
+\item usually need to update applicable check sums
+\end{enumerate}
+Fuzzing Summary:
+\begin{enumerate}
+\item useful technique for finding interesting tets cases
+\item advantageL runs automatically and really works!
+\item disadvantages: need work to find deeper case
+\end{enumerate}
+Related: Chaos Monkey
+\begin{enumerate}
+\item distributed system
+\begin{enumerate}
+\item parts fail
+\end{enumerate}
+\end{enumerate}
+Industry:\\
+\tab 80\% statement coverage\\
+\tab no quantitative measurement of input space\\
+\tab $\rightarrow$ stop when you don't find new bugs\\
+now: JUnit case study
+\begin{enumerate}
+\item why not 100\%
+\item should be a best practice
+\end{enumerate}
+overall stats:
+\begin{enumerate}
+\item 85\% statement coverage
+\item 13,000 lines of code system
+\item 15,000 lines of code test
+\end{enumerate}
+\underline{Deprecated code}:\\
+-might go away soon \\
+JUnit: 65\% coverage in deprecated classes, 93\% otherwise\\
+One JUnit class was completely untested
+\begin{enumerate}
+\item tests were included originally, but never actually executed
+\end{enumerate}
+What else -- the usual suspects
+\begin{enumerate}
+\item too simple to test\\
+\end{enumerate}
+\underline{Dead by design}
+\begin{enumerate}
+\item constructors on classes not to be instantiated (e.g. containers of static methods)
+\item code that should never be executed
+\item code that is too difficult to trigger
+\end{enumerate}
+conclusions:
+\begin{enumerate}
+\item remember coverage does not guarantee rests are good
+\item non-deprecated code, 93\% coverage, no more than 2-3 lines untested code
+\end{enumerate}
+\subsection*{Mutation Testing}
+the question: is your test suite any good?\\
+How to tell?\\ 
+\tab Try modifying your program and see if the test suite notices\\
+grammar = programming language grammar
+Def: \\
+\tab Ground String - a valid string belonging to the language of the grammar (original program in other words)\\
+\tab Mutation operator- rule that specifics syntactic variations of strings generated from a grammar\\
+\tab Mutant- result of applying mutation operator to ground string\\
+
+mutation is hard to apply by hand (systematically) and har to automate - can't tell whether you actually changed the program\\
+mutation = gold standard benchmark - compare other criteria to it\\
+Killing Mutants: \\
+1.original program = $m_0$\\
+2.apply mutation operator, get mutant $m_i$\\
+Definition:\\
+\tab test case t kills m if running t on m gives different output than running t on $m_0$\\
+Mutation score = \% of mutants killed\\
+using mutation testing: fix a se of mutants and keep adding tests until score reaches target.\\
+\underline{Mutation Testing and Programs}
+use mutation ops to modify program\\
+mutant = valid \underline{program} which behaves differently from original program\\
+task when mutation testing = create tests which distingguish mutants from originals\\
+
+\begin{enumerate}
+\item create a mutant
+\item find a test case that kills the mutant
+\item forget the mutant keep the test case
+\end{enumerate}
+
+\underline{uninteresting mutants}
+\begin{enumerate}
+\item still born - cannot compile or immediately crash
+\item trivial - killed by almost any test case
+\item equivalent - always behaves some as original
+\end{enumerate}
+Goals of mutation Testing
+\begin{enumerate}
+\item mimic typical mistakes
+\item force inclusion of some kinds of tests\\
+\tab stmt coverage via bomb\\
+\tab checking for 0 (insert fail on zeros)
+\end{enumerate}
+\underline{Weak us strong mutation}
+so far, kill a mutation by producing\\
+\tab we will call this "strong mutations" output\\
+notion of "weak mutation"\\
+\tab error state need not be output
+\\
+How to test weak mutation?
+print out internal state (compare it)\\
+need about same \#tests for weak strong mutation
+
+"73\%"
+\begin{enumerate}
+\item out of the set of 300+ real bugs
+\item the mutator they generated found 73\% of these bugs
+\end{enumerate}
+
+Why tests?
+\begin{enumerate}
+\item anecdote - write a Java server to interface with Android app
+\begin{enumerate}
+\item set up dev server at dev machine
+\item install app on a test phone
+\item manually create case on test phone
+\item was forced to write test cases to pass code review
+\item later, had to do a bug fix\\
+\tab test cases ensured that nothing else got broken
+\end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}

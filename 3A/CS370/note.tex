@@ -348,24 +348,145 @@ use a truncated Taylor series to estimate $y(t_{n+1})$
 $$y(t_{n+1})=y(t_n+h)=y(t_n)+hy'(t_n)+\frac{h^2}{2}y''(t_n)+O(h^3)$$
 
 
+\underline{Improved Euler Example}\\
+Generic form $$y_{n+1}^*=y_n+hf(t_n,y_n)$$
+$$=y_{n+1}+\frac{h}{2}[f(t_n,y_n)+f(t_{n+1},y_{n+1}^*]$$
+
+\underline{Tropezoidal example}
+Generic trapezoidal $$y_{n+1}=y_n+\frac{h}{2}[f(t_n,y_n)+f(t_{n+1},y_{n+1})]$$
+For this problem,with $n=2$ we have:
+$$x_{n+1}=x_n+\frac{2}{2}[-y_n-y_{n+1}]$$
+$$y_{n+1}=y_n+\frac{2}{2}[x_n+x_{n+1}]$$
+This is a linear system of equations to solve \underline{per step}, since trapezoidal is implicit
+\begin{align*}
+x_{n+1}+y_{n+1}&=x_n-y_n\\
+-x_{n+1}+y_{n+1}&=x_n+y_n
+\end{align*}
+For othe problems, the system may be \underline{nonlinear} so more expensive to solve
 
 
 
+\underline{Deriving B.E. via interpolation}
+Ft Lagrange polynomial $p(t)$ to $(t_n,y_n)$ and $(t_{n+1},y_{n+1})$
+\begin{align*}
+p(t)=y_n(\frac{t - t_{n+1}}{t_n-t_{n+1}})+y_{n+1}(\frac{t-t_n}{t_{n+1}-t_n})\\
+p'(t)=\frac{y_{n+1}-y_n}{h}=f(t_{n+1},y_{n+1})\rightarrow y_{n+1}=y_n+hf(t_{n+1},y_{n+1})
+\end{align*}
+
+convert a 4th order ODE to a 1st order system
+convert
+$$y''''(t)-3y'(t)y'''(t)+\sin(ty''(t))-7t[y(t)]^2=e^t$$
+to a 1st order system\\
+\begin{align*}
+y_1(t)=y(t)\\
+y_2(t)=y'(t)\\
+y_3(t)=y''(t)\\
+y_4(t)=y'''(t)\\
+\end{align*}
+
+
+\begin{align*}
+y''''(t)=3y_x(t)y_4(t)-sin(ty_3(t))+7t[y_1(t)]^2+e^t\\
+y_1'(t)=y_2(t)\\
+y_2'(t)=y_3(t)\\
+y_3'(t)=y_4(t)\\
+\end{align*}
+This gives a 1st order system of ODEs that can be treated with any earlier method
+
+
+\underline{Stability of FE}
+F.E is $y_{n+1}=y_n+hf(t_n,y_n)$\\
+Test equation is $y'(t)=-\lambda y(t)$ for $\lambda > 0$\\
+Applying F.E. to test equation given:
+$$y_{n+1}=y_n+h(-\lambda y_n)=y_n(1-h\lambda)$$\\
+Closed form is $$y_n=y_0(1-h\lambda)^n$$\\
+True solution is $y(t)=y_0e^{-\lambda t}$, which decays to zero\\
+Forward Euler decays to 0 when $\|1-h\lambda\|<1\Rightarrow 0 <h < \frac{2}{\lambda}$\\
+If we perturb the initial conditions by some error $\epsilon_0$ how does the error propogate?
+\begin{align*}
+y_0^{(p)}=y_0+\epsilon_0\Rightarrow y_n^{(p)}=(1-h\lambda)^n(y_0+\epsilon_0)\\
+\text{Error is } \epsilon_0=(1-h\lambda)^n\epsilon_0
+\end{align*}
+
+
+\underline{Stabilllity of Backwards Euler}
+B.E. is $y_{n+1}=y_n+hf(t_{n+1},y(n+1))$
+applied to the test equation $$y_{n+1}=y_n+h(-\lambda y_{n+1})$$
+rearranging for $y_{n+1}$ gives $$y_{n+1}=\frac{y_n}{1+h\lambda}$$
+perturbing initial conditions by $\epsilon_0$ as for F.E shows the some behavior:
+$$\epsilon_n=\frac{\epsilon_0}{(1+h\lambda)^n}$$
+The denominator should be $>1$ for this to decrease Since $h>0$ and $\lambda>0$, error decreases for any timestep\\
+We call this behaviour unconditional stable
+
+
+\subsection{Truncation Error}
+local truncation error is $$LTE=y(t_{n+1})-y_{n+1}$$
+\begin{enumerate}
+\item replace approximations on RHS with exact versions. $y_n\rightarrow y(t_n)$ an d $f(t_{n+1},y_{n+1})\rightarrow y'(t_{n+1})$
+\item taylor expand all RHS
+\end{enumerate}
+\underline{Truncation rror of Trapezoidal}
+\begin{enumerate}
+\item Replace RHS data with exact data $y_{n+1}=y_n+\frac{h}{2}(f(t_n, y_n)+f(t_{n+1},y_{n+1}))\rightarrow y_{n+1}=y(t_n)+\frac{h}{2}(y'(t_n)+y'(t_{n+1}))$
+\item Tayloy expand RHS terms about $t_n$:
+$$y'(t_{n+1})=y'(t_n)+hy''(t_n)+\frac{h^2}{2}y'''(t_n)+O(h^3)$$ 
+Plugging in 
+$$y_{n+1}=y(t_n)+\frac{h}{2}(y'(t_n)+y'(t_n)+hy''(t_n)+\frac{h^2}{2}y'''(t_n)+O(h^3)))$$
+$$=y(t_n)+hy'(t_n)+\frac{h^2}{2}y''(t_n) + \frac{h^3}{4}y'''(t_n)+O(h^4)$$
+\item Exact solution:
+$$y(t_{n+1})=y(t_n)+hy'(t_n)+\frac{h^2}{2}y''(t_n)+\frac{h^3}{6}y'''(t_n)+O(h^4)$$
+\item Difference is:
+$$y(t_{n+1})-y_{n+1}=O(h^3)$$
+\end{enumerate}
+
+\underline{Truncation error for BDF2}
+BDF2: $$y_{n+1}=\frac{4}{3}-\frac{1}{3}y_{n-1}+\frac{2}{3}f(t_{n+1},y_{n+1})$$
+\begin{enumerate}
+\item replace RHS data with exact $$y_{n+1}=\frac{4}{3}y(t_n)-\frac{1}{3}y'(t_{n-1})+\frac{2}{3}y'(t_{n+1})$$
+\item Taylor expand about $t_n$:
+$$y'(t_{n+1})=y'(t_n)+hy''(t_n)+\frac{h^2}{2}y'''(t_n)+O(h^3)$$
+$$y'(t_{n-1})=y(t_n)-hy'(t_n)+\frac{h^2}{2}y''(t_n)-\frac{h^3}{6}y'''(t_n)+O(h^4)$$
+\item exact sln:
+$$y_{n+1}=y(t_n)+hy'(t_n)+\frac{h^2}{2}y''(t_n)+\frac{7}{18}h^3y'''(t_n)+O(h^4)$$
+\item differences is:
+$$y(t_{n+1})-y_{n+1}=\frac{2}{9}y'''(t_n)+O(h^4)=O(h^3)$$
+\end{enumerate}
 
 
 
+\subsection*{Adaptive Time Stepping}
+$y'(t)=f(t,y(t)),y_0=y(t_0)$\\
+Answer, $(t_0,y_0),(t_1,y_1),(t_2,y_2),(t_3,y_3),\hdots,(t_n,y_n), y_n \approx y(t_n)$\\
+How to take big time steps? (while still getting a good answer)\\
+Answer: Use 2 methods simultameously\\
+Let us look at 2 methods:\\
+\underline{Method 1} local order p (p-1)th order method\\
+\underline{Method 2} clocal order p+1, pth order method\\
 
+\underline{Method 1}\\
+$$y_{n+1}^*=y(t_{n+1})+O(h^p)=y(t_{n+1})+Ah^p+\text{higher order terms}$$
+\underline{Method 2}\\
+$$y_{n+1}=y(t_{n+1})+O(h^{p+1})=y(t_{n+1})+\text{ higher order terms}$$
 
+Local error for 1st method?\\
+Local error $\approx Ah^p$\\
+Step 1: check if $|$local error$| <$ TOL than try doubling time step, else try half step size\\
+Step 2: Supposee $|y_{n+1}^*-y_{n+1}\approx|$ local error $<$ TOL, how do we choose our next time step\\
+\begin{align*}
+y_{n+1}^*=y(t_{n+2})+O(\tilde h^p)\\
+=y(t_{n+2})+A\tilde h^p+hots\\
+y_{n+2}=y(t_{n+2})+O(\tilde h^{p+1})\\
+error = y_{n+2}^*-y_{n+2}\approx A h^p=\text{local error} * \frac{\tilde h^p}{h^p}
+\end{align*} 
+\begin{align*}
+|\text{local error}|\frac{\tilde{h}^p}{h}\approx |y_{n+2}^*-y_{n+2}<TOL|\\
+\frac{\tilde{h}^p}{h^p}=\frac{0.8\text{TOL}}{|y_{n+1}^*-y_{n+1}|}\\
+\tilde{h}=h(\frac{0.8\text{TOL}}{|y_{n+1}^*-y_{n+1}|})^{\frac{1}{p}}
+\end{align*}
 
-
-
-
-
-
-
-
-
-
+\section{Discrete Fouris Analysis}
+input: $f_0,f_1,\hdots, f_{N-1}$, typically $N=2^n$, typically represents N equally spaced samples of a function f(t)
+output: $F_0,F_1,\hdots,F_{N-1}$ represent frequency information in the input data
 
 
 
