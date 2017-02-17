@@ -583,17 +583,86 @@ Why tests?
 \end{enumerate}
 
 
+Why tests are awesome\\
+avoid regressionsl \\
+especially in the web of dependencies\\
+code isn't intrinsically right/wrong\\
+tests check that changes don't affect your code\\
+code bases in industry often millions/tens of millions of LOCs\\
+code stays therer for years\\
+if it matters that the code works, you should write a test for it\\
+\section*{Test Design Principles}
+\begin{enumerate}
+\item prefer smaller tests over one big test\\
+why?\\
+easier to fix failures\\
+get the name of the failed test\\
+easier to understand what's being tested\\
+\end{enumerate}
 
 
+Unit vs integration tests\\
+unit test = low-level = one class, module or function = no dependencies (use fakes/stubs/mocks)\\
+\tab should execute quickly\\
+integration test = many unis interacting\\
+=slower, harder to write and use\\
+=represents what the user sees\\
+
+Tests first?
+test driven development says so\\
+under TDD, write failing test and only as much code as needed to pass the test\\
+middle ground interleave test and code writing = better testability\\
+\underline{Flaky tests}
+some test fail a small percentage of the time 
+\begin{enumerate}
+\item timeout
+\item iterators don't preseure order
+\item random number generators can behave unexpected
+\item don't rely on internal state
+\begin{enumerate}
+\item use public API only as much as possible
+\item more resilient to rewrites
+\end{enumerate}
+\end{enumerate}
+
+\subsection{Selenium}
+\begin{enumerate}
+\item drives browsers
+\item automates web app tests
+\end{enumerate}
+\underline{Selenium IDE:}\\
+-record/replay\\
+\underline{WebDriver}
 
 
-
-
-
-
-
-
-
+Midterm Review
+\begin{enumerate}
+\item Faults, errors, failures
+\item static vs Dynamic
+\item Test cases, Test Requirements
+\item Exploratory testing
+\item coverage criteria
+\begin{enumerate}
+\item based on control-flow graphs
+\item determinisim
+\item stmt, branch coverage
+\item finite state machines
+\begin{enumerate}
+\item RT coverage
+\end{enumerate}
+\end{enumerate}
+\item Syntax-based Testing
+\begin{enumerate}
+\item Fuzzing
+\item mutation
+\end{enumerate}
+\item How much coverage to aim for?
+\begin{enumerate}
+\item JUnit
+\end{enumerate}
+\item How good is mutation?
+\item How good are other criteria?
+\end{enumerate}
 
 
 

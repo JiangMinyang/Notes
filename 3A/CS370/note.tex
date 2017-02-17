@@ -486,19 +486,51 @@ error = y_{n+2}^*-y_{n+2}\approx A h^p=\text{local error} * \frac{\tilde h^p}{h^
 
 \section{Discrete Fouris Analysis}
 input: $f_0,f_1,\hdots, f_{N-1}$, typically $N=2^n$, typically represents N equally spaced samples of a function f(t)
-output: $F_0,F_1,\hdots,F_{N-1}$ represent frequency information in the input data
+output: $F_0,F_1,\hdots,F_{N-1}$ represent frequency information in the input data\\
+2.Invertibility: $$F_0,F_1,\hdots,F_{N-1}\rightarrow f_0, f_1,\hdots,f_{N-1}$$\\
+3. what does all this mean?\\
+4. Fast Fourier Transform $O(n^2),O(N\log N)$\\
+5. Application
+\begin{enumerate}
+\item signal processing
+\item data compression
+\end{enumerate}
+
+\underline{Section 1}\\
+\underline{Nth roots of unity} (Technical aside)\\
+\tab Figure out the set of W such that $W^N=1$
+$$e^{\theta i} = \cos(\theta) + i\sin(\theta)$$
+\begin{align*}
+e^{\frac{\pi}{2}i}=i\\
+e^{\pi i}=-1\\
+e^{\frac{3\pi}{2}i}=-i\\
+e^{\pi i} = 1\\
+\end{align*}
+$$W=e^{\frac{2\pi}{N}I}= N^{th}\text{ root of unity}$$
+\begin{align*}
+&N = 2, W=-1\\
+&N = 4, W= i\\
+&N= 9, W = \frac{1}{\sqrt{2}}+\frac{1}{\sqrt{2}}i\\
+&W^N = 1
+\end{align*}
+$$1+W+W^2+W^3+\hdots+W^{N-1}=\frac{1-W^N}{1-W}$$
+$$1+W^k+W^{2k}+W^{3k}+\hdots+W^{(N-1)k}=
+\begin{cases}
+0,k \not = 0\\
+N,k = 0
+\end{cases}$$
+Define: Given $f_0,f_1,\hdots,f_{N-1}$ the \underline{Discrete Fouriers Transform} is $F_0, F_1,\hdots, F_{n-1}$ defined by $$F_k=\frac{1}{N}\sum_{n=0}^{n-1}f_nW^{-nk}$$
+$$F_k=\frac{1}{N}\begin{cases}N \tab\text{if -k is a multiple of N}\\0\tab\text{otherwise}\end{cases}=\begin{cases}1\tab k=0\\0\tab \text{otherwise}\end{cases}$$
+Given $f_0,f_1,\hdots,f_{N-1}$ defined by $f_n=\cos(\frac{2n\pi}{N})$, what is $F_0,F_1,F_2,\hdots,F_{N-1}$
+$$f_n=\cos(\frac{2n\pi}{N})=\frac{1}{2}(e^{\frac{2\pi n}{N}i}+e^{-\frac{2\pi n}{N}i})=\frac{1}{2}(W^n+W^{-n})$$
+\begin{align*}
+f_k=\frac{1}{N}(f_0+f_1W^{-k}+f_2W^{-2k}+\hdots+f_{N-1}W^{-(N-1)k})\\
+1+W^{1-k}+W^{2(1-k)}+\hdots+W^{(N-1)(1-k)}=\begin{cases}N \tab k=1\\0 \tab k \not= 1\end{cases}\\
+1+W^{-(1+k)}+W^{-2(1+k)}+\hdots+W^{-(N-1)(1+k)}=\begin{cases}N \tab k=N-1\\0 \tab k \not= N-1\end{cases}
+\end{align*}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+Suppose $f_0,f_1,\hdots,f_n$\\
+Define $F_0, F_1,\hdots,F_{N-1}$ as $$F_k=\frac{1}{N}(f_0+f_1W^{-k}+f_2W^{-2k}+\hdots+f_{N-1}W^{-(N-1)k})$$
+Then $$f_n=F_0+F_1W^n+F_2W^{2n}+\hdots+F_{N-1}W^{n(N-1)}$$
 \end{document}

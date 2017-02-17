@@ -542,11 +542,60 @@ Q1: planck: radiation energy is quantlized during absorption and emission\\
 Q1:$\left<x\right>$: the average measurement of multiple particle \\
 Q2: $p=\frac{h}{\lambda}$, limitation: one particle has one mometum and one wavelength (not true), mometum and wavelength has a distribution
 
+The $\delta(x)$ well:\\
+For bound state with $E< 0$ we got
+$$
+\delta(x)=
+\begin{cases}
+Be^{kx}\tab (x \leq 0)\\
+Be^{-kx} \tab (x \geq 0)
+\end{cases}
+$$
+$$\left.\frac{d\Psi}{dx}\right \vert_{x=0}=?$$
 
+Integrate the t-independent S.E from $-\epsilon$ to $+\epsilon$ ($\epsilon \rightarrow 0$)
+\begin{align*}
+&-\frac{\hbar^2}{2m}\int_{-\epsilon}^{\epsilon}\frac{d^2\Psi}{dx^2}dx+\int_{-\epsilon}^{\epsilon}V(x)\Psi(x)dx\\
+&\tab-\frac{\hbar^2}{2m}\int_{-\epsilon}^{\epsilon}\frac{d^2\Psi}{dx^2}dx = 0\\
+=&\int_{-\epsilon}^{\epsilon}V(x)\Psi(x)dx\\
+-\frac{-\hbar^2}{2m}[\left.\frac{d\Psi}{dx}\right\vert_{+\epsilon}-\left.\frac{d\Psi}{dx}\right\vert_{-\epsilon}]=\alpha\Psi(0)\\
+\Delta(\frac{d\Psi}{dx})=-\frac{2m\alpha}{\hbar^2}\Psi(0)
+\end{align*}
 
-
-
-
+\begin{align*}
+\left.\frac{d\Psi}{dx}\right\vert_{+\epsilon}=-BK\\
+\left.\frac{d\Psi}{dx}\right\vert_{-\epsilon}=BK
+-BK-BK=-\frac{2m\alpha}{\hbar^2}\Psi(0)=-\frac{2m\alpha}{\hbar^2}B\\
+\Rightarrow k = \frac{m\alpha}{\hbar^2}\\
+k=\frac{\sqrt{-2mE}}{\hbar}\Rightarrow E = -\frac{\hbar^2 k^2}{2m} = -\frac{m\alpha^2}{2\hbar^2}\\
+\int_{-\infty}^{\infty}|\Psi(x)|^2dx=2|B|^2\\
+\int_{-\infty}^{\infty}e^{-2kx}dx = \frac{|B|^2}{k}=1
+\end{align*}
+For scattering states with $E>0$, For $x<0$ the S.E gives
+$$\frac{d^2\Psi}{dx^2}=-\frac{2mE}{\hbar^2}\Psi=-k^2\Psi,k=\frac{\sqrt{2mE}}{\hbar}$$
+The general solution:
+$$\Psi(x) = Ae^{ikx}+Be^{-ikx}$$
+For $x>0$, $\Psi(x)=Fe^{ikx}+Ge^{-ikx}$
+\begin{enumerate}
+\item $\Psi(x)$ is continuous at $x=0\Rightarrow A+b=F+G$
+\begin{align*}
+\left.\frac{d\Psi}{dx}\right\vert_{-G}=ik(Ae^{ikx}-Be^{-ikx})\vert_{x=0}=ik(A-B)\\
+\left.\frac{d\Psi}{dx}\right\vert_{+G}=ik(F-G)\\
+\Psi(0)=A+B=F+G\\
+\Rightarrow ik(F-G-A+B)=-\frac{2m\alpha}{\hbar^2}(A+B)
+\end{align*}
+\begin{align*}
+F-G=&A-B+\frac{2m\alpha}{\hbar^2k}i(A+B)=A-B+2i\beta(A+B)\tab (\beta = \frac{m\alpha}{\hbar^2 k})\\
+F=&A(1+2i\beta)-B(1-2i\beta)
+\end{align*}
+\begin{align*}
+G=0\Rightarrow A+B=F=A(1+2i\beta)-B(1-2i\beta)\\
+\Rightarrow B=\frac{i\beta}{1-i\beta}A; F=\frac{1}{1-i\beta}A
+\end{align*}
+The transmission coefficient T, that is, the probability of an incredent particlee being transimitted througth the potential well 
+$$T=\frac{|F|^2}{|A|^2}=\frac{1}{\beta^2}\tab (\beta = \frac{m\alpha}{\hbar^2 k})$$
+The reflection coefficient $$R=\frac{|B|^2}{|A|^2}=\frac{\beta^2}{1+\beta^2}=1-T$$
+\end{enumerate}
 
 
 
