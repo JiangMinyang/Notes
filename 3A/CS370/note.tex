@@ -541,4 +541,105 @@ f_k=\frac{1}{N}(f_0+f_1W^{-k}+f_2W^{-2k}+\hdots+f_{N-1}W^{-(N-1)k})\\
 Suppose $f_0,f_1,\hdots,f_n$\\
 Define $F_0, F_1,\hdots,F_{N-1}$ as $$F_k=\frac{1}{N}(f_0+f_1W^{-k}+f_2W^{-2k}+\hdots+f_{N-1}W^{-(N-1)k})$$
 Then $$f_n=F_0+F_1W^n+F_2W^{2n}+\hdots+F_{N-1}W^{n(N-1)}$$
+
+
+
+Given $f_0,f_1,\hdots, f_{N-1}$, what does $F_0,F_1,\hdots, F_{N-1}$ really represent?\\
+Scenario: $f_k$'s are equally spaced samples of a function $f(t)$\\
+$f_k=f(k\Delta t)$ $$f(t)=c_0+a_1cos(t)+b_1sin(t)+a_2cos(2t)+b_2sin(2t)+\hdots+a_kcos(kt)+\hdots$$
+$$f(t)=c_0+\sqrt{a_1^2+b_1^2}cos(t+\Phi_1)+\sqrt{a_2^2+b_2^2}cos(2(t+\Phi_2))+\hdots+\sqrt{a_k^2+b_k^2}cos(k(t+\Phi_k))$$
+$\sqrt{a_k^2+b_k^2}=$measure of a trig pattern, repeating k times
+\begin{align*}
+f(t)=c_0+&c_1e^{it}+c_2e^{2it}+c_3e^{3it}+\hdots+c_ke^{kit}+\hdots\\
++&c_{-1}e^{-it}+c_{-2}e^{-2it}+c_{-3}e^{-3it}+\hdots+c_{-k}e^{-kit}+\hdots
+\end{align*}
+\begin{align*}
+c_k=\frac{a_k+b_ki}{2}\\
+c_{-k}=\frac{a_k-b_ki}{2}\\
+|c_k|=\frac{1}{2}\sqrt{a_k^2+b_k^2}=|c_{-k}|
+\end{align*}
+
+Therefore
+\begin{align*}
+f_n=f(n\Delta t)=c_0+c_1e^{in\Delta t}+c_2e^{2in\Delta t}+\hdots+c_ke^{kin\Delta t}+\hdots\\
++c_{-1}e^{-in\Delta t} + c_{-2}e^{-2in\Delta t} +c_{-3}e^{-3in\Delta t} + \hdots + c_{-k}e^{-kin\Delta t}+\hdots
+\end{align*}
+
+\begin{align*}
+f_n=f(n\Delta t)=c_0+c_1e^{in\Delta t}+c_2e^{2in\Delta t}+\hdots+c_{\frac{N}{2}}e^{\frac{N}{2}in\Delta t}+\\
++c_{-1}e^{-in\Delta t} + c_{-2}e^{-2in\Delta t} +c_{-3}e^{-3in\Delta t} + \hdots + c_{-(\frac{N}{2}-1)}e^{-(\frac{N}{2}-1)in\Delta t}
+\end{align*}
+Total N pieces of information
+\begin{align*}
+e^{in\Delta t}=e^{ni\frac{2\pi}{N}}=e^{\frac{2\pi i}{N}n}=W^n \tab \text{where } W=e^{\frac{2\pi i}{N}}=\text{Nth root of unity}
+\end{align*}
+
+\begin{align*}
+f(n)=c_0+&c_1W^n+c_2W^{2n}+\hdots+c_{\frac{N}{2}}W^{\frac{N}{2}n}\\
++&c_{-1}W^{-n}+c_{-2}W^{-2n}+\hdots+c_{-(\frac{N}{2}-1)}W^{-(\frac{N}{2}-1)n}
+\end{align*}
+
+$$W^{-(\frac{N}{2}+1)n}=W^{Nn--(\frac{N}{2}+1)n}=W^{(\frac{N}{2}+1)n}$$
+
+\begin{align*}
+f(n)=&c_0+c_1W^n+c_2W^{2n}+\hdots+c_{\frac{N}{2}}W^{\frac{N}{2}n}+c_{-(\frac{N}{2}-1)}W^{(\frac{N}{2}+1)n}+\hdots+c_{-3}W^{(N-3)n}+c_{-2}W^{(N-2)n}+c_{-1}W^{(N-1)n}\\
+=&F_0+F_1W^N+F_2W^{2n}+F_3W^{3n}+\hdots+F_{\frac{N}{2}}W^{\frac{N}{2}n}+F_{\frac{N}{2}+1}W^{(\frac{N}{2}-1)n}+\hdots+F_{N-3}W^{(N-3)n}+F_{N-2}W^{(N-2)n}+F_{N-1}W^{(N-1)n}
+\end{align*}
+\begin{align*}
+F_0=c_0\\
+F_1=c_1=\frac{a_1+b_1i}{2}\\
+F_2=\frac{a_2+b_2i}{2}\\
+F_{N-2}=\frac{a_2-b2i}{2}\\
+F_{N-1}=\frac{a_1-b_1i}{2}
+\end{align*}
+\begin{align*}
+|F_1|=\frac{1}{2}\sqrt{a_1^2+b_1^2}=|F_{N-1}|\\
+|F_2|=\frac{1}{2}\sqrt{a_2^2+b_2^2}=|F_{N-2}|\\
+|F_3|=\frac{1}{2}\sqrt{a_3^2+b_3^2}=|F_{N-3}|\\
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
