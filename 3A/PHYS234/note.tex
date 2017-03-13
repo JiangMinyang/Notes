@@ -598,7 +598,54 @@ The reflection coefficient $$R=\frac{|B|^2}{|A|^2}=\frac{\beta^2}{1+\beta^2}=1-T
 \end{enumerate}
 
 
-
-
+\section{}
+\subsection{Operators and ovservables}
+The conjugate of an operator $\hat{Q}$ is $\hat{Q}^*$\\
+The hermitian conjugate of an operator $\hat{Q}$ is called the operator $\hat{Q}^{\dagger}$
+$$\left<f|\hat{Q}g\right>=\left<\hat{Q}^{\dagger}f|g\right>$$
+or
+$$\int f^* \hat{Q}gdx=\int (\hat{Q}^{\dagger}f)^*gdx$$
+\begin{align*}
+\left<f|\hat{Q}g\right>=\int f^*xgdx=\int (xf)^*gdx=\left<xf|g\right>\\
+\Rightarrow \hat{x}^{\dagger}=x
+\end{align*}
+\begin{align*}
+\left<f|\hat{p}g\right>=\int f^*\hat{p}gdx=\int f^*(-i\hbar\frac{d}{dx})gdx=-i\hbar\int f^*\frac{dg}{dx}dx=-i\hbar f^*g+i\hbar\int \frac{df^*}{dx}gdx\\
+=i\hbar \int \frac{df^*}{dx}gdx=\int (-i\hbar \frac{d}{dx}f)^*gdx=\left<\hat{p}^{\dagger}f|g\right>\\
+\Rightarrow\hat{p}^{\dagger}=-i\hbar \frac{d}{dx}=\hat{p}
+\end{align*}
+similarly, $\hat{a_+}^{\dagger}=\hat{a_-}$\\
+Generally, it can be proven that $(\hat{A}\hat{B})^{\dagger}=\hat{B}^{\dagger}\hat{A}^{\dagger}$\\
+If $\hat{Q}^{\dagger}=\hat{Q}$ then $\hat{Q}$ is called a hermitian operator\\
+$$\left<f|\hat{Q}g\right>=\left<\hat{Q}^{\dagger}f|g\right>=\left<\hat{Q}f|g\right>$$
+$$\int f^*\hat{Q}gdx=\int (\hat{Q}f)^*gdx$$
+e.g. $\hat{x},\hat{p},\hat{H}$ are hermition operators, whereas $\hat{a_+},\hat{a_-},i\hbar,\frac{d}{dx}$ are not hermitian operators\\
+The sum of two hermitian operators is also a hermitian operator:
+$$\hat{A}+\hat{B}=\hat{C}\text{ if }\hat{A},\hat{B}\text{ are hermitian} \Rightarrow C-hermitian$$
+$\hat{A}\hat{B}$ is not a hermitian unless $[\hat{A},\hat{B}]=0$\\
+Theorem 1: the expectation value of an hermitian operator must be real:\\
+Proof: \begin{align*}
+\hat{Q}=\int \Psi^*\hat{Q}\Psi dx=\left<\Psi|\hat{Q}\Psi\right>\\
+=\left<\hat{Q}\Psi|\Psi\right>=\left<\Psi|\hat{Q}\Psi\right>^*=\left<\hat{Q}\right>^*\\
+\Rightarrow \left<\hat{Q}\right> \text{ must be a real number}
+\end{align*}
+Theorem 2: An operator that has a real expectation value in any satte must be a hermition operator\\
+Proof: $\left<\hat{Q}\right>=\left<\hat{Q}\right>^*$ in any state (function) $\Psi(x)$, $$\left<\Psi|\hat{Q}\Psi\right>=\left<\Psi|\hat{Q}\Psi\right>^*=\left<\hat{Q}\Psi|\Psi\right>$$ Let $\Psi(x)=f(x)=cg(x)$
+\begin{align*}
+\left<\Psi|\hat{Q}\Psi\right>=&\left<(f+cg)|\hat{Q}(f+cg)\right>\\
+=&\left<f|\hat{Q}f\right>+c\left<f|\hat{Q}g\right>+c^*\left<g|\hat{Q}f\right>+|c|^2\left<g|\hat{Q}g\right>\\
+\left<\hat{Q}\Psi|\Psi\right>=&\left<\hat{Q}f|f\right>+c\left<\hat{Q}f|g\right>+c^*\left<Qg|f\right>+|c|^2\left<g|\hat{Q}g\right>\\
+\left<f|\hat{Q}f\right>=&\left<\hat{Q}f|f\right> \text{ and } \left<g|\hat{Q}g\right>=\left<\hat{Q}g|g\right>\\
+\end{align*}
+\begin{align*}
+c\left<f|\hat{Q}g\right>+c^*\left<g|\hat{Q}f\right>=c\left<\hat{Q}f|g\right>+c^*\left<Qg|f\right>\\
+\text{Let } c=1\Rightarrow \left<f|\hat{Q}g\right>+\left<g|\hat{Q}f\right>=\left<Qf|g\right>+\left<\hat{Q}g|f\right>\\
+\text{Let } c=i\Rightarrow \left<f|\hat{Q}g\right>-\left<g|\hat{Q}f\right>=\left<Qf|g\right>-\left<\hat{Q}g|f\right>\\
+\Rightarrow \left<f|\hat{Q}g\right>=\left<\hat{Q}f|g\right>\Rightarrow \hat{Q}=\hat{Q}^{\dagger}\Rightarrow \text{ Q is a harmitian operator}
+\end{align*}
+It follows that operators represents any physical observables must be hermitian operators
+\subsection{Eigenvalues and eigen function of a hermitian operator}
+In ordinary cases, when you measure an observable (physical quantity) Q in a quantum system/state $\Psi$, you would get several or many possible results ----- indeterminacy in Q.M.\\
+In chapter 2, however, the total energy in a stationary state $\Rightarrow E_n,\hat{H}\Psi_n=E_n\Psi_n,\sigma_E=0$ 
 
 \end{document}
