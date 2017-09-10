@@ -5,6 +5,7 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{pgf}
+\usepackage{tikz}
 \usepackage{courier}
 \usepackage{amsfonts,amssymb,amsmath,amsthm,lastpage,fancyhdr,wrapfig,multirow}
 \usepackage{palatino}
@@ -42,6 +43,11 @@
 \lstset{ %
 basicstyle=\ttfamily\scriptsize,commentstyle=\scriptsize\itshape,showstringspaces=false,breaklines=true}
 
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{joint} = [draw, circle, minimum size=1em]
+\tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
+
 
 \title{\huge SE380 Notes}
 \author{Minyang Jiang}
@@ -52,4 +58,25 @@ basicstyle=\ttfamily\scriptsize,commentstyle=\scriptsize\itshape,showstringspace
 \maketitle
 
 \NP
+\section*{Introduction}
+\subsection*{What is control engineering?}
+Example (automated highway)
+\begin{center}
+  \begin{tikzpicture}[auto, node distance=2cm, >=stealth]
+    \node [input, name=input] (input) {};
+    \node [joint, right of=input] (joint1) {};
+    \node [block, right of=joint1] (controller) {Controller};
+    \node [block, right of=controller, node distance=4cm] (algorithm) {Algorithm};
+    \draw [->] (controller) -- node[name=u] {$u$} (algorithm);
+    \node [block, below of=u] (measurement) {Measurement};
+    \node [output, right of=algorithm] (output) {};
+
+    \draw [->] (input) -- node{$R(s)$} (joint1);
+    \draw [->] (joint1) -- node{} (controller);
+    \draw [->] (algorithm) -- node[name=y]{$Y(s)$} (output);
+    \draw [->] (y) |- node{} (measurement);
+    \draw [->] (measurement) -| node[pos=0.99]{$-$} node [near end]{$y_m$} (joint1);
+
+  \end{tikzpicture}
+\end{center}
 \end{document}
