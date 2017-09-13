@@ -152,5 +152,72 @@ a system has a TF if, and only if it is linear and time invariant
 - the ODE from step 7 is approximated as discretized and difference equation and implemented in software\\
 e.g. follower. $$u(t)=-K_p(r(kT)-y(kT)), kT\leq t\le (k+1)T$$
 T: sampling period
+\section*{Ch2. mathematical models of systems}
 
+\begin{center}
+  \begin{tikzpicture}[auto, node distance=2cm, >=stealth]
+    \node [input, name=input] (input) {};
+    \node [block, right of=input, node distance=5cm] (controller) {Dynamical System};
+    \node [output, right of=controller, node distance=5cm] (output) {};
+
+    \draw [->] (input) -- node{u (control inputs)} (controller);
+    \draw [->] (controller) -- node{y (output variables)} (output);
+  \end{tikzpicture}
+\end{center}
+
+
+% \begin{center}
+%   \begin{tikzpicture}[auto, node distance=2cm, >=stealth]
+%     \node [block, right of=input, node distance=3cm] (b1) {Apply Known laws (Newton, queing,etc)};
+%     \node [block, right of=b1, node distance=3cm] (b2) {linearize model at an operating point};
+%     \node [block, right of=b2, node distance=3cm] (b3) {Take LT w/ zero initial conditions}
+%     \node [block, right of=b3, node distance=3cm] (b4) {Isolate input and output}
+%     \node [block, right of=b4, node distance=3cm] (b5) {Experimentally determine parameter values in TF}
+
+%     \draw [->] (b1) -- node{System of differential equations} (b2);
+%     \draw [->] (b2) -- node{System of linear differential equations} (b3);
+%     \draw [->] (b3) -- node{System of linear differential equations} (b4);
+%     \draw [->] (b4) -- node{Transfer Function} (b5);
+%   \end{tikzpicture}
+% \end{center}
+\subsection*{Ex 2.1.1 mass-spring damper}
+\includegraphics[scale=0.5]{images/EX2_1_1.png}
+$q\in R$, position of mass M
+$$q':=\frac{dq}{dt}$$
+Newton's 2nd law $$Mq''=\sum \text{ forces acting on } M$$
+Force due to spring $$F_k(q)=Kq \text{ assumed linear}$$
+Force due to damper (possibly nonlinear) $C(q')$
+$$Mq''=-Kq-C(q')+u$$
+Note if the damper is linaer, i.e., $C(q')=bq$, b real constant, then the overall system is linear
+\subsection*{Ex}
+\includegraphics[scale=0.1]{images/EX2_1_2.jpg}\\
+$u(t)$ applied voltage, $y(t)$ voltage across capacitor\\
+Apply KVL 
+\begin{align*}
+  &-u(t)+V_R+y=0\\
+  &i_t=C\frac{dy}{dt} \text{ (capacitor equation)}\\
+  &V_R=h(i(t))=h(C\dot y)\\
+  &-u(t)+h(C\dot y)+y=0
+\end{align*}
+Node: If the resistor wer linear, i.e. $h(t)=R_i$ for some constant $R$, then the system is linear (Ex 2.3.4 in notes)
+\subsection*{2.4 State-space models}
+\subsubsection*{Ex 2.4.1}
+\includegraphics[scale=0.5]{images/EX2_4_1.png}\\
+Newton's 2nd law: $$M\ddot y=u-D(\dot y)$$
+We put this model into a standard form by defining two so-called state variables
+$$x_1:=y \text{ (position)}, x_2:=\dot y \text{ (velocity)}$$
+\begin{align*}
+    \dot x_1=&x_2\\
+    \dot x_2=&\frac{1}{M}u - \frac{1}{M}D(x_2)\\
+    y=&x_1
+\end{align*}
+This is called state-space model, first two equations are called state equations, last one is called output equation.\\
+These equations have the general form: $$\dot x=f(x,u)$$ $$y=h(x)$$ where (in this example ) $$x=(x_1,x_2)\in R^2$$ $$f(x,u)=\begin{bmatrix}x_2\\ \frac{1}{M}u-\frac{1}{M}D(x_2)\end{bmatrix}, h(x)=x_1$$
+In the special case, where air resistance is a linear function of $x_2:D(x_2)=dx_2$, d real constant, then $f(x,u)$ becomes a linear function of $x$ and $u$
+$$f(x,u)=\begin{bmatrix} 0&1\\0&\frac{-d}{M}\end{bmatrix} \begin{bmatrix} x_1\\x_2\end{bmatrix} +\begin{bmatrix} 0\\\frac{1}{M}\end{bmatrix}u$$
+Define $C:= \begin{bmatrix}1&0\end{bmatrix}$ we get 
+\begin{align*}
+    \dot x=&Ax+Bu\\
+    y=&Cx
+\end{align*}
 \end{document}
