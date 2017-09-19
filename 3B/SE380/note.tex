@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[letterpaper]{article}
 \usepackage[letterpaper, hmargin=0.75in, vmargin=0.75in]{geometry}
 \usepackage{graphicx}
 \usepackage[hyphens]{url}
@@ -103,7 +103,7 @@ We must decide on the \underline{request rate} $u(t)$ based on $r(t)$ and $y(t)$
     \node [block, right of=joint2, ] (server) {Server};
     \node [input, below of=joint2] (measurement) {};
     \node [output, right of=server, node distance=3cm] (output) {};
-
+                                                                                                                                                                                                                                                                                                                                                                                                                    
     \draw [->] (input) -- node{$R(s)$} (joint1);
     \draw [->] (joint1) -- node{} (controller);
     \draw [->] (controller) -- node{} (joint2);
@@ -128,23 +128,23 @@ Control system
 \begin{enumerate}
   \item Study system to be controlled; decide on sensors and actuators
   \item model resulting system
-  \begin{enumerate}
-    \item mathematical model
-    \item often one or more differential equations\\
-    e.g. follower $\frac{dx}{dt}=u$
-  \end{enumerate}
+        \begin{enumerate}
+          \item mathematical model
+          \item often one or more differential equations\\
+                e.g. follower $\frac{dx}{dt}=u$
+        \end{enumerate}
   \item Simplify model if necessary
-  Have a transfer function of the plant (input-output model)
-e.g. follower. $$L\left \{\frac{dx_f}{dt} \right \}=L\left \{u \right\}\Rightarrow sX_f(s)=U(s)\Rightarrow\frac{X_f(s)}{U(s)}=\frac{1}{s}$$
-a system has a TF if, and only if it is linear and time invariant
+        Have a transfer function of the plant (input-output model)
+        e.g. follower. $$L\left \{\frac{dx_f}{dt} \right \}=L\left \{u \right\}\Rightarrow sX_f(s)=U(s)\Rightarrow\frac{X_f(s)}{U(s)}=\frac{1}{s}$$
+        a system has a TF if, and only if it is linear and time invariant
   \item Analyse resulting system
   \item Determine specifications stability, good steady behaviour robustness, good transrent performance
   \item Decide on type of controller
   \item Design controller
-  \begin{enumerate}
-    \item in this course, the controller itself is a TF
-    \item this TF corresponds to a diff eq relating the inputs/outputs at the controller
-  \end{enumerate}
+        \begin{enumerate}
+          \item in this course, the controller itself is a TF
+          \item this TF corresponds to a diff eq relating the inputs/outputs at the controller
+        \end{enumerate}
   \item Simulate
   \item Return to step 1 if necessary
   \item Implement controller
@@ -159,7 +159,7 @@ T: sampling period
     \node [input, name=input] (input) {};
     \node [block, right of=input, node distance=5cm] (controller) {Dynamical System};
     \node [output, right of=controller, node distance=5cm] (output) {};
-
+                                                                                                                                                                                                                                                                                                                                                                                                                    
     \draw [->] (input) -- node{u (control inputs)} (controller);
     \draw [->] (controller) -- node{y (output variables)} (output);
   \end{tikzpicture}
@@ -194,10 +194,10 @@ Note if the damper is linaer, i.e., $C(q')=bq$, b real constant, then the overal
 $u(t)$ applied voltage, $y(t)$ voltage across capacitor\\
 Apply KVL 
 \begin{align*}
-  &-u(t)+V_R+y=0\\
-  &i_t=C\frac{dy}{dt} \text{ (capacitor equation)}\\
-  &V_R=h(i(t))=h(C\dot y)\\
-  &-u(t)+h(C\dot y)+y=0
+    & -u(t)+V_R+y=0                                   \\
+    & i_t=C\frac{dy}{dt} \text{ (capacitor equation)} \\
+    & V_R=h(i(t))=h(C\dot y)                          \\
+    & -u(t)+h(C\dot y)+y=0                            
 \end{align*}
 Node: If the resistor wer linear, i.e. $h(t)=R_i$ for some constant $R$, then the system is linear (Ex 2.3.4 in notes)
 \subsection*{2.4 State-space models}
@@ -207,17 +207,219 @@ Newton's 2nd law: $$M\ddot y=u-D(\dot y)$$
 We put this model into a standard form by defining two so-called state variables
 $$x_1:=y \text{ (position)}, x_2:=\dot y \text{ (velocity)}$$
 \begin{align*}
-    \dot x_1=&x_2\\
-    \dot x_2=&\frac{1}{M}u - \frac{1}{M}D(x_2)\\
-    y=&x_1
+  \dot x_1= & x_2                              \\
+  \dot x_2= & \frac{1}{M}u - \frac{1}{M}D(x_2) \\
+  y=        & x_1                              
 \end{align*}
 This is called state-space model, first two equations are called state equations, last one is called output equation.\\
 These equations have the general form: $$\dot x=f(x,u)$$ $$y=h(x)$$ where (in this example ) $$x=(x_1,x_2)\in R^2$$ $$f(x,u)=\begin{bmatrix}x_2\\ \frac{1}{M}u-\frac{1}{M}D(x_2)\end{bmatrix}, h(x)=x_1$$
 In the special case, where air resistance is a linear function of $x_2:D(x_2)=dx_2$, d real constant, then $f(x,u)$ becomes a linear function of $x$ and $u$
-$$f(x,u)=\begin{bmatrix} 0&1\\0&\frac{-d}{M}\end{bmatrix} \begin{bmatrix} x_1\\x_2\end{bmatrix} +\begin{bmatrix} 0\\\frac{1}{M}\end{bmatrix}u$$
-Define $C:= \begin{bmatrix}1&0\end{bmatrix}$ we get 
+$$f(x,u)=
+\begin{bmatrix} 
+  0 & 1 \\0&\frac{-d}{M}
+\end{bmatrix} 
+\begin{bmatrix} 
+  x_1 \\x_2
+\end{bmatrix} +
+\begin{bmatrix} 
+  0 \\\frac{1}{M}
+\end{bmatrix}
+u$$
+Define 
+$C:= 
+\begin{bmatrix}
+  1 & 0 
+\end{bmatrix}$
+we get 
 \begin{align*}
-    \dot x=&Ax+Bu\\
-    y=&Cx
+  \dot x= & Ax+Bu \\
+  y=      & Cx    
 \end{align*}
+
+Generalizing Ex 2.4.1, an important class of systems have models of the form:
+\begin{align*}
+  \dot x= & f(x,u),f: \mathbb{R}^n*\mathbb{R}^m\rightarrow \mathbb{R}^n \\
+  \dot y= & h(x,u), h:\mathbb{R}^n*\mathbb{R}^m\rightarrow \mathbb{R}^p 
+\end{align*}
+- this model is nonlinear.\\
+- there are m control inputs, $u=(u_1,u_2,\hdots, u_m)$\\
+- there are p outputs $y=(y_1,y_2,\hdots,y_p)$\\
+- the state vector x has dimension n: $x=(x_1,\hdots,x_n)$\\
+
+e.g.\\
+\includegraphics[scale=0.8]{images/Figure_2_30.png}\\
+$m=2, u=(u_1,u_2)$\\
+$p=2, y=(y_1,y_2)$\\
+$n=4, x=(x_1,x_2,x_3,x_4):=(y_1,\dot y_1, y2, \dot y_2)$
+
+\underline{Ex (Quarotor UAV)}\\
+$m=4, u=(u_1,u_2,u_3,u_4)=(f_1,f_2,f_3,f_4)$\\
+$p=3,y=(y_1,y_2,y_3)$\\
+$x\in \mathbb R^{12}=(\text{position, orientation, velocity, angular velocity})$
+
+-The linear special case is:
+\begin{align*}
+  \dot x= & Ax+Bu, A\in \mathbb{R}^{n*n},B\in \mathbb{R}^{n*m}  \\
+  y=      & Cx+Du, C\in \mathbb{R}^{p*n}, D\in \mathbb{R}^{p*m} \\
+\end{align*}
+
+- In this course, single input-output systems $$m=p=1$$
+What is the state of a system? \\
+The state vector $x(t_0)$ encapsulates all of the systems dynamics up to time $t_0$
+
+More formally: for any two times $t_0<t_1$, knowing $x(t_0)$ and knowing $\{u(t): t_0 \leq t\leq t_1\}$, we can compute $x(t_1)$ and $y(t_1)$
+
+\subsubsection*{Ex 2.4.2}
+No force on system $$M\ddot y=0$$
+If we try a 1-dimensional state, say $x:=y$, then knowing $x(t_0)$ without knowing $\dot y(t_0)$, we cannot compute $x(t)$ for $t>t_0$\\
+Same problem with $x:=\dot y$\\
+- Since the governing equation is $2^{nd}$ order we need two initial conditions, So $x=(y,\dot y)\in \mathbb{R}^2$ is a good choice.
+
+\subsubsection*{Ex 2.5.1}
+\includegraphics[scale=0.9]{images/Ex2_5_1.png}\\
+Model (see Ex 2.3.3) is 
+$$\ddot \Theta = \frac{3}{Ml^2}u-3\frac{g}{l}\sin(\Theta)$$
+To put this system in state-space form\\
+\begin{enumerate}
+  \item[1)] $x:=(\Theta, \dot \Theta)$
+  \item[2)] $y=$angular position=$\Theta$
+\end{enumerate}
+\begin{align*}
+  \dot x_1= & x_2                                   \\
+  \dot x_2= & \frac{3}{Ml^2}u-\frac{3g}{l}\sin(x_1) 
+\end{align*}
+
+
+\subsubsection*{Ex 2.4.5}
+\includegraphics[scale=0.9]{images/Ex2_4_5.png}\\
+choose: $$x_1:=\text{voltage across cap}=\frac{1}{C}\int y(\tau)d\tau$$
+$$x_2:=\text{current through inductor}=y$$
+KVL:
+\begin{align*}
+    & -u+V_R+V_C+V_L=0\Rightarrow-u+Rx_2+x_1+L\dot x_2=0 \\
+    & \dot x_1=\frac{1}{C}x_2                            
+\end{align*}
+\begin{align*}
+  \dot x=&
+  \begin{bmatrix}
+  0&\frac{1}{C}\\
+  \frac{-1}{L}&\frac{-R}{L}
+  \end{bmatrix}
+  \begin{bmatrix}
+  x_1\\x_2
+  \end{bmatrix}
+  +\begin{bmatrix}
+  0\\\frac{1}{L}
+  \end{bmatrix}u\\
+  y= & \begin{bmatrix} 0 & 1\end{bmatrix}x 
+\end{align*}
+
+\subsection*{2.5 Linearization}
+- linearization - approximate a nonlinear state-space model with a linear one.\\
+- linearization allows us to use simple systematic design methods\\
+\subsubsection{Ex 2.5.2}
+Linearize $y=x^3$ at the point $\bar x=1$\\
+Taylor series at $x=\bar x$ is $$y=\sum_{n=0}^{\infty} c_n(x-\bar x)^n,c_n=\frac{d^nf(x)}{dx^n}\vert_{x=\bar x}* \frac{1}{n!}$$
+- keep only the terms $n=0,n=1$, $$f(x)\approx f(\bar x)+\frac{df(x)}{dx}(x-\bar x)$$
+$$y-\bar y\approx \frac{df}{dx}\vert_{x=\bar x}(x-\bar x)$$
+If we define the deviations $\partial y:=y-\bar y, \partial x:=x-\bar x$, then $$\partial y=\frac{df}{dx}\vert_{x=\bar x}*\partial x$$ 
+
+\subsubsection*{Ex 2.5.3}
+\begin{align*}
+  y=\begin{bmatrix} y_1 \\y_2\end{bmatrix}=f(x)=\begin{bmatrix}x_1x_2-1\\x_3^2-2x_1x_3\end{bmatrix}=\begin{bmatrix} f_1(x)\\f_2(x)\end{bmatrix}
+\end{align*}
+
+\begin{align*}
+  \bar y=f(\bar x)=\begin{bmatrix}-2 \\0\end{bmatrix}
+\end{align*}
+- multivariable Taylors: $$f(x)=f(\bar x)+\frac{\partial f}{\partial x}\vert_x=\bar x*(x-\bar x)+\text{ higher order terms}$$
+\begin{align*}
+  \frac{\partial f}{\partial x}\vert_{x=\bar x}=&\text{ Jacobian of f evaluated at }x=\bar x\\
+  =&\begin{bmatrix}
+  \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \frac{\partial f_1}{\partial x_3} \\
+  \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \frac{\partial f_2}{\partial x_3} \\
+  \end{bmatrix}_{x=\bar x}\\
+  =&\begin{bmatrix}
+  x_2                               & x_1                               & 0                                 \\
+  -2x_3                             & 0                                 & 2x_3-2x_1                         
+  \end{bmatrix}_{x=(1,2,3)}\\
+  =&\begin{bmatrix}
+  -1                                & 1                                 & 0                                 \\
+  -4                                & 0                                 & 2                                 
+  \end{bmatrix}=: A
+\end{align*}
+- by direct extension : $$f(x,u)\approx f(\bar x, \bar u)+\frac{\partial f}{\partial x}\vert_{(x,u)=(\bar x,\bar u)}(x-\bar x)+\frac{\partial f}{\partial u}\vert_{(x,u)=(\bar x,\bar u)}(u-\bar u)$$
+- Let's apply this to 
+\begin{align*}
+  \dot x= & f(x,u) \\
+  y=      & (x,u)  
+\end{align*}
+\subsubsection*{DEFN 2.5.1} A constant pair $(\bar x, \bar u)\in \mathbb{R}^n*\mathbb{R}^n$ is an equilibrium configuration of (*) if $f(\bar x, \bar u)=(0,0,0,0,\hdots,0)$\\
+The constant $\bar x$ is the equilibrium point
+\subsubsection*{\underline{Ex}}
+Find all equilibrium at which the pendulum is upright\\
+$\dot x=f(x,u),y=h(x,u)$\\
+$f(x,u)=\begin{bmatrix}x_2\\\frac{3}{Ml}u-\frac{3g}{l}\sin(x_1)\end{bmatrix},h(x)=x_1$\\
+$x_1=\Theta, x_2=\dot\\ \Theta$\\
+If $y=\Pi$ then $\bar x_1=\Pi$ So we have to solve $$\begin{bmatrix}0\\0\end{bmatrix}=\begin{bmatrix}x_2\\\frac{3}{Ml}u-\frac{3g}{l}\sin(x_1)\end{bmatrix}\Rightarrow \bar x_2=0, \bar u=0$$
+  
+Conclusion: the equilibrium are $$\begin{bmatrix}\bar x_1\\\bar x_2\end{bmatrix}=\begin{bmatrix}\Pi+2\Pi k\\0\end{bmatrix}, \bar u=0, k\in \mathbb{Z}$$
+Assume $\dot x=f(x,u)$ has an eq config at $(x,u)=(\bar x, \bar u)$
+$$f(x,u)\approx f(\bar x,\bar u)+\frac{\partial f}{\partial x}\vert_{(x,u)=(\bar x,\bar u)}(x-\bar x)+\frac{\partial f}{\partial u}\vert_{(x,u)=(\bar x,\bar u)}(u-\bar u)=0+A\partial x + B \partial u$$
+- consider deviatiors from $(\bar x,\bar u)$ $$\partial x(t)=x(t)-\bar x$$ $$\partial u(t)=u(t)-\bar u$$
+- Then $$\dot \partial x=\dot x -0=f(x,u)\approx A\partial x + B \partial u$$
+i.e. \begin{equation}
+\dot \partial x=A\partial x+B\partial u \text{ linearized state equation}
+\end{equation}
+- linearized output equations: $$\partial y=\frac{\partial h}{\partial x}\vert_{(x,u)=(\bar x,\bar u)}\partial x+\frac{\partial h}{\partial u}\vert_{(x,u)=(\bar x,\bar u)}\partial u=C\partial x+D\partial u$$
+Summary: Linearizing $\dot x=f(x,u), y=h(x,u)$
+\begin{enumerate}
+  \item select an eq. config $(\bar x,\bar u)\in \mathbb{R}^n*\mathbb{R}^m$ $$\bar y=(\bar x,\bar u), f(\bar x,\bar u)=0$$
+  \item Compute Jacobians of f, h to get A,B,C,D
+  \item Linearization: $$\dot \partial x=A\partial x+B\partial u$$ $$\partial y=C\partial x+D\partial u$$
+\end{enumerate}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 \end{document}
