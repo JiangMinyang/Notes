@@ -46,7 +46,7 @@ basicstyle=\ttfamily\scriptsize,commentstyle=\scriptsize\itshape,showstringspace
 \tikzstyle{input} = [coordinate]
 \tikzstyle{output} = [coordinate]
 \tikzstyle{joint} = [draw, circle, minimum size=1em]
-\tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
+\tikzstyle{block} = [draw, rectangle, minimum height=6em, minimum width=6em]
 
 
 \title{\huge SE380 Notes}
@@ -84,8 +84,8 @@ Example (automated highway)
 Ex. web server sec1.4.1
 Control Objectives
 \begin{enumerate}
-  \item Don't let queue length set too long
-  \item Don't let queue length get to zero
+	\item Don't let queue length set too long
+	\item Don't let queue length get to zero
 \end{enumerate}
 We need to keep the queue length some known value r(t)\\
 the difficulty is that the \underline{service rate} is not known - depends on many things.\\
@@ -94,60 +94,60 @@ We must decide on the \underline{request rate} $u(t)$ based on $r(t)$ and $y(t)$
 
 
 \begin{center}
-  \begin{tikzpicture}[auto, node distance=2cm, >=stealth]
-    \node [input, name=input] (input) {r};
-    \node [joint, right of=input] (joint1) {};
-    \node [block, right of=joint1] (controller) {Controller};
-    \node [joint, right of=controller] (joint2) {};
-    \node [input, above of=joint2] (disturbance) {d};
-    \node [block, right of=joint2, ] (server) {Server};
-    \node [input, below of=joint2] (measurement) {};
-    \node [output, right of=server, node distance=3cm] (output) {};
-                                                                                                                                                                                                                                                                                                                                                                                                                    
-    \draw [->] (input) -- node{$R(s)$} (joint1);
-    \draw [->] (joint1) -- node{} (controller);
-    \draw [->] (controller) -- node{} (joint2);
-    \draw [->] (joint2) -- node{} (server);
-    \draw [->] (disturbance) -- node [pos=0.01]{$d$} (joint2);
-    \draw [->] (server) -- node[name=y]{$Y(s)$} (output);
-    \draw [-] (y) |- node{} (measurement);
-    \draw [->] (measurement) -| node [near end]{$y_m$} (joint1);
-  \end{tikzpicture}
+	\begin{tikzpicture}[auto, node distance=2cm, >=stealth]
+		\node [input, name=input] (input) {r};
+		\node [joint, right of=input] (joint1) {};
+		\node [block, right of=joint1] (controller) {Controller};
+		\node [joint, right of=controller] (joint2) {};
+		\node [input, above of=joint2] (disturbance) {d};
+		\node [block, right of=joint2, ] (server) {Server};
+		\node [input, below of=joint2] (measurement) {};
+		\node [output, right of=server, node distance=3cm] (output) {};
+																																																				                                                                                                                                                                                                                                                                                                                                                                                                                    
+		\draw [->] (input) -- node{$R(s)$} (joint1);
+		\draw [->] (joint1) -- node{} (controller);
+		\draw [->] (controller) -- node{} (joint2);
+		\draw [->] (joint2) -- node{} (server);
+		\draw [->] (disturbance) -- node [pos=0.01]{$d$} (joint2);
+		\draw [->] (server) -- node[name=y]{$Y(s)$} (output);
+		\draw [-] (y) |- node{} (measurement);
+		\draw [->] (measurement) -| node [near end]{$y_m$} (joint1);
+	\end{tikzpicture}
 \end{center}
 
 Control engineering attempts to change the behavior of a system (plant) in a useful way dispits the present of external influences (disturbances) and despite model uncertainty\\
 We change the behavior of the plant by connecting it to another system (controller) Feedback is the most powerful inter-connector strategy\\
 Control system
 \begin{enumerate}
-  \item sense the operation of system
-  \item compose against a desired behavior
-  \item compute a corrective action inforced by a model of the system's response to the external stimul;
-  \item Actuate the system to effect demand change
+	\item sense the operation of system
+	\item compose against a desired behavior
+	\item compute a corrective action inforced by a model of the system's response to the external stimul;
+	\item Actuate the system to effect demand change
 \end{enumerate}
 \section*{1.3 Control Engineering Design}
 \begin{enumerate}
-  \item Study system to be controlled; decide on sensors and actuators
-  \item model resulting system
-        \begin{enumerate}
-          \item mathematical model
-          \item often one or more differential equations\\
-                e.g. follower $\frac{dx}{dt}=u$
-        \end{enumerate}
-  \item Simplify model if necessary
-        Have a transfer function of the plant (input-output model)
-        e.g. follower. $$L\left \{\frac{dx_f}{dt} \right \}=L\left \{u \right\}\Rightarrow sX_f(s)=U(s)\Rightarrow\frac{X_f(s)}{U(s)}=\frac{1}{s}$$
-        a system has a TF if, and only if it is linear and time invariant
-  \item Analyse resulting system
-  \item Determine specifications stability, good steady behaviour robustness, good transrent performance
-  \item Decide on type of controller
-  \item Design controller
-        \begin{enumerate}
-          \item in this course, the controller itself is a TF
-          \item this TF corresponds to a diff eq relating the inputs/outputs at the controller
-        \end{enumerate}
-  \item Simulate
-  \item Return to step 1 if necessary
-  \item Implement controller
+	\item Study system to be controlled; decide on sensors and actuators
+	\item model resulting system
+	      \begin{enumerate}
+	      	\item mathematical model
+	      	\item often one or more differential equations\\
+	      	      e.g. follower $\frac{dx}{dt}=u$
+	      \end{enumerate}
+	\item Simplify model if necessary
+	      Have a transfer function of the plant (input-output model)
+	      e.g. follower. $$L\left \{\frac{dx_f}{dt} \right \}=L\left \{u \right\}\Rightarrow sX_f(s)=U(s)\Rightarrow\frac{X_f(s)}{U(s)}=\frac{1}{s}$$
+	      a system has a TF if, and only if it is linear and time invariant
+	\item Analyse resulting system
+	\item Determine specifications stability, good steady behaviour robustness, good transrent performance
+	\item Decide on type of controller
+	\item Design controller
+	      \begin{enumerate}
+	      	\item in this course, the controller itself is a TF
+	      	\item this TF corresponds to a diff eq relating the inputs/outputs at the controller
+	      \end{enumerate}
+	\item Simulate
+	\item Return to step 1 if necessary
+	\item Implement controller
 \end{enumerate}
 - the ODE from step 7 is approximated as discretized and difference equation and implemented in software\\
 e.g. follower. $$u(t)=-K_p(r(kT)-y(kT)), kT\leq t\le (k+1)T$$
@@ -155,14 +155,14 @@ T: sampling period
 \section*{Ch2. mathematical models of systems}
 
 \begin{center}
-  \begin{tikzpicture}[auto, node distance=2cm, >=stealth]
-    \node [input, name=input] (input) {};
-    \node [block, right of=input, node distance=5cm] (controller) {Dynamical System};
-    \node [output, right of=controller, node distance=5cm] (output) {};
-                                                                                                                                                                                                                                                                                                                                                                                                                    
-    \draw [->] (input) -- node{u (control inputs)} (controller);
-    \draw [->] (controller) -- node{y (output variables)} (output);
-  \end{tikzpicture}
+	\begin{tikzpicture}[auto, node distance=2cm, >=stealth]
+		\node [input, name=input] (input) {};
+		\node [block, right of=input, node distance=5cm] (controller) {Dynamical System};
+		\node [output, right of=controller, node distance=5cm] (output) {};
+																																																				                                                                                                                                                                                                                                                                                                                                                                                                                    
+		\draw [->] (input) -- node{u (control inputs)} (controller);
+		\draw [->] (controller) -- node{y (output variables)} (output);
+	\end{tikzpicture}
 \end{center}
 
 
@@ -194,10 +194,10 @@ Note if the damper is linaer, i.e., $C(q')=bq$, b real constant, then the overal
 $u(t)$ applied voltage, $y(t)$ voltage across capacitor\\
 Apply KVL 
 \begin{align*}
-    & -u(t)+V_R+y=0                                   \\
-    & i_t=C\frac{dy}{dt} \text{ (capacitor equation)} \\
-    & V_R=h(i(t))=h(C\dot y)                          \\
-    & -u(t)+h(C\dot y)+y=0                            
+	  & -u(t)+V_R+y=0                                   \\
+	  & i_t=C\frac{dy}{dt} \text{ (capacitor equation)} \\
+	  & V_R=h(i(t))=h(C\dot y)                          \\
+	  & -u(t)+h(C\dot y)+y=0                            
 \end{align*}
 Node: If the resistor wer linear, i.e. $h(t)=R_i$ for some constant $R$, then the system is linear (Ex 2.3.4 in notes)
 \subsection*{2.4 State-space models}
@@ -207,39 +207,39 @@ Newton's 2nd law: $$M\ddot y=u-D(\dot y)$$
 We put this model into a standard form by defining two so-called state variables
 $$x_1:=y \text{ (position)}, x_2:=\dot y \text{ (velocity)}$$
 \begin{align*}
-  \dot x_1= & x_2                              \\
-  \dot x_2= & \frac{1}{M}u - \frac{1}{M}D(x_2) \\
-  y=        & x_1                              
+	\dot x_1= & x_2                              \\
+	\dot x_2= & \frac{1}{M}u - \frac{1}{M}D(x_2) \\
+	y=        & x_1                              
 \end{align*}
 This is called state-space model, first two equations are called state equations, last one is called output equation.\\
 These equations have the general form: $$\dot x=f(x,u)$$ $$y=h(x)$$ where (in this example ) $$x=(x_1,x_2)\in R^2$$ $$f(x,u)=\begin{bmatrix}x_2\\ \frac{1}{M}u-\frac{1}{M}D(x_2)\end{bmatrix}, h(x)=x_1$$
 In the special case, where air resistance is a linear function of $x_2:D(x_2)=dx_2$, d real constant, then $f(x,u)$ becomes a linear function of $x$ and $u$
 $$f(x,u)=
 \begin{bmatrix} 
-  0 & 1 \\0&\frac{-d}{M}
+	0 & 1 \\0&\frac{-d}{M}
 \end{bmatrix} 
 \begin{bmatrix} 
-  x_1 \\x_2
+	x_1 \\x_2
 \end{bmatrix} +
 \begin{bmatrix} 
-  0 \\\frac{1}{M}
+	0 \\\frac{1}{M}
 \end{bmatrix}
 u$$
 Define 
 $C:= 
 \begin{bmatrix}
-  1 & 0 
+	1 & 0 
 \end{bmatrix}$
 we get 
 \begin{align*}
-  \dot x= & Ax+Bu \\
-  y=      & Cx    
+	\dot x= & Ax+Bu \\
+	y=      & Cx    
 \end{align*}
 
 Generalizing Ex 2.4.1, an important class of systems have models of the form:
 \begin{align*}
-  \dot x= & f(x,u),f: \mathbb{R}^n*\mathbb{R}^m\rightarrow \mathbb{R}^n \\
-  \dot y= & h(x,u), h:\mathbb{R}^n*\mathbb{R}^m\rightarrow \mathbb{R}^p 
+	\dot x= & f(x,u),f: \mathbb{R}^n*\mathbb{R}^m\rightarrow \mathbb{R}^n \\
+	\dot y= & h(x,u), h:\mathbb{R}^n*\mathbb{R}^m\rightarrow \mathbb{R}^p 
 \end{align*}
 - this model is nonlinear.\\
 - there are m control inputs, $u=(u_1,u_2,\hdots, u_m)$\\
@@ -259,8 +259,8 @@ $x\in \mathbb R^{12}=(\text{position, orientation, velocity, angular velocity})$
 
 -The linear special case is:
 \begin{align*}
-  \dot x= & Ax+Bu, A\in \mathbb{R}^{n*n},B\in \mathbb{R}^{n*m}  \\
-  y=      & Cx+Du, C\in \mathbb{R}^{p*n}, D\in \mathbb{R}^{p*m} \\
+	\dot x= & Ax+Bu, A\in \mathbb{R}^{n*n},B\in \mathbb{R}^{n*m}  \\
+	y=      & Cx+Du, C\in \mathbb{R}^{p*n}, D\in \mathbb{R}^{p*m} \\
 \end{align*}
 
 - In this course, single input-output systems $$m=p=1$$
@@ -281,12 +281,12 @@ Model (see Ex 2.3.3) is
 $$\ddot \Theta = \frac{3}{Ml^2}u-3\frac{g}{l}\sin(\Theta)$$
 To put this system in state-space form\\
 \begin{enumerate}
-  \item[1)] $x:=(\Theta, \dot \Theta)$
-  \item[2)] $y=$angular position=$\Theta$
+	\item[1)] $x:=(\Theta, \dot \Theta)$
+	\item[2)] $y=$angular position=$\Theta$
 \end{enumerate}
 \begin{align*}
-  \dot x_1= & x_2                                   \\
-  \dot x_2= & \frac{3}{Ml^2}u-\frac{3g}{l}\sin(x_1) 
+	\dot x_1= & x_2                                   \\
+	\dot x_2= & \frac{3}{Ml^2}u-\frac{3g}{l}\sin(x_1) 
 \end{align*}
 
 
@@ -296,22 +296,22 @@ choose: $$x_1:=\text{voltage across cap}=\frac{1}{C}\int y(\tau)d\tau$$
 $$x_2:=\text{current through inductor}=y$$
 KVL:
 \begin{align*}
-    & -u+V_R+V_C+V_L=0\Rightarrow-u+Rx_2+x_1+L\dot x_2=0 \\
-    & \dot x_1=\frac{1}{C}x_2                            
+	  & -u+V_R+V_C+V_L=0\Rightarrow-u+Rx_2+x_1+L\dot x_2=0 \\
+	  & \dot x_1=\frac{1}{C}x_2                            
 \end{align*}
 \begin{align*}
-  \dot x=&
-  \begin{bmatrix}
-  0&\frac{1}{C}\\
-  \frac{-1}{L}&\frac{-R}{L}
-  \end{bmatrix}
-  \begin{bmatrix}
-  x_1\\x_2
-  \end{bmatrix}
-  +\begin{bmatrix}
-  0\\\frac{1}{L}
-  \end{bmatrix}u\\
-  y= & \begin{bmatrix} 0 & 1\end{bmatrix}x 
+	\dot x=&
+	\begin{bmatrix}
+	0&\frac{1}{C}\\
+	\frac{-1}{L}&\frac{-R}{L}
+	\end{bmatrix}
+	\begin{bmatrix}
+	x_1\\x_2
+	\end{bmatrix}
+	+\begin{bmatrix}
+	0\\\frac{1}{L}
+	\end{bmatrix}u\\
+	y= & \begin{bmatrix} 0 & 1\end{bmatrix}x 
 \end{align*}
 
 \subsection*{2.5 Linearization}
@@ -326,33 +326,33 @@ If we define the deviations $\partial y:=y-\bar y, \partial x:=x-\bar x$, then $
 
 \subsubsection*{Ex 2.5.3}
 \begin{align*}
-  y=\begin{bmatrix} y_1 \\y_2\end{bmatrix}=f(x)=\begin{bmatrix}x_1x_2-1\\x_3^2-2x_1x_3\end{bmatrix}=\begin{bmatrix} f_1(x)\\f_2(x)\end{bmatrix}
+	y=\begin{bmatrix} y_1 \\y_2\end{bmatrix}=f(x)=\begin{bmatrix}x_1x_2-1\\x_3^2-2x_1x_3\end{bmatrix}=\begin{bmatrix} f_1(x)\\f_2(x)\end{bmatrix}
 \end{align*}
 
 \begin{align*}
-  \bar y=f(\bar x)=\begin{bmatrix}-2 \\0\end{bmatrix}
+	\bar y=f(\bar x)=\begin{bmatrix}-2 \\0\end{bmatrix}
 \end{align*}
 - multivariable Taylors: $$f(x)=f(\bar x)+\frac{\partial f}{\partial x}\vert_x=\bar x*(x-\bar x)+\text{ higher order terms}$$
 \begin{align*}
-  \frac{\partial f}{\partial x}\vert_{x=\bar x}=&\text{ Jacobian of f evaluated at }x=\bar x\\
-  =&\begin{bmatrix}
-  \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \frac{\partial f_1}{\partial x_3} \\
-  \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \frac{\partial f_2}{\partial x_3} \\
-  \end{bmatrix}_{x=\bar x}\\
-  =&\begin{bmatrix}
-  x_2                               & x_1                               & 0                                 \\
-  -2x_3                             & 0                                 & 2x_3-2x_1                         
-  \end{bmatrix}_{x=(1,2,3)}\\
-  =&\begin{bmatrix}
-  -1                                & 1                                 & 0                                 \\
-  -4                                & 0                                 & 2                                 
-  \end{bmatrix}=: A
+	\frac{\partial f}{\partial x}\vert_{x=\bar x}=&\text{ Jacobian of f evaluated at }x=\bar x\\
+	=&\begin{bmatrix}
+	\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \frac{\partial f_1}{\partial x_3} \\
+	\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \frac{\partial f_2}{\partial x_3} \\
+	\end{bmatrix}_{x=\bar x}\\
+	=&\begin{bmatrix}
+	x_2                               & x_1                               & 0                                 \\
+	-2x_3                             & 0                                 & 2x_3-2x_1                         
+	\end{bmatrix}_{x=(1,2,3)}\\
+	=&\begin{bmatrix}
+	-1                                & 1                                 & 0                                 \\
+	-4                                & 0                                 & 2                                 
+	\end{bmatrix}=: A
 \end{align*}
 - by direct extension : $$f(x,u)\approx f(\bar x, \bar u)+\frac{\partial f}{\partial x}\vert_{(x,u)=(\bar x,\bar u)}(x-\bar x)+\frac{\partial f}{\partial u}\vert_{(x,u)=(\bar x,\bar u)}(u-\bar u)$$
 - Let's apply this to 
 \begin{align*}
-  \dot x= & f(x,u) \\
-  y=      & (x,u)  
+	\dot x= & f(x,u) \\
+	y=      & (x,u)  
 \end{align*}
 \subsubsection*{DEFN 2.5.1} A constant pair $(\bar x, \bar u)\in \mathbb{R}^n*\mathbb{R}^n$ is an equilibrium configuration of (*) if $f(\bar x, \bar u)=(0,0,0,0,\hdots,0)$\\
 The constant $\bar x$ is the equilibrium point
@@ -374,52 +374,138 @@ i.e. \begin{equation}
 - linearized output equations: $$\partial y=\frac{\partial h}{\partial x}\vert_{(x,u)=(\bar x,\bar u)}\partial x+\frac{\partial h}{\partial u}\vert_{(x,u)=(\bar x,\bar u)}\partial u=C\partial x+D\partial u$$
 Summary: Linearizing $\dot x=f(x,u), y=h(x,u)$
 \begin{enumerate}
-  \item select an eq. config $(\bar x,\bar u)\in \mathbb{R}^n*\mathbb{R}^m$ $$\bar y=(\bar x,\bar u), f(\bar x,\bar u)=0$$
-  \item Compute Jacobians of f, h to get A,B,C,D
-  \item Linearization: $$\dot \partial x=A\partial x+B\partial u$$ $$\partial y=C\partial x+D\partial u$$
+	\item select an eq. config $(\bar x,\bar u)\in \mathbb{R}^n*\mathbb{R}^m$ $$\bar y=(\bar x,\bar u), f(\bar x,\bar u)=0$$
+	\item Compute Jacobians of f, h to get A,B,C,D
+	\item Linearization: $$\dot \partial x=A\partial x+B\partial u$$ $$\partial y=C\partial x+D\partial u$$
 \end{enumerate}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+\subsubsection*{Ex 2.5.4}
+Linearize pendulum at upright position
+\begin{align*}
+	\dot x_1= & x_2                                 \\
+	\dot x_2= & \frac{3}{Ml}u-\frac{3g}{l}\sin{x_1} \\
+	y=        & x_1                                 
+\end{align*}
+\begin{enumerate}
+	\item The eq. config at the upright position is $(\bar x, \bar u)=(
+	      \begin{bmatrix}\pi\\0\end{bmatrix}, 0)$
+	\item $A=\begin{bmatrix} 0&&1\\ \frac{-3g\cos{x_1}}{l}&&0\end{bmatrix}=\begin{bmatrix}0&&1\\ \frac{3g}{l}&&0\end{bmatrix}$\\
+	      $B=\begin{bmatrix}0\\\frac{3}{Ml}\end{bmatrix}$\\
+	      $C=\begin{bmatrix} 1&& 0\end{bmatrix}$\\
+	      $D=0$
+	\item
+	      \begin{align*}
+	      	\dot \delta x= & \begin{bmatrix} 0 &   & 1 \\\frac{3g}{l}&&0\end{bmatrix}\delta x+\begin{bmatrix} 0\\\frac{3}{Ml}\end{bmatrix}\delta u\\
+	      	\delta y=& \begin{bmatrix}1&& 0\end{bmatrix}\delta x+\begin{bmatrix}0\end{bmatrix}\delta u\\
+	      	\delta x(t)=&x(t)-\begin{bmatrix}\pi\\0\end{bmatrix}\\
+	      	\delta u(t)=&u(t)-0
+	      \end{align*}    	
+\end{enumerate}
+		    
+\begin{center}
+	\begin{tikzpicture}[auto, node distance=2cm, >=stealth]
+		\node [input, name=input] (input) {r};
+		\node [joint, right of=input] (joint1) {};
+		\node [block, right of=joint1, align=left] (controller) {Controller\\Linear};
+		\node [joint, right of=controller] (joint2) {};
+		\node [input, above of=joint2] (disturbance) {d};
+		\node [block, right of=joint2, align=left] (server) {$\dot x=f(x,u)$\\$y=h(x,u)$};
+		\node [joint, below of=joint2] (measurement) {};
+		\node [output, right of=server, node distance=3cm] (output) {};
+																																																				                                                                                                                                                                                                                                                                                                                                                                                                                    
+		\draw [->] (input) -- node{$\delta r(t)$} (joint1);
+		\draw [->] (joint1) -- node{} (controller);
+		\draw [->] (controller) -- node{} (joint2);
+		\draw [->] (joint2) -- node{$u$} (server);
+		\draw [->] (disturbance) -- node [pos=0.01]{$\bar u$} (joint2);
+		\draw [->] (server) -- node[name=y]{$Y(s)$} (output);
+		\draw [-] (y) |- node{} (measurement);
+		\draw [->] (measurement) -| node [near end]{$y_m$} (joint1);
+	\end{tikzpicture}
+\end{center}		    
+		    
+		    
+\section*{2.8 Transfer Functions}
+\begin{enumerate}
+	\item LTI system, and only LTI systems, have transfer functions
+	\item it is the ratio $\frac{Y(s)}{U(s)}$ where $Y(s)=L\{y(t)\},u(s)=L\{u(t)\}$ and the LTs are taken with zero initial conditions
+\end{enumerate}	
+\subsubsection*{Ex 2.8.3}
+Mass-spring-dumper $$M\ddot q=u-Kq -c(\dot q)$$	    
+Take $y:=q$ as system output, if $c(\dot q)$ is a nonlinear function, there is no TF.\\
+if $c(\dot q)=b\dot q, b\in \mathbb{R}$ then
+\begin{align*}
+	&s^2MQ(s)=U(s)-KQ(s)-sbQ(s)\text{ zero initial conditions}\\
+	\Rightarrow& \frac{Q(s)}{U(s)}=\frac{1}{s^2M+sb+K}
+\end{align*}
+Other examples (Table 2.2)
+\subsubsection*{DEFN 2.8.1} A TF $G(s)$ is real rational
+\begin{enumerate}
+	\item $$G(s)=\frac{b_ms^m+\hdots+b_1s+b_0}{s^n+a_{n-1}s^{n-1}+\hdots+a_1s+s_0},a_i,b_i\in \mathbb{R}$$
+	Let $\mathbb{R}(s)$ be the set of all real rational TFs
+	\item $G(s)\in \mathbb{R}(s)$ is proper if $n\geq m$
+	\item $G(s) \in \mathbb{R}(s)$ is strictly proper if $n > m$
+\end{enumerate}
+\subsubsection*{DEFN 2.8.2}
+A complex number $p\in \mathbb{C}$ is a pole of $G(s)$ if $\lim_{s\rightarrow p}|G(s)|=\infty$
+If $G(s)\in \mathbb{R}(s)$ and its numerator and denominator are co-prime then poles of G=roots of denom, zeros of G=roots of numerator		    
+		    
+\subsection*{2.8.1 state-space to transfer function}
+start with $$\dot x=Ax+Bu$$$$y=Cx+Du$$
+take LTs with zero initial conditions
+\begin{align*}
+sX(s)=&AX(s)+BU(s)\\
+Y(s)=&CX(s)+DU(s)\\
+X(s)=&(X_1(s)\hdots,X_n(s))\\
+U(s)=&(U_1(s)\hdots,U_m(s))\\
+Y(s)=&(Y_1(s)\hdots,Y_p(s))\\
+\end{align*}	    
+
+eliminate $X(s)$
+\begin{align*}
+&(sI-A)X(s)=BU(s)\\
+\Rightarrow&X(s)=(sI-A)^{-1}BU(s)\\
+\Rightarrow&Y(s)=[C(sI-A)^{-1}B+D]U(s)=G(s)
+\end{align*}
+Remark 2.8.3 - the TF obtained from a state-space model is always rational and always proper.\\
+state-space model $\Rightarrow$ rational proper TF function\\
+TF model $\Rightarrow$ state-space model (only when TF is rational and proper, answer is never unique)
+\subsubsection*{Ex 2.8.6} Linearized pendulum at $\bar x=\begin{bmatrix}\pi\\0\end{bmatrix},\bar u=0$
+\begin{align*}
+
+\end{align*}
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
 \end{document}
