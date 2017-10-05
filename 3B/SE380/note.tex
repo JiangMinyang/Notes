@@ -8,6 +8,7 @@
 \usepackage{tikz}
 \usepackage{courier}
 \usepackage{amsfonts,amssymb,amsmath,amsthm,lastpage,fancyhdr,wrapfig,multirow}
+\usepackage{mathrsfs}
 \usepackage{palatino}
 \usepackage{amsmath}
 \usepackage[english]{babel}
@@ -103,7 +104,7 @@ We must decide on the \underline{request rate} $u(t)$ based on $r(t)$ and $y(t)$
 		\node [block, right of=joint2, ] (server) {Server};
 		\node [input, below of=joint2] (measurement) {};
 		\node [output, right of=server, node distance=3cm] (output) {};
-																																																				                                                                                                                                                                                                                                                                                                                                                                                                                    
+																																																										                                                                                                                                                                                                                                                                                                                                                                                                                    
 		\draw [->] (input) -- node{$R(s)$} (joint1);
 		\draw [->] (joint1) -- node{} (controller);
 		\draw [->] (controller) -- node{} (joint2);
@@ -159,7 +160,7 @@ T: sampling period
 		\node [input, name=input] (input) {};
 		\node [block, right of=input, node distance=5cm] (controller) {Dynamical System};
 		\node [output, right of=controller, node distance=5cm] (output) {};
-																																																				                                                                                                                                                                                                                                                                                                                                                                                                                    
+																																																										                                                                                                                                                                                                                                                                                                                                                                                                                    
 		\draw [->] (input) -- node{u (control inputs)} (controller);
 		\draw [->] (controller) -- node{y (output variables)} (output);
 	\end{tikzpicture}
@@ -411,7 +412,7 @@ Linearize pendulum at upright position
 		\node [block, right of=joint2, align=left] (server) {$\dot x=f(x,u)$\\$y=h(x,u)$};
 		\node [joint, below of=joint2] (measurement) {};
 		\node [output, right of=server, node distance=3cm] (output) {};
-																																																				                                                                                                                                                                                                                                                                                                                                                                                                                    
+																																																										                                                                                                                                                                                                                                                                                                                                                                                                                    
 		\draw [->] (input) -- node{$\delta r(t)$} (joint1);
 		\draw [->] (joint1) -- node{} (controller);
 		\draw [->] (controller) -- node{} (joint2);
@@ -434,14 +435,14 @@ Mass-spring-dumper $$M\ddot q=u-Kq -c(\dot q)$$
 Take $y:=q$ as system output, if $c(\dot q)$ is a nonlinear function, there is no TF.\\
 if $c(\dot q)=b\dot q, b\in \mathbb{R}$ then
 \begin{align*}
-	&s^2MQ(s)=U(s)-KQ(s)-sbQ(s)\text{ zero initial conditions}\\
-	\Rightarrow& \frac{Q(s)}{U(s)}=\frac{1}{s^2M+sb+K}
+	            & s^2MQ(s)=U(s)-KQ(s)-sbQ(s)\text{ zero initial conditions} \\
+	\Rightarrow & \frac{Q(s)}{U(s)}=\frac{1}{s^2M+sb+K}                     
 \end{align*}
 Other examples (Table 2.2)
 \subsubsection*{DEFN 2.8.1} A TF $G(s)$ is real rational
 \begin{enumerate}
 	\item $$G(s)=\frac{b_ms^m+\hdots+b_1s+b_0}{s^n+a_{n-1}s^{n-1}+\hdots+a_1s+s_0},a_i,b_i\in \mathbb{R}$$
-	Let $\mathbb{R}(s)$ be the set of all real rational TFs
+	      Let $\mathbb{R}(s)$ be the set of all real rational TFs
 	\item $G(s)\in \mathbb{R}(s)$ is proper if $n\geq m$
 	\item $G(s) \in \mathbb{R}(s)$ is strictly proper if $n > m$
 \end{enumerate}
@@ -453,59 +454,271 @@ If $G(s)\in \mathbb{R}(s)$ and its numerator and denominator are co-prime then p
 start with $$\dot x=Ax+Bu$$$$y=Cx+Du$$
 take LTs with zero initial conditions
 \begin{align*}
-sX(s)=&AX(s)+BU(s)\\
-Y(s)=&CX(s)+DU(s)\\
-X(s)=&(X_1(s)\hdots,X_n(s))\\
-U(s)=&(U_1(s)\hdots,U_m(s))\\
-Y(s)=&(Y_1(s)\hdots,Y_p(s))\\
+	sX(s)= & AX(s)+BU(s)           \\
+	Y(s)=  & CX(s)+DU(s)           \\
+	X(s)=  & (X_1(s)\hdots,X_n(s)) \\
+	U(s)=  & (U_1(s)\hdots,U_m(s)) \\
+	Y(s)=  & (Y_1(s)\hdots,Y_p(s)) \\
 \end{align*}	    
 
 eliminate $X(s)$
 \begin{align*}
-&(sI-A)X(s)=BU(s)\\
-\Rightarrow&X(s)=(sI-A)^{-1}BU(s)\\
-\Rightarrow&Y(s)=[C(sI-A)^{-1}B+D]U(s)=G(s)
+	            & (sI-A)X(s)=BU(s)                \\
+	\Rightarrow & X(s)=(sI-A)^{-1}BU(s)           \\
+	\Rightarrow & Y(s)=[C(sI-A)^{-1}B+D]U(s)=G(s) 
 \end{align*}
 Remark 2.8.3 - the TF obtained from a state-space model is always rational and always proper.\\
 state-space model $\Rightarrow$ rational proper TF function\\
 TF model $\Rightarrow$ state-space model (only when TF is rational and proper, answer is never unique)
 \subsubsection*{Ex 2.8.6} Linearized pendulum at $\bar x=\begin{bmatrix}\pi\\0\end{bmatrix},\bar u=0$
-\begin{align*}
 
+\section*{Sommary Lecture \#8}
+\begin{enumerate}
+	\item $$\dot x=Ax,x(0)=x_0\in\mathbb{R}^n$$
+	      solution is $x(t)=e^{At}x_0$\\
+	      $e^{At}=$matrix exponential $=I+tA+\frac{t^2A^2}{2!}+\hdots=\mathbb{L}^{-1}\{(sI-A)^{-1}\}$
+	\item $\dot x=A+Bu,x(0)=x_0,u(t)=a$,"resonable" input\\
+	      solution $$x(t)=e^{At}x_0+\int_0^t e^{A(t-\tau)}Bu(\tau)d\tau=\text{initial state response + forced response}$$
+	\item $\dot x=Ax$ is asymptotically stable if $x(t)\rightarrow 0$ for any $x(0)$ all eigenvalue of A have negative real part
+\end{enumerate}
+
+\section*{3.5 bounded input bounded output stability}
+$$y(t)=(g*u)(t),y=L^{-1}\{G\}$$
+\subsection*{DEFN 3.5.2} An LTI system in BIBO stable, if every  bounded input produces a bounded output $$\|u\|_\infty \text{ finite }\Rightarrow \|y\|_\infty \text{ finite}_o$$
+\subsection*{Ex 3.5.1}
+$G(s)=\frac{1}{s+2}$, Impulse response $g(t)=\mathscr{L}^{-1}\{G(s)\}=e^{-2t}$
+\begin{align*}
+	y(t)= & (g*u)(t)                         \\
+	=     & \int_0^te^{-2\tau}u(t-\tau)d\tau 
 \end{align*}
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
+So, for all $t\geq 0$
+\begin{align*}
+	|y(t)|= & \lvert \int_0^te^{-2\tau}u(t-\tau)d\tau\rvert                            \\
+	\leq    & \int_0^t\lvert e^{-2\tau}u(t-\tau)\rvert d\tau                           \\
+	\leq    & \int_0^te^{-2\tau}d\tau \|u\|_{\infty}                                   \\
+	\leq    & \int_0^{\infty}e^{-2\tau}d\tau \|u\|_{\infty} =\frac{1}{2}\|u\|_{\infty} 
+\end{align*}
+Conclusion: $$\|y\|_{\infty}\leq \frac{1}{2}\|u\|_{\infty}$$
+So system is BIBO stable.
+\subsection*{THM 3.5.3} Assume $G(s)$ is rational and strictly proper. Then the following are equivalent:
+\begin{enumerate}
+	\item G is BIBO stable
+	\item impulse response $g(t)=\mathscr{L}^{-1}\{G(s)\}$is absolutely integrable
+	      $$\int_0^{\infty}|g(\tau|d\tau<\infty$$
+	\item Every pole of G has negative real part.
+	      e.g. $$\frac{1}{s+1},\frac{1}{(s+3)^2},\frac{s-1}{s^2+5s+6}\text{ BIBO stable}$$
+	      $$\frac{1}{s},\frac{1}{s-1} \text{ BIBO unstable}$$
+\end{enumerate}
+\subsection*{THM 3.5.5} If G(s) is rational and improper, the G is not BIBO stable.\\
+Proof: Using long division, write $G(s)=G_1(s)+G_2(s)$, $G_1$ - strictly proper, $G_2$ polynomial in s.\\
+e.g. $G(s)=\frac{s^2+1}{s}$ then $G_s(s)=s$and $G_1(s)=\frac{1}{s}$\\
+use linearity to write $Y(s)=G_1(s)U(s)+G_2(s)U(s)$\\
+- if $G_1$ has poles in $Re(s)\geq 0$ then result follows from THM 3.5.4\\
+- if $G_1$ has all poles in $Re(s) < 0$\\
+Then choose $u(t)=\sin(t^2)$\\
+- then $Y_1$ is bounded by THM 3.5.4\\
+- any derivative of u has polynomial terms in t, so derivative is not bounded\\
+- But $y_2$ is a linear combo of u and its time derivatives, so $y_2$ is not bounded.
+\subsubsection*{3.5.1} Stability of state space models and BIBO stability\\
+\begin{align*}
+	\dot x= & Ax+Bu \\
+	y=      & Cx+Du 
+\end{align*}
+
+\begin{align*}
+	Y(s)= & [C(sI-A)^{-1}B+D]U(s)                      \\
+	=     & [C\frac{adj(sI-A)}{det(sI-A)}B+D]U(s)      \\
+	      & \text{BIBO stable if all poles in }Re(s)<0 
+\end{align*}
+Asymptotically stable if all eigenvalues of A in $Re(s)<0$\\
+eigenvalue of $A=\text{roots of det}(sI-A)\supseteq \text{poles of }G(s)=C(sI-A)^{-1}B+D$\\
+usually $C adj(sI-A)B$ and $det(sI-A)$ are co-prime	\\
+In whichi case the two notions are equivalent.
+\subsection*{Ex 3.5.5} (mass-spring)
+\begin{align*}
+	\dot x= & \begin{bmatrix}0 & 1 \\-4&0\end{bmatrix}x+\begin{bmatrix}0\\1\end{bmatrix}u\\
+	y=&\begin{bmatrix}1&0\end{bmatrix}x\\
+	\frac{Y(s)}{U(s)}=&\frac{1}{s^2+4}=G(s)
+\end{align*}
+System is not BIBO stable
+so eigenvalue of A = poles of G
+
+\section*{Summary Lecture \#9}		    
+- DEFN of BIBO stability (I.O. notion)\\
+- checking BIBO stability \\
+\begin{enumerate}
+	\item all poles of TF in $\mathbb{C}$
+	\item $\int_{0}^t |g(\tau)|d\tau < \infty, g=\mathscr{L}^{-1}\{G\}$ 
+\end{enumerate}
+- G improper $\Rightarrow$ BIBO stable\\
+- Asymptotic stability $\Rightarrow$ BIBO stability\\
+
+\section*{3.6 Steady-state gain}
+steady-state gain of G(s) is $\frac{y_{ss}}{b}$, b is input\\
+\subsection*{THM 3.6.1} (Final Value Theorem)
+$$F(s)=\mathscr{L}\{f(t\}, \text{ assume F(s) is rational}$$
+\begin{enumerate}
+	\item if $F(s)$ has all poles in $Re(s)<0$, then $\lim_{t\rightarrow \infty} f(t)=0$\\
+	      e.g. $$F(s)=\frac{1}{s+1},f(t)=e^{-t}$$ 
+	\item if $sF(s)$ has all poles in $Re(s) < 0$, then $$\lim_{t\rightarrow \infty}f(t)=\lim_{x\rightarrow 0} sF(s)$$
+	\item if $sF(s)$ has even one pole with $Re(s) \geq 0$, then $f(t)$ does not converge.\\ e.g. $$F(s)=\frac{1}{s^2}, sF(s)=\frac{1}{s},f(t)=t$$
+\end{enumerate}
+Example\\
+\begin{center}
+	\begin{tabular}{ l | c | c | c | r }
+		\hline
+		f(t)            & $\lim_{t\rightarrow \infty} f(t)$ & $F(s)$                   & $\lim_{s\rightarrow 0}sF(s)$ & FVT case \\ \hline
+		$e^{-t}$        & 0                                 & $\frac{1}{s+1}$          & 0                            & 1 or 2   \\ \hline
+		$1(t)$          & 1                                 & $\frac{1}{s}$            & 1                            & 2        \\ \hline 
+		t               & $\infty$                          & $\frac{1}{s^2}$          & $\infty$                     & 3        \\ \hline 
+		$te^{-t}$       & 0                                 & $\frac{1}{(s+1)^2}$      & 0                            & 1 or 2   \\ \hline 
+		$e^t$           & $\infty$                          & $\frac{1}{s-1}$          & 0                            & 2        \\ \hline 
+		$\cos(\omega t)$ & N/A                               & $\frac{s}{s^2+\omega^2}$ & 0                            & 3        \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\subsection*{THM 3.6.2}
+If $G(s)$ is BIBO stable and $u(t)=b1(t)$, then $y_{ss}=bG(0)$. Invite you to prove it via Final value Theorem.\\
+i.e. steady state gain is always $\frac{y_{ss}}{b}=G(0)$ for and b!\\
+Example (set-point control)
+\begin{align*}
+\dot x=&-2x+u\\
+y=&x\\
+\Rightarrow Y(s)=&\frac{1}{s+2}U(s)
+\end{align*}		    
+Problem: Given a constant reference $r(t)=r_01(t), r_0$ constant, find a control signal $u(t)$ to make $y(t)\rightarrow r(t)$ as $t\rightarrow \infty$\\
+We want $$\lim_{t\rightarrow \infty} y(t)=r_0$$
+\begin{align*}
+y_{ss}=\lim_{t\rightarrow \infty} y(t) &=\lim_{s\rightarrow 0} sC(s)P(s)R(s)\\
+&=\lim_{s\rightarrow 0}sC(s)\frac{1}{s+2}\frac{r_0}{s}
+\end{align*}
+If $C(s0$ is BIBO stable, then $y_{ss}=\lim_{s\rightarrow 0} C(s)\frac{1}{s+2}r_0=C(0)\frac{1}{2}r_0$: $$y_{ss}=r_0 \iff C(0)=2=\frac{1}{P(0)}$$
+Simplest choice: $$C(s)=\frac{1}{P(0)}=2$$
+\subsection*{3.7 Frequency Response}
+$Y(s) = G(s)U(s)$ or $y(t)=(g*u)(t)$
+\subsection*{THM 3.7.1}
+Assume G ration, BIBO stable. If $u(t)=\cos(\omega t)$, then the steady state output is: 
+$$y(t)=A\cos(\omega t+\phi), A=|G(j\omega)|,\phi=\angle G(j\omega)$$
+\subsection*{Ex}
+\begin{align*}
+\dot x=&-10x+u\\
+y=&x\\
+\Rightarrow Y(s)=&\frac{1}{s+10}U(s)=G(s)U(s)\\
+A=&-10\\
+det(sI-A)=s&+10\\
+&\text{eigenvalue of A is -10}
+\end{align*}
+If $u(t)=2\cos(3t+\frac{\pi}{6})$, what is the steady-state output?
+System is asymptotically stable $\Rightarrow$ BIBO stable $\Rightarrow$ THM 3.7.1 applies\\
+From THM 3.7.1 steady-state output is $y(t)=2A\cos(3t+\frac{\pi}{6}+\phi)$\\
+$A=|G(j\omega)|=|G(j3)|=|\frac{1}{j3+10}|=\frac{1}{\sqrt{3^2+10^2}}\approx 0.1$\
+$\phi=\angle G(j3)=\angle \frac{1}{j3+10}=\angle 1-\angle (j3+10)=-arctan(10,3)\in (-\pi,\pi]$
+
+\subsection*{DEFN 3.7.2}
+If $G(s) \in \mathbb{R}(s)$ and BIBO stable
+\begin{enumerate}
+	\item the function $\mathbb{R} \rightarrow \mathbb{C}, \omega\rightarrow G(j\omega)$ is the frequency response.
+	\item the function $\mathbb{R} \rightarrow \mathbb{R},\omega\rightarrow|G(j\omega)|$ is the magnitude response.
+	\item the function $\mathbb{R}\rightarrow (-\pi,\pi], \omega \rightarrow \angle G(j\omega)$ is the phase response.
+\end{enumerate}
+
+\section{Grophical Representations of frequency response}
+when we graph $G(j\omega)$ we only consider $\omega \geq 0$, no loss of info when G is rational $|G(j\omega)|=|G(-j\omega)|, \angle G(j\omega)=-\angle G(-j\omega)$\\
+Bode Plots
+\begin{enumerate}
+	\item magitude plot: $20log|G(j\omega)|$ vs $log(\omega)$
+	\item phase $\angle G(j\omega)$ vs $og(\omega)$	
+\end{enumerate}
+Polar Plots: $Re(G(j\omega))$ vs $\ln(G(j\omega))$\\
+- to sketch the Bode plot of any rational TF, we only need to know how to sketch 4 terms.
+\begin{enumerate}
+	\item Pure gain $G(s)=K$
+	\item first order $G(s)=\tau s \pm 1,\tau > 0$
+	\item Zeros at s=0 $G(s)=s^n$
+	\item complex conjugate roots $$G(s)=s^2+2z\omega_ns+\omega_n^2$$
+\end{enumerate}
+\subsection*{Ex 3.8.5}
+\begin{align*}
+G(s)=&\frac{40s^2(s-2)}{(s+5)(s^2+4s+100)}\\
+=&\frac{(40)s^2(2)(\frac{s}{2}-1))}{(5)(100)(\frac{s}{5}+1)(\frac{s^2}{10^2}+\frac{4s}{10^2}+1)}\\
+=&\frac{(40)(2)}{(5)(100)}\frac{s^2}{\frac{s}{5}+1}\frac{\frac{s}{2}-1}{\frac{s^2}{10^2}+\frac{4s}{10^2}+1}
+\end{align*}
+\subsection*{Ex 3.8.6 To plot Bode plot we need}
+\begin{align*}
+20log|G(j\omega)|=20log|\frac{80}{500}|+20log|(j\omega^2)|-20log|\frac{j\omega}{2}-1|-20log|\frac{j\omega}{5}+1|-20log|\frac{(j\omega)^2}{10^2}+\frac{4}{10^2}j\omega + 1|
+\end{align*}
+\begin{enumerate}
+	\item $G(s)=K$
+	\item $G(j\omega)j\tau\omega+1$ (TF with a zero at $s=\frac{-1}{\tau}$)\\
+	Bode plot $$20log|G(j\omega)|=20log|j\omega \tau +1|$$
+	Approximates for sketching
+	\begin{enumerate}
+		\item for $\omega < \frac{1}{\tau}$, $Im(G(j\omega)) \approx 0\Rightarrow (\forall \omega < \frac{1}{\tau})20log|G(j\omega)|\approx 2 log|1|=0$
+	\end{enumerate}
+	\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
