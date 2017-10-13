@@ -104,7 +104,7 @@ We must decide on the \underline{request rate} $u(t)$ based on $r(t)$ and $y(t)$
 		\node [block, right of=joint2, ] (server) {Server};
 		\node [input, below of=joint2] (measurement) {};
 		\node [output, right of=server, node distance=3cm] (output) {};
-																																																										                                                                                                                                                                                                                                                                                                                                                                                                                    
+																																																																                                                                                                                                                                                                                                                                                                                                                                                                                    
 		\draw [->] (input) -- node{$R(s)$} (joint1);
 		\draw [->] (joint1) -- node{} (controller);
 		\draw [->] (controller) -- node{} (joint2);
@@ -160,7 +160,7 @@ T: sampling period
 		\node [input, name=input] (input) {};
 		\node [block, right of=input, node distance=5cm] (controller) {Dynamical System};
 		\node [output, right of=controller, node distance=5cm] (output) {};
-																																																										                                                                                                                                                                                                                                                                                                                                                                                                                    
+																																																																                                                                                                                                                                                                                                                                                                                                                                                                                    
 		\draw [->] (input) -- node{u (control inputs)} (controller);
 		\draw [->] (controller) -- node{y (output variables)} (output);
 	\end{tikzpicture}
@@ -412,7 +412,7 @@ Linearize pendulum at upright position
 		\node [block, right of=joint2, align=left] (server) {$\dot x=f(x,u)$\\$y=h(x,u)$};
 		\node [joint, below of=joint2] (measurement) {};
 		\node [output, right of=server, node distance=3cm] (output) {};
-																																																										                                                                                                                                                                                                                                                                                                                                                                                                                    
+																																																																                                                                                                                                                                                                                                                                                                                                                                                                                    
 		\draw [->] (input) -- node{$\delta r(t)$} (joint1);
 		\draw [->] (joint1) -- node{} (controller);
 		\draw [->] (controller) -- node{} (joint2);
@@ -567,12 +567,12 @@ Example\\
 \begin{center}
 	\begin{tabular}{ l | c | c | c | r }
 		\hline
-		f(t)            & $\lim_{t\rightarrow \infty} f(t)$ & $F(s)$                   & $\lim_{s\rightarrow 0}sF(s)$ & FVT case \\ \hline
-		$e^{-t}$        & 0                                 & $\frac{1}{s+1}$          & 0                            & 1 or 2   \\ \hline
-		$1(t)$          & 1                                 & $\frac{1}{s}$            & 1                            & 2        \\ \hline 
-		t               & $\infty$                          & $\frac{1}{s^2}$          & $\infty$                     & 3        \\ \hline 
-		$te^{-t}$       & 0                                 & $\frac{1}{(s+1)^2}$      & 0                            & 1 or 2   \\ \hline 
-		$e^t$           & $\infty$                          & $\frac{1}{s-1}$          & 0                            & 2        \\ \hline 
+		f(t)             & $\lim_{t\rightarrow \infty} f(t)$ & $F(s)$                   & $\lim_{s\rightarrow 0}sF(s)$ & FVT case \\ \hline
+		$e^{-t}$         & 0                                 & $\frac{1}{s+1}$          & 0                            & 1 or 2   \\ \hline
+		$1(t)$           & 1                                 & $\frac{1}{s}$            & 1                            & 2        \\ \hline 
+		t                & $\infty$                          & $\frac{1}{s^2}$          & $\infty$                     & 3        \\ \hline 
+		$te^{-t}$        & 0                                 & $\frac{1}{(s+1)^2}$      & 0                            & 1 or 2   \\ \hline 
+		$e^t$            & $\infty$                          & $\frac{1}{s-1}$          & 0                            & 2        \\ \hline 
 		$\cos(\omega t)$ & N/A                               & $\frac{s}{s^2+\omega^2}$ & 0                            & 3        \\ 
 		\hline
 	\end{tabular}
@@ -582,15 +582,15 @@ If $G(s)$ is BIBO stable and $u(t)=b1(t)$, then $y_{ss}=bG(0)$. Invite you to pr
 i.e. steady state gain is always $\frac{y_{ss}}{b}=G(0)$ for and b!\\
 Example (set-point control)
 \begin{align*}
-\dot x=&-2x+u\\
-y=&x\\
-\Rightarrow Y(s)=&\frac{1}{s+2}U(s)
+	\dot x=           & -2x+u             \\
+	y=                & x                 \\
+	\Rightarrow Y(s)= & \frac{1}{s+2}U(s) 
 \end{align*}		    
 Problem: Given a constant reference $r(t)=r_01(t), r_0$ constant, find a control signal $u(t)$ to make $y(t)\rightarrow r(t)$ as $t\rightarrow \infty$\\
 We want $$\lim_{t\rightarrow \infty} y(t)=r_0$$
 \begin{align*}
-y_{ss}=\lim_{t\rightarrow \infty} y(t) &=\lim_{s\rightarrow 0} sC(s)P(s)R(s)\\
-&=\lim_{s\rightarrow 0}sC(s)\frac{1}{s+2}\frac{r_0}{s}
+	y_{ss}=\lim_{t\rightarrow \infty} y(t) & =\lim_{s\rightarrow 0} sC(s)P(s)R(s)                  \\
+	                                       & =\lim_{s\rightarrow 0}sC(s)\frac{1}{s+2}\frac{r_0}{s} 
 \end{align*}
 If $C(s0$ is BIBO stable, then $y_{ss}=\lim_{s\rightarrow 0} C(s)\frac{1}{s+2}r_0=C(0)\frac{1}{2}r_0$: $$y_{ss}=r_0 \iff C(0)=2=\frac{1}{P(0)}$$
 Simplest choice: $$C(s)=\frac{1}{P(0)}=2$$
@@ -601,12 +601,12 @@ Assume G ration, BIBO stable. If $u(t)=\cos(\omega t)$, then the steady state ou
 $$y(t)=A\cos(\omega t+\phi), A=|G(j\omega)|,\phi=\angle G(j\omega)$$
 \subsection*{Ex}
 \begin{align*}
-\dot x=&-10x+u\\
-y=&x\\
-\Rightarrow Y(s)=&\frac{1}{s+10}U(s)=G(s)U(s)\\
-A=&-10\\
-det(sI-A)=s&+10\\
-&\text{eigenvalue of A is -10}
+	\dot x=           & -10x+u                        \\
+	y=                & x                             \\
+	\Rightarrow Y(s)= & \frac{1}{s+10}U(s)=G(s)U(s)   \\
+	A=                & -10                           \\
+	det(sI-A)=s       & +10                           \\
+	                  & \text{eigenvalue of A is -10} 
 \end{align*}
 If $u(t)=2\cos(3t+\frac{\pi}{6})$, what is the steady-state output?
 System is asymptotically stable $\Rightarrow$ BIBO stable $\Rightarrow$ THM 3.7.1 applies\\
@@ -639,86 +639,173 @@ Polar Plots: $Re(G(j\omega))$ vs $\ln(G(j\omega))$\\
 \end{enumerate}
 \subsection*{Ex 3.8.5}
 \begin{align*}
-G(s)=&\frac{40s^2(s-2)}{(s+5)(s^2+4s+100)}\\
-=&\frac{(40)s^2(2)(\frac{s}{2}-1))}{(5)(100)(\frac{s}{5}+1)(\frac{s^2}{10^2}+\frac{4s}{10^2}+1)}\\
-=&\frac{(40)(2)}{(5)(100)}\frac{s^2}{\frac{s}{5}+1}\frac{\frac{s}{2}-1}{\frac{s^2}{10^2}+\frac{4s}{10^2}+1}
+	G(s)= & \frac{40s^2(s-2)}{(s+5)(s^2+4s+100)}                                                                      \\
+	=     & \frac{(40)s^2(2)(\frac{s}{2}-1))}{(5)(100)(\frac{s}{5}+1)(\frac{s^2}{10^2}+\frac{4s}{10^2}+1)}            \\
+	=     & \frac{(40)(2)}{(5)(100)}\frac{s^2}{\frac{s}{5}+1}\frac{\frac{s}{2}-1}{\frac{s^2}{10^2}+\frac{4s}{10^2}+1} 
 \end{align*}
 \subsection*{Ex 3.8.6 To plot Bode plot we need}
 \begin{align*}
-20log|G(j\omega)|=20log|\frac{80}{500}|+20log|(j\omega^2)|-20log|\frac{j\omega}{2}-1|-20log|\frac{j\omega}{5}+1|-20log|\frac{(j\omega)^2}{10^2}+\frac{4}{10^2}j\omega + 1|
+	20log|G(j\omega)|=20log|\frac{80}{500}|+20log|(j\omega^2)|-20log|\frac{j\omega}{2}-1|-20log|\frac{j\omega}{5}+1|-20log|\frac{(j\omega)^2}{10^2}+\frac{4}{10^2}j\omega + 1| 
 \end{align*}
 \begin{enumerate}
 	\item $G(s)=K$
 	\item $G(j\omega)j\tau\omega+1$ (TF with a zero at $s=\frac{-1}{\tau}$)\\
-	Bode plot $$20log|G(j\omega)|=20log|j\omega \tau +1|$$
-	Approximates for sketching
-	\begin{enumerate}
-		\item for $\omega < \frac{1}{\tau}$, $Im(G(j\omega)) \approx 0\Rightarrow (\forall \omega < \frac{1}{\tau})20log|G(j\omega)|\approx 2 log|1|=0$
-	\end{enumerate}
-	\end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	      Bode plot $$20log|G(j\omega)|=20log|j\omega \tau +1|$$
+	      Approximates for sketching
+	      \begin{enumerate}
+	      	\item for $\omega < \frac{1}{\tau}$, $Im(G(j\omega)) \approx 0\Rightarrow (\forall \omega < \frac{1}{\tau})20log|G(j\omega)|\approx 2 log|1|=0$
+	      \end{enumerate}
+\end{enumerate}
+
+Complex conjugate zeros
+$$G(s)=\frac{s^2}{\omega n^2}+\frac{2z}{\omega n}s + 1, z\in [0,1),\omega_n \not = 0$$
+$$G(j\omega)=(1-\frac{\omega^2}{\omega_n^2})+j2z\frac{\omega}{\omega_n}$$
+Observations:
+- if $\omega << |\omega_n|$, $|G(j\omega)| \approx 1, \angle G(j\omega)\approx 0$\\
+- if $\omega >> |\omega_n|$, $|G(j\omega)|\approx \frac{\omega^2}{\omega_n^2},\angle G(j\omega) \approx 180$\\
+For asymptotic bode plots of complex conjuage roots, we approximate $G(s)$
+as two 1st order terms with roots at $-\omega_n$ i.e. set $z=1$
+$$G(s)=\frac{s^2}{\omega_n^2}+\frac{2zs}{\omega_n}+1\approx \frac{s^2}{\omega_n^2}+\frac{2s}{\omega_n}+1=(\frac{s}{\omega_n}+1)^2=(\tau s+1)^2, \tau=\frac{1}{\omega_n}$$
+\section*{Chapter 3 summary}
+time domain $\rightarrow \mathscr{L}$ s-domain$G(s)$\\
+time domain $\leftarrow \mathscr{L}^-1$ s-domain$G(s)$\\
+s-domain $\rightarrow s=j\omega$ Frequency Response $G(j\omega)$\\
+s-domain $\leftarrow $Note appx 3.B Frequency Response $G(j\omega)$\\
+time domain $\rightarrow \mathscr{F}$  Frequency Response $G(j\omega)$\\
+time domain $\leftarrow \mathscr{F}^-1$  Frequency Response $G(j\omega)$\\
+State-space model
+$$g(t)=Ce^{At}1(t)+D\delta(t)$$
+$$G(s)=C(sI-A)^{-1}B+D$$
+\begin{enumerate}
+	\item defn of asymptotic stability and how to test
+	\item defn of BIBO stability and how to test
+	\item relationship between A.S. and BIBO stability
+	\item final value theorem, steady-state gain $G(0)$
+	\item frequency response physical meaning and how to draw bode plots
+\end{enumerate}
+	
+\section*{Ch4: First and second order systems}
+First Order:
+$$\tau \dot y+y=ku$$
+or $$\frac{Y(s)}{U(s)}=\frac{k}{s+1}$$
+or $$\dot x=\frac{-1x}{\tau}+\frac{k}{\tau}u$$
+$$y=x$$
+Second Order:
+$$\ddot y+2z\omega_n\dot y+\omega_n^2y=k\omega_n^2u$$
+or $$\frac{Y(s)}{U(s)}=\frac{K\omega_n^2}{s^2+2z\omega_ns+\omega_n^2}$$
+or $$\dot x = \begin{bmatrix} 0&1\\-\omega_n^2&-2z\omega_n\end{bmatrix}x+\begin{bmatrix} 0\\K\omega_n^2\end{bmatrix}u$$
+$$y=\begin{bmatrix}1&0\end{bmatrix}x$$
+\subsection*{4.1 First Order}
+pole: $s=\frac{-1}{\tau}$, no zeros. BIBO stable $\iff \tau >0$\\
+steady-state gain: K, bandwidth: $\frac{1}{\tau}$ rad/s\\
+Impulse response: $$g(t)=\frac{K}{T}e^{-\frac{t}{\tau}}1(t)$$
+Higher Bandwidth $\iff$ Faster impulse response\\
+	
+	
+Step response:\\
+$$Y(s)=G(s)U(s)$$
+Pick $u(t)=1(t),U(s)=\frac{1}{s}$
+\begin{align*}
+	y(t)= & \mathscr{L}^{-1}\{G(s)U(s)\}=\mathscr{L}^{-1}\{\frac{K}{\tau s +1}\frac{1}{s}\} \\
+	=     & \mathscr{L}^{-1}\{\frac{k}{s}-\frac{k}{s+1/\tau}\}                              \\
+	=     & K(1-e^{-t/\tau})                                                                
+\end{align*}
+\includegraphics[scale=0.1]{images/4_2_STOP_RESPONSE.jpg}\\
+Observations
+\begin{enumerate}
+	\item After 4$\tau$ seconds, $y(t)$ is within 2\% of its steady-state value
+	\item for all $t\geq 0,y(t)<y_{ss}$, no overshoot
+	\item $y(t)$ increases monotonically (no oscillations)
+\end{enumerate}
+Once again: $\tau$ decrease $\iff$ step response gets faster $\iff$ bandwidth increase $\iff$ pole moves to the left
+\subsection*{4.2 Prototype 2nd order system}
+$$\frac{Y(s)}{U(s)}=\frac{K\omega_n^2}{s^2+2z\omega_n s+\omega_n^2}$$
+\subsubsection*{Ex 4.2.1}
+On Notes.
+\begin{align*}
+	M\ddot q & =u-K_{spring}q-b\dot q\Rightarrow \frac{Y(s)}{U(s)}=\frac{1/M}{s^2+\frac{b}{M}s+\frac{K_{spring}}{M}} \\
+	\omega_n & =\sqrt{\frac{K_{spring}}{M}}                                                                          \\
+	z        & =\frac{b}{2\sqrt{K_{spring}M}}                                                                        \\
+	K        & =\frac{1}{K_{spring}}                                                                                 
+\end{align*}
+Pole locations:
+\begin{align*}
+	s=-\zeta\omega_n\pm \omega_n\sqrt{\zeta^2-1}=\omega_n(-\zeta\pm \sqrt{\zeta^2-1}) 
+\end{align*}
+\includegraphics[scale=0.1]{images/4_2_POLE_LOCATION.jpg}\\
+Pole locations used to categorize 2nd order system.
+\begin{enumerate}
+	\item undamped $\zeta=0$
+	\item under damped $0<\zeta<1$
+	\item critically damped $\zeta =1$
+	\item over damped $\zeta>1$
+\end{enumerate}
+Terminology: \\
+$\zeta$:damping ratio\\
+$\omega_n$: undamped natural frequency\\
+Steady-state gain: K\\
+Zeros: none\\
+Bandwidth: $\omega_{BW}\approx \omega_n$\\
+\includegraphics[scale=0.1]{images/4_2BANDWIDTH.jpg}
+$$20log|G(j\omega)|=20logK-20log|\frac{(j\omega)^2}{\omega_n^2}+2\zeta\frac{j\omega}{\omega_n}+1|\approx 20logK-20log|(\frac{j\omega}{\omega_n}+1)^2|$$
+\subsubsection*{4.2.1 Under damped systems}
+Poles: $$s=-\zeta\omega_n\pm j\omega_n\sqrt{1-\zeta^2}=\omega_ne^{\pm j(\pi-\theta)}, \theta=arccos(\zeta)$$
+Magnitude only depends on $\omega_n$\\
+angle only depends on $\zeta$\\
+------------------------------------------------------------------------------------------------------------------\\
+Impulse response:
+\begin{align*}
+g(t)=K\frac{\omega_n}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_n t}sin(\omega_n\sqrt{1-\zeta^2}t),t\geq 0
+\end{align*}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 \end{document}
