@@ -104,7 +104,7 @@ We must decide on the \underline{request rate} $u(t)$ based on $r(t)$ and $y(t)$
 		\node [block, right of=joint2, ] (server) {Server};
 		\node [input, below of=joint2] (measurement) {};
 		\node [output, right of=server, node distance=3cm] (output) {};
-																																																																                                                                                                                                                                                                                                                                                                                                                                                                                    
+																																																																		                                                                                                                                                                                                                                                                                                                                                                                                                    
 		\draw [->] (input) -- node{$R(s)$} (joint1);
 		\draw [->] (joint1) -- node{} (controller);
 		\draw [->] (controller) -- node{} (joint2);
@@ -160,7 +160,7 @@ T: sampling period
 		\node [input, name=input] (input) {};
 		\node [block, right of=input, node distance=5cm] (controller) {Dynamical System};
 		\node [output, right of=controller, node distance=5cm] (output) {};
-																																																																                                                                                                                                                                                                                                                                                                                                                                                                                    
+																																																																		                                                                                                                                                                                                                                                                                                                                                                                                                    
 		\draw [->] (input) -- node{u (control inputs)} (controller);
 		\draw [->] (controller) -- node{y (output variables)} (output);
 	\end{tikzpicture}
@@ -412,7 +412,7 @@ Linearize pendulum at upright position
 		\node [block, right of=joint2, align=left] (server) {$\dot x=f(x,u)$\\$y=h(x,u)$};
 		\node [joint, below of=joint2] (measurement) {};
 		\node [output, right of=server, node distance=3cm] (output) {};
-																																																																                                                                                                                                                                                                                                                                                                                                                                                                                    
+																																																																		                                                                                                                                                                                                                                                                                                                                                                                                                    
 		\draw [->] (input) -- node{$\delta r(t)$} (joint1);
 		\draw [->] (joint1) -- node{} (controller);
 		\draw [->] (controller) -- node{} (joint2);
@@ -659,153 +659,190 @@ Polar Plots: $Re(G(j\omega))$ vs $\ln(G(j\omega))$\\
 
 Complex conjugate zeros
 $$G(s)=\frac{s^2}{\omega n^2}+\frac{2z}{\omega n}s + 1, z\in [0,1),\omega_n \not = 0$$
-$$G(j\omega)=(1-\frac{\omega^2}{\omega_n^2})+j2z\frac{\omega}{\omega_n}$$
-Observations:
-- if $\omega << |\omega_n|$, $|G(j\omega)| \approx 1, \angle G(j\omega)\approx 0$\\
-- if $\omega >> |\omega_n|$, $|G(j\omega)|\approx \frac{\omega^2}{\omega_n^2},\angle G(j\omega) \approx 180$\\
-For asymptotic bode plots of complex conjuage roots, we approximate $G(s)$
-as two 1st order terms with roots at $-\omega_n$ i.e. set $z=1$
-$$G(s)=\frac{s^2}{\omega_n^2}+\frac{2zs}{\omega_n}+1\approx \frac{s^2}{\omega_n^2}+\frac{2s}{\omega_n}+1=(\frac{s}{\omega_n}+1)^2=(\tau s+1)^2, \tau=\frac{1}{\omega_n}$$
-\section*{Chapter 3 summary}
-time domain $\rightarrow \mathscr{L}$ s-domain$G(s)$\\
-time domain $\leftarrow \mathscr{L}^-1$ s-domain$G(s)$\\
-s-domain $\rightarrow s=j\omega$ Frequency Response $G(j\omega)$\\
-s-domain $\leftarrow $Note appx 3.B Frequency Response $G(j\omega)$\\
-time domain $\rightarrow \mathscr{F}$  Frequency Response $G(j\omega)$\\
-time domain $\leftarrow \mathscr{F}^-1$  Frequency Response $G(j\omega)$\\
-State-space model
-$$g(t)=Ce^{At}1(t)+D\delta(t)$$
-$$G(s)=C(sI-A)^{-1}B+D$$
-\begin{enumerate}
-	\item defn of asymptotic stability and how to test
-	\item defn of BIBO stability and how to test
-	\item relationship between A.S. and BIBO stability
-	\item final value theorem, steady-state gain $G(0)$
-	\item frequency response physical meaning and how to draw bode plots
-\end{enumerate}
+	$$G(j\omega)=(1-\frac{\omega^2}{\omega_n^2})+j2z\frac{\omega}{\omega_n}$$
+	Observations:
+	- if $\omega << |\omega_n|$, $|G(j\omega)| \approx 1, \angle G(j\omega)\approx 0$\\
+	- if $\omega >> |\omega_n|$, $|G(j\omega)|\approx \frac{\omega^2}{\omega_n^2},\angle G(j\omega) \approx 180$\\
+	For asymptotic bode plots of complex conjuage roots, we approximate $G(s)$
+	as two 1st order terms with roots at $-\omega_n$ i.e. set $z=1$
+	$$G(s)=\frac{s^2}{\omega_n^2}+\frac{2zs}{\omega_n}+1\approx \frac{s^2}{\omega_n^2}+\frac{2s}{\omega_n}+1=(\frac{s}{\omega_n}+1)^2=(\tau s+1)^2, \tau=\frac{1}{\omega_n}$$
+	\section*{Chapter 3 summary}
+	time domain $\rightarrow \mathscr{L}$ s-domain$G(s)$\\
+	time domain $\leftarrow \mathscr{L}^-1$ s-domain$G(s)$\\
+	s-domain $\rightarrow s=j\omega$ Frequency Response $G(j\omega)$\\
+	s-domain $\leftarrow $Note appx 3.B Frequency Response $G(j\omega)$\\
+	time domain $\rightarrow \mathscr{F}$  Frequency Response $G(j\omega)$\\
+	time domain $\leftarrow \mathscr{F}^-1$  Frequency Response $G(j\omega)$\\
+	State-space model
+	$$g(t)=Ce^{At}1(t)+D\delta(t)$$
+	$$G(s)=C(sI-A)^{-1}B+D$$
+	\begin{enumerate}
+		\item defn of asymptotic stability and how to test
+		\item defn of BIBO stability and how to test
+		\item relationship between A.S. and BIBO stability
+		\item final value theorem, steady-state gain $G(0)$
+		\item frequency response physical meaning and how to draw bode plots
+	\end{enumerate}
+		
+	\section*{Ch4: First and second order systems}
+	First Order:
+	$$\tau \dot y+y=ku$$
+	or $$\frac{Y(s)}{U(s)}=\frac{k}{s+1}$$
+	or $$\dot x=\frac{-1x}{\tau}+\frac{k}{\tau}u$$
+	$$y=x$$
+	Second Order:
+	$$\ddot y+2z\omega_n\dot y+\omega_n^2y=k\omega_n^2u$$
+	or $$\frac{Y(s)}{U(s)}=\frac{K\omega_n^2}{s^2+2z\omega_ns+\omega_n^2}$$
+	or $$\dot x = \begin{bmatrix} 0&1\\-\omega_n^2&-2z\omega_n\end{bmatrix}x+\begin{bmatrix} 0\\K\omega_n^2\end{bmatrix}u$$
+	$$y=\begin{bmatrix}1&0\end{bmatrix}x$$
+	\subsection*{4.1 First Order}
+	pole: $s=\frac{-1}{\tau}$, no zeros. BIBO stable $\iff \tau >0$\\
+	steady-state gain: K, bandwidth: $\frac{1}{\tau}$ rad/s\\
+	Impulse response: $$g(t)=\frac{K}{T}e^{-\frac{t}{\tau}}1(t)$$
+	Higher Bandwidth $\iff$ Faster impulse response\\
+		
+		
+	Step response:\\
+	$$Y(s)=G(s)U(s)$$
+	Pick $u(t)=1(t),U(s)=\frac{1}{s}$
+	\begin{align*}
+		y(t)= & \mathscr{L}^{-1}\{G(s)U(s)\}=\mathscr{L}^{-1}\{\frac{K}{\tau s +1}\frac{1}{s}\} \\
+		=     & \mathscr{L}^{-1}\{\frac{k}{s}-\frac{k}{s+1/\tau}\}                              \\
+		=     & K(1-e^{-t/\tau})                                                                
+	\end{align*}
+	\includegraphics[scale=0.1]{images/4_2_STOP_RESPONSE.jpg}\\
+	Observations
+	\begin{enumerate}
+		\item After 4$\tau$ seconds, $y(t)$ is within 2\% of its steady-state value
+		\item for all $t\geq 0,y(t)<y_{ss}$, no overshoot
+		\item $y(t)$ increases monotonically (no oscillations)
+	\end{enumerate}
+	Once again: $\tau$ decrease $\iff$ step response gets faster $\iff$ bandwidth increase $\iff$ pole moves to the left
+	\subsection*{4.2 Prototype 2nd order system}
+	$$\frac{Y(s)}{U(s)}=\frac{K\omega_n^2}{s^2+2z\omega_n s+\omega_n^2}$$
+	\subsubsection*{Ex 4.2.1}
+	On Notes.
+	\begin{align*}
+		M\ddot q & =u-K_{spring}q-b\dot q\Rightarrow \frac{Y(s)}{U(s)}=\frac{1/M}{s^2+\frac{b}{M}s+\frac{K_{spring}}{M}} \\
+		\omega_n & =\sqrt{\frac{K_{spring}}{M}}                                                                          \\
+		z        & =\frac{b}{2\sqrt{K_{spring}M}}                                                                        \\
+		K        & =\frac{1}{K_{spring}}                                                                                 
+	\end{align*}
+	Pole locations:
+	\begin{align*}
+		s=-\zeta\omega_n\pm \omega_n\sqrt{\zeta^2-1}=\omega_n(-\zeta\pm \sqrt{\zeta^2-1}) 
+	\end{align*}
+	\includegraphics[scale=0.1]{images/4_2_POLE_LOCATION.jpg}\\
+	Pole locations used to categorize 2nd order system.
+	\begin{enumerate}
+		\item undamped $\zeta=0$
+		\item under damped $0<\zeta<1$
+		\item critically damped $\zeta =1$
+		\item over damped $\zeta>1$
+	\end{enumerate}
+	Terminology: \\
+	$\zeta$:damping ratio\\
+	$\omega_n$: undamped natural frequency\\
+	Steady-state gain: K\\
+	Zeros: none\\
+	Bandwidth: $\omega_{BW}\approx \omega_n$\\
+	\includegraphics[scale=0.1]{images/4_2BANDWIDTH.jpg}
+	$$20log|G(j\omega)|=20logK-20log|\frac{(j\omega)^2}{\omega_n^2}+2\zeta\frac{j\omega}{\omega_n}+1|\approx 20logK-20log|(\frac{j\omega}{\omega_n}+1)^2|$$
+	\subsubsection*{4.2.1 Under damped systems}
+	Poles: $$s=-\zeta\omega_n\pm j\omega_n\sqrt{1-\zeta^2}=\omega_ne^{\pm j(\pi-\theta)}, \theta=arccos(\zeta)$$
+	$$g(t)=\frac{K\omega_n}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_n t}sin(\omega_n\sqrt{1-\zeta^2}t),t\geq 0$$
+	Magnitude only depends on $\omega_n$\\
+	angle only depends on $\zeta$\\
+	------------------------------------------------------------------------------------------------------------------\\
+	Impulse response:
+	\begin{align*}
+		g(t)=K\frac{\omega_n}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_n t}sin(\omega_n\sqrt{1-\zeta^2}t),t\geq 0 \\
+	\end{align*}
+	\subsection*{Summary}
+	\begin{enumerate}
+		\item as $\zeta \rightarrow 0$ response is less oscillatory, less overshoot, the imaginary part of poles approaches 0.
+		\item as $\zeta \rightarrow 0$ response is more oscillatory, more overshoot, the real part of poles approaches 0.
+		\item $\omega_{BW}\approx \omega_n$ as $\omega_n\rightarrow \infty$, response is faster, poles have larger magnitude.
+		\item freq of oscillation depends on imaginary part of poles, rate of decay depends on the real part.
+	\end{enumerate}
+	\subsection*{4.3 General characteristics of a step response}
+	\begin{enumerate}
+		\item we look at common metrics to quantify the quality of a step response.
+		\item metrics apply to any system
+		\item we use $$G(s)=\frac{K\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}$$ to get equation for the metrics in terms of $K,\omega_n,\zeta$
+	\end{enumerate}		
+	\subsubsection*{4.3.1 Overshoot}
+	only under damped second order systems have it
+	$$\%OS=\frac{\|y\|_\infty-G(0)}{|G(0)|}$$
+	only depends on damping ratio:
+	$$\%OS=e^{\frac{-\zeta\pi}{\sqrt{1-\zeta^2}}},0<\zeta<1$$
+	more damping $\Leftrightarrow$ less overshoot\\
+			
+	Ex mass-spring-damper\\
+	\begin{align*}
+		\frac{Y(s)}{U(s)}=\frac{\frac{1}{M}}{s^2+\frac{b}{M}s+\frac{K_{spring}}{M}} 
+	\end{align*}
+	find conditions on M,b,$K_{spring}$ so that $\%OS\leq \%OS^{max}=0.05$\\
+	$\zeta=\frac{b}{2\sqrt{MK_{spring}}}$		
+	$$\%OS\leq \%OS^{max}\Leftrightarrow \zeta \geq \frac{-ln(\%OS^{max})}{\sqrt{\pi^2+[ln\%OS^{max}]^2}}=\zeta_{min}$$
+	To meet specs: $$\frac{b}{2\sqrt{MK_{spring}}}\geq 0.6901$$
+	\subsubsection*{4.3.2 Settling Time}
+	The smallest time $T_s$ such that $\forall t\geq T_s, \frac{|G(0)-y(t)|}{|y(t)|}\leq 0.02$\\
+	an estimate is obtained by looking at the decay rate $e^{-\zeta\omega_n t}$
+	$$e^{-\zeta\omega_n t}\leq 0.02 \Rightarrow t\geq \frac{4}{\zeta\omega_n}$$ 
+			
+	$$s=-\zeta\omega_n \pm j\omega_n\sqrt{1-\zeta^2}=\omega_n e^{\pm j(\pi-arccos(\zeta))}$$		
+	\begin{center}
+		\begin{tabular}{ l | c | c | c | c }
+			  & decrease real part & increase imaginary part & poles $\rightarrow \pm \pi$ & increase magnitude \\ \hline
+			$\omega_n$ & + & + & no change & + \\ \hline
+			$\zeta$ & + & - & + & no change\\ \hline
+			$\%OS$ & - & + & - & no change\\ \hline
+			$T_s$ & - & no change & - & -\\ \hline
+			$T_p$ & no change & + & + & -\\ 
+		\end{tabular}
+	\end{center}
+			
+			
+			
 	
-\section*{Ch4: First and second order systems}
-First Order:
-$$\tau \dot y+y=ku$$
-or $$\frac{Y(s)}{U(s)}=\frac{k}{s+1}$$
-or $$\dot x=\frac{-1x}{\tau}+\frac{k}{\tau}u$$
-$$y=x$$
-Second Order:
-$$\ddot y+2z\omega_n\dot y+\omega_n^2y=k\omega_n^2u$$
-or $$\frac{Y(s)}{U(s)}=\frac{K\omega_n^2}{s^2+2z\omega_ns+\omega_n^2}$$
-or $$\dot x = \begin{bmatrix} 0&1\\-\omega_n^2&-2z\omega_n\end{bmatrix}x+\begin{bmatrix} 0\\K\omega_n^2\end{bmatrix}u$$
-$$y=\begin{bmatrix}1&0\end{bmatrix}x$$
-\subsection*{4.1 First Order}
-pole: $s=\frac{-1}{\tau}$, no zeros. BIBO stable $\iff \tau >0$\\
-steady-state gain: K, bandwidth: $\frac{1}{\tau}$ rad/s\\
-Impulse response: $$g(t)=\frac{K}{T}e^{-\frac{t}{\tau}}1(t)$$
-Higher Bandwidth $\iff$ Faster impulse response\\
-	
-	
-Step response:\\
-$$Y(s)=G(s)U(s)$$
-Pick $u(t)=1(t),U(s)=\frac{1}{s}$
-\begin{align*}
-	y(t)= & \mathscr{L}^{-1}\{G(s)U(s)\}=\mathscr{L}^{-1}\{\frac{K}{\tau s +1}\frac{1}{s}\} \\
-	=     & \mathscr{L}^{-1}\{\frac{k}{s}-\frac{k}{s+1/\tau}\}                              \\
-	=     & K(1-e^{-t/\tau})                                                                
-\end{align*}
-\includegraphics[scale=0.1]{images/4_2_STOP_RESPONSE.jpg}\\
-Observations
-\begin{enumerate}
-	\item After 4$\tau$ seconds, $y(t)$ is within 2\% of its steady-state value
-	\item for all $t\geq 0,y(t)<y_{ss}$, no overshoot
-	\item $y(t)$ increases monotonically (no oscillations)
-\end{enumerate}
-Once again: $\tau$ decrease $\iff$ step response gets faster $\iff$ bandwidth increase $\iff$ pole moves to the left
-\subsection*{4.2 Prototype 2nd order system}
-$$\frac{Y(s)}{U(s)}=\frac{K\omega_n^2}{s^2+2z\omega_n s+\omega_n^2}$$
-\subsubsection*{Ex 4.2.1}
-On Notes.
-\begin{align*}
-	M\ddot q & =u-K_{spring}q-b\dot q\Rightarrow \frac{Y(s)}{U(s)}=\frac{1/M}{s^2+\frac{b}{M}s+\frac{K_{spring}}{M}} \\
-	\omega_n & =\sqrt{\frac{K_{spring}}{M}}                                                                          \\
-	z        & =\frac{b}{2\sqrt{K_{spring}M}}                                                                        \\
-	K        & =\frac{1}{K_{spring}}                                                                                 
-\end{align*}
-Pole locations:
-\begin{align*}
-	s=-\zeta\omega_n\pm \omega_n\sqrt{\zeta^2-1}=\omega_n(-\zeta\pm \sqrt{\zeta^2-1}) 
-\end{align*}
-\includegraphics[scale=0.1]{images/4_2_POLE_LOCATION.jpg}\\
-Pole locations used to categorize 2nd order system.
-\begin{enumerate}
-	\item undamped $\zeta=0$
-	\item under damped $0<\zeta<1$
-	\item critically damped $\zeta =1$
-	\item over damped $\zeta>1$
-\end{enumerate}
-Terminology: \\
-$\zeta$:damping ratio\\
-$\omega_n$: undamped natural frequency\\
-Steady-state gain: K\\
-Zeros: none\\
-Bandwidth: $\omega_{BW}\approx \omega_n$\\
-\includegraphics[scale=0.1]{images/4_2BANDWIDTH.jpg}
-$$20log|G(j\omega)|=20logK-20log|\frac{(j\omega)^2}{\omega_n^2}+2\zeta\frac{j\omega}{\omega_n}+1|\approx 20logK-20log|(\frac{j\omega}{\omega_n}+1)^2|$$
-\subsubsection*{4.2.1 Under damped systems}
-Poles: $$s=-\zeta\omega_n\pm j\omega_n\sqrt{1-\zeta^2}=\omega_ne^{\pm j(\pi-\theta)}, \theta=arccos(\zeta)$$
-Magnitude only depends on $\omega_n$\\
-angle only depends on $\zeta$\\
-------------------------------------------------------------------------------------------------------------------\\
-Impulse response:
-\begin{align*}
-g(t)=K\frac{\omega_n}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_n t}sin(\omega_n\sqrt{1-\zeta^2}t),t\geq 0
-\end{align*}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 \end{document}
