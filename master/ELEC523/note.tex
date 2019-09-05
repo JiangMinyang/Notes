@@ -1,0 +1,132 @@
+\documentclass[letterpaper]{article}
+\usepackage[letterpaper, hmargin=0.75in, vmargin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{courier}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,lastpage,fancyhdr,wrapfig,multirow}
+\usepackage{mathrsfs}
+\usepackage{palatino}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\textwidth 7.5in
+\oddsidemargin -.5in
+\topmargin -0.70in
+\textheight 9.8in                      
+
+\pagestyle{fancy}
+
+%**************Fill in your ID and initials here*****************
+\newcommand{\mc}[1]{\ensuremath{\mathcal{{#1}}}}
+\newcommand{\mb}[1]{\ensuremath{\mathbb{{#1}}}}
+\newcommand{\mf}[1]{\ensuremath{\mathfrak{{#1}}}}
+\newcommand{\N}[1]{\ensuremath{\{1,\ldots,{#1}\}}}
+
+\newcommand{\Worth}[1]{\{{#1} marks\}}
+\newcommand{\Sln}{\smallskip \textbf{Solution.} }
+\newcommand{\Extra}[1]{\{Extra credit: {#1} marks\}}
+
+
+\setlength{\parskip}{0.15in}
+\setlength{\parindent}{0in}
+
+
+\newcommand{\NP}{\newpage \vspace*{-0.4in}}
+\newcommand{\FP}{\vspace*{-0.6in}}
+\newcommand{\tab}[1][1cm]{\hspace*{#1}}
+\newcommand{\ES}{Erwin Schr\"odinger}
+
+\lstset{ %
+basicstyle=\ttfamily\scriptsize,commentstyle=\scriptsize\itshape,showstringspaces=false,breaklines=true}
+
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{joint} = [draw, circle, minimum size=1em]
+\tikzstyle{block} = [draw, rectangle, minimum height=6em, minimum width=6em]
+
+
+\title{\huge ELEC 523 Notes}
+\author{Minyang Jiang}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\title{Overview}
+modality\\
+transmission: source - body - detector\\
+emission: injected, swallow into body and starts radiation, detect radiation\\
+
+-- tomography: many images, generate a lot of slices\\
+-- projection: take only one image\\
+-- off-line: picture, no motion\\
+-- real-time: see motion\\
+
+
+Radiography: engineering\\
+X-Ray
+
+radioalogy: \\
+Radio: transmission - projection - offline\\
+application: chest, dentist\\
+
+Mammography: transmission - projection - offline\\
+specilized x-ray\\
+Application: tumor detection
+
+Fluoroscopy: transmission - projection - online\\
+Application: surgery \\
+Fluoroscope, CR is type of fluoroscope
+
+Computed Tomography (CT): transmission - tomography - offline\\
+Radio in different angles\\
+Application: trama center (sudden injury, can't talk)\\
+Advtange: get image very quickly and good image quality
+
+Magnetic Resonance (MR): transmission - tomography - offline\\
+For soft tissue\\
+Source to genereating image: magnetic resonance\\
+advantage: not using x-ray, safer\\
+fMRI: related about function of orgon
+
+Ultrasound Imaging (US): transmission - tomography - real-time\\
+Advantage: safe, portable, cheaper than MRI\\
+Application: ob/gyn (check baby)
+Frequency: 1-5MHz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			
+\end{document}
